@@ -1,0 +1,106 @@
+﻿<?	wrapper 'flavour/www/includes/page.tt';
+	c.stash.title = "About - " c.config.site_name;
+?>
+
+<div id="text_content">
+<div class="text_block">
+   <p><a name="what"></a>
+   <h2>What is this?</h2>
+   
+	<p>
+		<? c.config.site_name ?> (previously known as Denshi Jisho, meaning "electronic dictionary") is an online Japanese dictionary that focuses on powerful search features and an easy-to-use interface. The data comes from Jim Breen's <a href="http://www.csse.monash.edu.au/~jwb/wwwjdic.html">WWWJDIC project</a> and the site is developed by me, Kim Ahlström. Please e-mail me at <a href="mailto:kim.ahlstrom@gmail.com">kim.ahlstrom@gmail.com</a> if you have any comments, suggestions or bug reports.
+	</p>
+</div>
+
+<div class="text_block">
+
+   <p><a name="donations"></a>
+   <h2>Donations</h2>
+   
+	<p>
+		Since <? c.config.site_name ?> is a hobby project not backed by an organisation or company I often have to prioritize work that generates money. By making a donation, no matter how big or small, you help me add features and improve <? c.config.site_name ?> at a higher pace. It is really appreciated!
+	</p>
+	
+	<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+	<input type="hidden" name="cmd" value="_s-xclick">
+	<input type="hidden" name="hosted_button_id" value="592107">
+	<input type="image" src="https://www.paypal.com/en_GB/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="">
+	<img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+	</form>
+</div>
+
+<div class="text_block">
+
+   <p><a name="files"></a>
+   <h2>Data and copyright information</h2>
+   
+	<p>
+		The data used by <? c.config.site_name ?> comes from Jim Breen's <a href="http://www.csse.monash.edu.au/~jwb/wwwjdic.html">WWWJDIC project</a>. Breen has put countless hours into compiling the data and on top of that many users have contributed additions, corrections and entire new dictionaries. Here is information on the different data and files that <? c.config.site_name ?> uses.
+	</p>
+	
+	<h3>General Dictionary <small>(Edict, updated daily)</small></h3>
+	<p>
+		Edict is the main dictionary file of the WWWJDIC project and currently holds approximately 110,000 entries of a general character.
+		<br /><br />
+		Copyright is held by the <a href="http://www.csse.monash.edu.au/~jwb/edrdg/">Electronic Dictionary Research Group</a> at Monash University. <a href="http://www.csse.monash.edu.au/~jwb/edrdg/licence.html">License</a>. More details about Edict can be found at <a href="http://www.csse.monash.edu.au/~jwb/wwwjdicinf.html#dicfil_tag">Jim Breen's page</a>.
+	</p>
+	
+	<h3>Computer Terms <small>(Compdic version 13MAR04 V04-001)</small></h3>
+	<p>
+		About 12,000 entries on computing and (tele)communications.
+		<br /><br />
+		Copyright is held by the <a href="http://www.csse.monash.edu.au/~jwb/edrdg/">Electronic Dictionary Research Group</a> at Monash University. <a href="http://www.csse.monash.edu.au/~jwb/edrdg/licence.html">License</a>. More details about Compdic can be found at <a href="http://www.csse.monash.edu.au/~jwb/wwwjdicinf.html#dicfil_tag">Jim Breen's page</a>.
+	</p>
+	
+	<h3>Engineering and Science Terms <small>(Engscidic version 1)</small></h3>
+	<p>
+		Over 14,000 entries relating to engineering and science.
+		<br /><br />
+		For copyright information please see the <a href="http://www.csse.monash.edu.au/~jwb/engscidich.html">Engscidic page</a>. More details about Engscidic can also be found at <a href="http://www.csse.monash.edu.au/~jwb/wwwjdicinf.html#dicfil_tag">Jim Breen's page</a>.
+	</p>
+	
+	<h3>Names <small>(JMnedict version 04DEC05 V2005-04)</small></h3>
+	<p>
+		Japanese proper names, place names, surnames and given names. Almost 500,000 of them.
+		<br /><br />
+		Copyright is held by the <a href="http://www.csse.monash.edu.au/~jwb/edrdg/">Electronic Dictionary Research Group</a> at Monash University. <a href="http://www.csse.monash.edu.au/~jwb/edrdg/licence.html">License</a>. More details about JMnedict can be found at <a href="http://www.csse.monash.edu.au/~jwb/wwwjdicinf.html#dicfil_tag">Jim Breen's page</a>.
+	</p>
+	
+	<h3>Kanji <small>(Kanjidic2 version 2004-02)</small></h3>
+	<p>
+		Information about 13039 kanji from the JIS X 0208, JIS X 0212 and JIS X 0213 standards.
+		<br /><br />
+		Copyright is held by the <a href="http://www.csse.monash.edu.au/~jwb/edrdg/">Electronic Dictionary Research Group</a> at Monash University. <a href="http://www.csse.monash.edu.au/~jwb/edrdg/licence.html">License</a>. More details about Kanjidic2 can be found at the <a href="http://www.csse.monash.edu.au/~jwb/kanjidic2/index.html">Kanjidic2 home page</a>.
+	</p>
+	
+	<h3>Kanji radical information <small>(Radkfile)</small></h3>
+	<p>
+		Information about the compositional breakdown of the 6355 kanji in the JIS X 0208 standard. This file is used to power the kanji by radical lookup.
+		<br /><br />
+		Copyright is held by the <a href="http://www.csse.monash.edu.au/~jwb/edrdg/">Electronic Dictionary Research Group</a> at Monash University. <a href="http://www.csse.monash.edu.au/~jwb/edrdg/licence.html">License</a>. More details about Radkfile can be found in the <a href="http://ftp.monash.edu.au/pub/nihongo/radkintro">Radkfile documentation</a>.
+	</p>
+	
+	<h3>Example Sentences <small>(updated weekly)</small></h3>
+	<p>
+		Roughly 160,000 bilingual example sentences compiled by Professor Yasuhito Tanaka and heavily edited by Jim Breen and Paul Blay.
+		<br /><br />
+		The file is in the public domain but details from Jim Breen can be found at the <a href="http://www.csse.monash.edu.au/~jwb/tanakacorpus.html">example file page</a>.
+	</p>
+	
+	<h3>SKIP data</h3>
+	<p>
+		SKIP (System of Kanji Indexing by Patterns) numbers are derived from the New Japanese-English Character Dictionary (Kenkyusha 1990, NTC 1993) and The Kodansha Kanji Learner's Dictionary (Kodansha International, 1999). SKIP is protected by copyright, copyleft and patent laws. The commercial or non-commercial utilization of SKIP in any form is strictly forbidden without the written permission of Jack Halpern, the copyright holder. Such permission is normally granted. Please contact jack@kanji.org and/or see <a href="http://www.kanji.org">http://www.kanji.org</a>.
+	</p>
+	
+	<h3>Kanji frequency information</h3>
+	<p>
+		The commercial utilization of the frequency numbers is prohibited without written permission from Jack Halpern. Use by individuals and small groups for reference and research purposes is permitted, on condition that acknowledgement of the source and this notice are included.
+	</p>
+	
+	<p>
+		<? c.config.site_name ?> runs on <a href="http://www.perl.org/">Perl</a> and <a href="http://www.mysql.com/">MySQL</a> and is powered by <a href="http://catalyst.perl.org/">Catalyst</a>, the elegant MVC framework.
+	</p>
+</div>
+</div>
+
+<? end ?>

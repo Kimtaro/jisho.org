@@ -1,0 +1,203 @@
+# Parts of speech (word class)
+adj: Adjective
+adv: Adverb
+adv-n: Adverbial noun
+adv-to: Adverb taking the 'to' particle
+adj-na: Na-adjective
+adj-no: No-adjective
+a-no: No-adjective
+adj-pn: Pre-noun adjectival
+adj-s: Special adjective (e.g. ookii)
+adj-t: Taru-adjective
+aux: Auxillary
+aux-v: Auxillary verb
+aux-adj: Auxillary adjective
+conj: Conjunction
+exp: Expression
+int: Interjection
+iv: Irregular verb
+n: Noun
+n-adv: Adverbial noun
+n-t: Temporal noun
+n-suf: Noun suffix
+n-pref: Noun prefix
+num: Numeric
+v1: Ichidan verb
+v5: Godan verb (not completely classified)
+v5u: Godan verb with u ending
+v5u-s: Godan verb with u ending (special class)
+v5k: Godan verb with ku ending
+v5g: Godan verb with gu ending
+v5s: Godan verb with su ending
+v5t: Godan verb with tu ending
+v5n: Godan verb with nu ending
+v5h: Godan verb with hu ending
+v5b: Godan verb with bu ending
+v5p: Godan verb with pu ending
+v5m: Godan verb with mu ending
+v5r: Godan verb with ru ending
+v5r-i: Godan verb with ru ending (irregular verb)
+v5k-s: Godan verb - iku/yuku special class
+v5z: Godan verb - zuru special class (alternative form of jiru verbs)
+v5aru: Godan verb - aru special class
+v5uru: Godan verb - uru old class verb (old form of eru)
+vi: Intransitive verb
+vs: Suru verb
+vs-s: Suru verb - special class
+vs-i: Suru verb - irregular
+vk: Kuru verb - special class
+vt: Transitive verb
+vz: Zuru verb - (alternative form of -jiru verbs)
+
+# General
+abbr: Abbreviation
+arch: Archaism
+col: Colloquialism
+exp: Expression
+fam: Familiar language
+fem: Female term or language
+gikun: Gikun (meaning) reading
+gram: Grammatical term
+ling: Linguistic term
+hon: Honorific or respectful language
+hum: Humble (kenjougo) language
+id: Idiomatic expression
+iK: Irregular kanji usage
+ik: Irregular kana usage
+io: Irregular okurigana usage
+MA: Martial arts term
+male: Male term or language
+m-sl: Manga slang
+neg: Negative (in a negative sentence or with negative verb)
+neg-v: Negative verb (when used with)
+obs: Obsolete term
+osc: Obscure term
+obsc: Obscure term
+oK: Out-dated kanji
+ok: Out-dated or obsolete kana
+pol: Polite language
+pref: Prefix
+qv: Quod vide (see another entry)
+sl: Slang
+suf: Suffix
+uK: Usually written using kanji alone
+uk: Usually written using kana alone
+vulg: Vulgar expression or word
+vul: Vulgar expression or word
+X: Rude or X-rated term
+ateji: Ateji (phonetic) reading
+Buddh: Buddhist term
+chn: Children''s langauge
+comp: Computer terminology
+mil: Military term
+food: Food term
+geom: Geometric term
+gram: Grammatical term
+ling: Linguistic term
+derog: Derogatory
+ek: Exclusively kanji
+male-sl: Male slang
+math: Matchematical term
+mil: Military term
+physics: Physics term
+rare: Rare
+mg: Masculine gender
+fg: Feminine gender
+ng: Neuter gender
+
+# Dialects
+kyb:: Kyoto dialect
+osb:: Osaka dialect
+ksb:: Kansai dialect
+ktb:: Kantou dialect
+tsb:: Tosa dialect
+thb:: Tohoku dialect
+tsug:: Tsugaru dialect
+
+# Not documented
+onom: Onomatopoetic
+prt: Particle
+
+# Languages
+ar:: Arabic
+zh:: Chinese
+de:: German
+en:: English
+fr:: French
+el:: Greek
+iw:: Hebrew
+ja:: Japanese
+ko:: Korean
+kr:: Korean
+nl:: Dutch
+no:: Norwegian
+pl:: Polish
+ru:: Russian
+sv:: Swedish
+bo:: Tibetan
+eo:: Esperanto
+es:: Spanish
+in:: Indonesian
+it:: Italian
+lt:: Latin
+pt:: Portugese
+hi:: Hindi
+ur:: Urdu
+mn:: Mongolian
+kl:: Inuit
+ai:: Ainu
+sanskr:: Sanskrit
+he:: Hebrew
+la:: Latin
+vi:: Vietnamese
+
+#
+# Engscidic
+#
+engscidic_1: (1) 計算力学
+engscidic_2: (2) バイオエンジニアリング
+engscidic_3: (3) 環境工学
+engscidic_4: (4) 産業・化学機械
+engscidic_5: (5) 宇宙工学
+engscidic_6: (6) 技術と社会
+engscidic_7: (7) 材料力学
+engscidic_8: (8) 機械材料・材料加工
+engscidic_9: (9) 流体工学・流体機械
+engscidic_10: (10) 熱工学
+engscidic_11: (11) エンジンシステム
+engscidic_12: (12) 動力エネルギーシステム
+engscidic_13: (13) 機械力学・計測制御
+engscidic_14: (14) ロボティクス・メカトロニクス
+engscidic_15: (15) 情報・知能・精密機器
+engscidic_16: (16) 機素潤滑設計
+engscidic_17: (17) 設計工学・システム
+engscidic_18: (18) 生産加工・工作機械
+engscidic_19: (19) ＦＡ（ファクトリーオートメーション）
+engscidic_20: (20) 交通・物流
+
+#
+# Compdic
+#
+compdic_a-no: No-adjective
+compdic_abbr: Abbreviation
+compdic_adj: Adjective
+compdic_adj-no: No-adjective
+compdic_gram: Grammatical term
+compdic_n: Noun
+compdic_pref: Prefix
+compdic_vs: Suru verb
+compdic_vt: Transitive verb
+
+#
+# Enamdic
+#
+enamdic_surname: Family or surname
+enamdic_place: Place name
+enamdic_unclass: Unclassified name
+enamdic_company: Company name
+enamdic_product: Product name
+enamdic_masc: Male given name or forename
+enamdic_fem: Female given name or forename
+enamdic_person: Full name of a particular person
+enamdic_given: Given name or forename (gender not specified)
+enamdic_station: Railway station

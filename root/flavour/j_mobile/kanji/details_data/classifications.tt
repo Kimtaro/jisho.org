@@ -1,0 +1,9 @@
+<?
+	foreach qc = the_kanji.query_codes_rs.search({},{order_by=>'qc_type'});
+		if qc.qc_type == 'skip';
+			'<B>SKIP code:</B> ';
+			qc.q_code;
+			'<BR>';
+		end;
+	end;
+?>

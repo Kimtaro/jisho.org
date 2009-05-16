@@ -1,0 +1,41 @@
+<? IF querylog ?>
+	<div class="querylog">
+		<h3>Query Log Report</h3>
+		<? SET total = querylog.time_elapsed | format('%0.6f') ?>
+		<div>Total SQL Time: <? total | format('%0.6f') ?> seconds</div>
+		<? SET qcount = querylog.count ?>
+		<div>Total Queries: <? qcount ?></div>
+		<? IF qcount ?>
+		<div>Avg Statement Time: <? (querylog.time_elapsed / qcount) | format('%0.6f') ?> seconds.</div>
+		<div>
+			<table>
+		 		<thead>
+  					<tr>
+		    			<th colspan="3">5 Slowest Queries</th>
+		   			</tr>
+		  		</thead>
+		  		<tbody>
+		   			<tr>
+		    			<th>Time</th>
+		    			<th>%</th>
+		    			<th>SQL</th>
+		   			</tr>
+		   			<? SET i = 0 ?>
+		   			<? FOREACH q = querylog.get_sorted_queries ?>
+		   			<tr class="<? IF loop.count % 2 ?>odd<? END ?>">
+		    			<th class="sub"><? q.time_elapsed | format('%0.6f') ?>
+		    				<td><? ((q.time_elapsed / total ) * 100 ) | format('%i') ?>%</td>
+		    				<td><? q.sql ?></td>
+		   				</th>
+					</tr>
+		   			<? IF i == 5 ?>
+		    		<? LAST ?>
+		   			<? END ?>
+		   			<? SET i = i + 1 ?>
+		   			<? END ?>
+	  			</tbody>
+	 		</table>
+		</div>
+		<? END ?>
+	</div>
+<? END ?>

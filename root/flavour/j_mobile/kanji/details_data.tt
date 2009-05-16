@@ -1,0 +1,37 @@
+﻿<?
+	foreach the_kanji = c.stash.kanji;
+		literal_utf8 = the_kanji.literal;
+?>
+
+<HR>
+	
+<A name="kanji-<? the_kanji.id ?>"></A>
+
+<H1>
+	<? literal_utf8 ?>
+</H1>
+
+<? process 'flavour/j_mobile/kanji/details_data/readings.tt' ?>
+
+<HR color="#CCCCCC">
+
+<? process 'flavour/j_mobile/kanji/details_data/meanings.tt' ?>
+
+<HR color="#CCCCCC">
+
+<? process 'flavour/j_mobile/kanji/details_data/specs.tt' ?>
+
+<HR color="#CCCCCC">
+
+<? process 'flavour/j_mobile/kanji/details_data/connections.tt' ?>
+
+<HR color="#CCCCCC">
+		
+<? process 'flavour/j_mobile/kanji/details_data/classifications.tt' ?>
+<? process 'flavour/j_mobile/kanji/details_data/codepoints.tt' ?>
+
+<HR color="#CCCCCC">
+
+<? process 'flavour/j_mobile/kanji/details_data/menu.tt' ?>
+
+<? end ?>

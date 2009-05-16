@@ -1,0 +1,57 @@
+﻿<?
+	Use Dumper;
+	foreach the_kanji = c.stash.kanji;
+?>
+
+
+<a name="kanji-<? the_kanji.id ?>"></a>
+
+<div class="kanji_result clearfix">
+	<h1 class="literal japanese">
+		<? the_kanji.kanji ?>
+	</h1>
+	
+	<? process 'flavour/www/kanji/details_data/menu.tt' ?>
+	
+	<div class="main_info">
+		<div class="misc clearfix">
+			<div class="specs">
+				<? process 'flavour/www/kanji/details_data/specs.tt' ?>
+			</div>
+		
+			<div class="connections">
+				<? process 'flavour/www/kanji/details_data/connections.tt' ?>
+			</div>
+		</div>
+	
+		<div class="readings clearfix">
+			<h2>Readings</h2>
+		
+			<? process 'flavour/www/kanji/details_data/readings.tt' ?>
+		</div>
+	
+		<div class="meanings clearfix win_meanings">
+			<? process 'flavour/www/kanji/details_data/meanings.tt' ?>
+		</div>
+	</div>
+	
+	<div class="dictionary_indices tables">
+		<h2>Dictionary indices</h2>
+		
+		<? process 'flavour/www/kanji/details_data/indices.tt' ?>
+	</div>
+	
+	<div class="classifications tables">
+		<h2>Classifications</h2>
+		
+		<? process 'flavour/www/kanji/details_data/classifications.tt' ?>
+	</div>
+	
+	<div class="codepoints tables">
+		<h2>Codepoints</h2>
+		
+		<? process 'flavour/www/kanji/details_data/codepoints.tt' ?>
+	</div>
+</div>
+
+<? end ?>

@@ -1,0 +1,14 @@
+<dl>
+	<? i = 1 ?>
+	<? foreach code = c.config.kanjidic.codes_sort_order ?>
+		<? foreach ref = the_kanji.data.codes.${code} ?>
+			<dt class="<? if i mod 2 == 0; 'even'; end; ?>">
+				<? c.config.kanjidic.qc_type.${code} ?>
+			</dt>
+			<dd class="<? if i mod 2 == 0; 'even'; end; ?>">
+				<? ref.content ?>
+			</dd>
+			<? i = i + 1 ?>	
+		<? end ?>
+	<? end ?>
+</dl>

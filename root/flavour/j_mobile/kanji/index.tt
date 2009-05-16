@@ -1,0 +1,8 @@
+﻿<?	wrapper 'flavour/j_mobile/includes/page.tt';
+	c.stash.page_title = "Kanji";
+	c.stash.title = "Find kanji - " _ c.config.site_name;
+	
+	process "flavour/j_mobile/kanji/form.tt";
+?>
+
+<? end ?>

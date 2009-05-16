@@ -1,0 +1,12 @@
+﻿<?	wrapper 'flavour/www/includes/page.tt';
+	c.stash.title = c.config.site_name _ " - Online Japanese dictionary";
+?>
+
+<div class="text_block">
+	<h2>Sorry!</h2>
+	<p>
+		The sentence you wanted to edit has gone missing! This might happen if we just updated the sentence database. Press the back button in your browser, reload that page, then try reporting the sentence again.
+	</p>
+</div>
+
+<? end ?>

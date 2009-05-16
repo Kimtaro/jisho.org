@@ -1,0 +1,21 @@
+<dl>
+	<? i = 1 ?>
+	<? foreach book = c.config.kanjidic.indices_sort_order ?>
+		<? foreach ref = the_kanji.data.indices.${book} ?>
+			<dt class="<? if i mod 2 == 0; 'even'; end; ?>">
+				<? if book == 'moro' ?>
+					Daikanwa Jiten (Morohashi)
+					<? if ref.m_vol ?>
+						(Volume <? ref.m_vol ?>, page <? ref.m_page ?>)
+					<? end ?>
+				<? end ?>
+			
+				<? c.config.kanjidic.dr_type.${book} | decode_utf8 ?>
+			</dt>
+			<dd class="<? if i mod 2 == 0; 'even'; end; ?>">
+				<? ref.content ?>
+			</dd>
+			<? i = i + 1 ?>	
+		<? end ?>
+	<? end ?>
+</dl>

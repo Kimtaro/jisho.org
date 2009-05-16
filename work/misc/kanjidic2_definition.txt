@@ -1,0 +1,32 @@
+# For kanjidic2.xml of version
+# <file_version>2</file_version>
+# <database_version>2004-02</database_version>
+# <date_of_creation>2004-08-14</date_of_creation>
+# DTD 1.3
+
+kanjidic2
+	header
+		file_version
+		database_version
+		date_of_creation
+	character [0-inf]
+		literal
+		codepoint
+			cp_value [inf] (cp_type [req])
+		radical
+			rad_value [inf] (rad_type [req])
+		misc
+			grade [0-1]
+			stroke_count [inf]
+			variant [0-inf] (var_type [req])
+			freq [0-inf]
+			rad_name [0-inf]
+		dic_number [0-1]
+			dic_ref [inf] (dr_type [req], m_page [opt], m_vol [opt])
+		query_code [0-1]
+			q_code [inf] (qc_type [req])
+		reading_meaning [0-1]
+			reading [0-inf] (r_type [opt])
+			meaning [0-inf] (m_lang [opt])
+		nanori [0-1]
+	

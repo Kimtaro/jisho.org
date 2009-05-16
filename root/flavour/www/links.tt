@@ -1,0 +1,87 @@
+﻿<?	wrapper 'flavour/www/includes/page.tt';
+	c.stash.title = "Links - " _ c.config.site_name;
+?>
+
+<div id="text_content">
+<div class="text_block">
+   <h2>Dictionaries</h2>
+   
+	<dl>
+		<dt><a href="http://www.csse.monash.edu.au/~jwb/japanese.html">Jim Breen's Japanese Page</a> <strong>[English]</strong></dt>
+		<dd>Home of the WWWJDIC dictionary server, its related dictionary files and a good list of links to pages related to Japan.</dd>
+		
+		<dt><a href="http://linear.mv.com/cgi-bin/j-e/sjis/dict">Jeffrey's Japanese⇔English Dictionary Server</a> <strong>[English]</strong></dt>
+		<dd>Very customizeable dictionary based on data from WWWJDIC.</dd>
+		
+		<dt><a href="http://dictionary.goo.ne.jp/">Goo 辞書</a> <strong>[Japanese]</strong></dt>
+		<dd>Online versions of the Daijirin Japanese-Japanese dictionary and the Exceed Japanese-English-Japanese dictionaries.</dd>
+		
+		<dt><a href="http://dic.yahoo.co.jp/">Yahoo 辞書</a> <strong>[Japanese]</strong></dt>
+		<dd>Online versions of several Japanese-Japanese and Japanese-English-Japanese dictionaries.</dd>
+		
+		<dt><a href="http://www.alc.co.jp/">英辞郎</a> <strong>[Japanese]</strong></dt>
+		<dd>Japanese-English-Japanese dictionary. Available both online and on CD.</dd>
+		
+		<dt><a href="http://www.media-k.co.jp/jiten/">2典Plus</a> <strong>[Japanese]</strong></dt>
+		<dd>Japanese-Japanese dictionary of Japanese net slang.</dd>
+		
+		<dt><a href="http://www.japanska.se/">Japanska.se</a> <strong>[Swedish]</strong></dt>
+		<dd>Japanese-Swedish-Japanese dictionary with user submissions and corrections.</dd>
+	</dl>
+</div>
+
+<div class="text_block">
+   <h2>Blogs on Japanese</h2>
+   
+	<dl>
+		<dt><a href="http://ideogramme.ca/japan/">Japanese for life</a> <strong>[English]</strong></dt>
+		<dd>Notes and discoveries made during the course of learning Japanese.</dd>
+	
+		<dt><a href="http://www.nihongojouzu.com/">Nihongojouzu</a> <strong>[English]</strong></dt>
+		<dd>&quot;Stuff for learning Japanese&quot;</dd>
+		
+		<dt><a href="http://nihongo.3yen.com/">nihongo.3yen.com</a> <strong>[English]</strong></dt>
+		<dd>&quot;Learn Japanese langauge and study Japanese grammar.&quot; By the same author as <a href="http://www.guidetojapanese.org/">A Japanese guide to Japanese grammar</a>.</dd>
+	</dl>
+</div>
+
+<div class="text_block">
+   <h2>Other useful resources</h2>
+   
+	<dl>
+		<dt><a href="http://www.rikai.com/">Rikai</a> <strong>[English]</strong></dt>
+		<dd>Same idea as PopJisyo with some extra features.</dd>
+		
+		<dt><a href="http://www.polarcloud.com/rikaichan/">Rikaichan</a> <strong>[English]</strong></dt>
+		<dd>Extension for Firefox providing Rikai-functionality directly from the browser.</dd>
+
+		<dt><a href="http://www.jgram.org/">JGram</a> <strong>[English]</strong></dt>
+		<dd>User edited database of Japanese grammar.</dd>
+
+		<dt><a href="http://groups.google.com/group/sci.lang.japan">Sci.lang.japan</a> <strong>[English/Japanese]</strong></dt>
+		<dd>The sci.lang.japan newsgroup. Interesting discussions about the Japanese language.</dd>
+		
+		<dt><a href="http://www.manythings.org/japanese/">Charles Kelly's Online Japanese Language Study Materials</a> <strong>[English]</strong></dt>
+		<dd>Lot's of online study material and a good collection of links to other Japanese resources.</dd>
+		
+		<dt><a href="http://www.guidetojapanese.org/">A Japanese guide to Japanese grammar</a> <strong>[English]</strong></dt>
+		<dd>&quot;This site explains Japanese grammar in a systematic step-by-step process /.../&quot;</dd>
+		
+		<dt><a href="http://homepage3.nifty.com/jgrammar/">A Logical Japanese Grammar</a> <strong>[English]</strong></dt>
+		<dd>Explanations of Japanese grammar.</dd>
+		
+		<dt><a href="http://home.earthlink.net/~4jword/index3.htm">Four-Character Idiomatic Compounds</a> <strong>[English]</strong></dt>
+		<dd>Comprehensive list of over 3000 four character compunds (yojijukugo) with readings and English explanations.</dd>
+		
+		<dt><a href="http://www.language-exchange-project.com/">Language Exchange Project</a> <strong>[English]</strong></dt>
+		<dd>&quot;Language Exchange Project is a simple and intuitive website to find a language exchange partner, pen pal or friend.&quot;</dd>
+		
+		<!--
+		<dt><a href=""></a> <strong>[]</strong></dt>
+		<dd></dd>
+		-->
+	</dl>
+</div>
+</div>
+
+<? end ?>

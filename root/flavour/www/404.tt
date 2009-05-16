@@ -1,0 +1,9 @@
+﻿<?	wrapper 'flavour/www/includes/page.tt';
+	c.stash.title = c.config.site_name;
+?>
+
+<div class="text_block">
+	<h2>Sorry, nothing here. (404)</h2>
+</div>
+
+<? end ?>

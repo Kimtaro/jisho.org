@@ -1,0 +1,145 @@
+﻿<?
+	wrapper 'flavour/www/includes/page.tt';
+	c.stash.title = c.req.params.japanese _ ' ' _ c.req.params.translation _ ' - Words - ' _ c.config.site_name;
+	process 'flavour/www/includes/macros.tt';
+	process 'flavour/www/words/form.tt';
+
+	use Dumper;
+?>
+
+<? if c.stash.suggest.deinflected ?>
+	<div class="text_block" id="deinflect_box">
+		Did you mean <a href="<? c.uri.base ?>/words?jap=<? c.stash.suggest.deinflected ?>;eng=<? c.req.params.translation ?>;source=<? c.req.params.source ?>;common=<? c.req.params.common ?>;nolimit=<? c.req.params.nolimit ?>"><? c.stash.suggest.deinflected ?></a>?
+	</div>
+<? end ?>
+
+<div class="text_block_wide">
+<h2 class="pagination">
+Found <b><? c.stash.result.total ?></b> <? if c.stash.result.total == '1' ?> word. <? else ?> words. <? end ?>
+
+<?
+	pages = build_pages;
+	pages;
+?>
+</h2>
+</div>
+
+<? if c.stash.result.total > 0 ?> <!-- Found words -->
+
+<script type="text/javascript" charset="utf-8">
+	var eucjp_for = new Object();
+	var sjis_for = new Object();
+	
+	<?
+		foreach word in c.stash.result.words.all;
+			word = word.data;
+			
+		  foreach reading in word.readings;
+		  	enc = reading.reading.encodings_for;
+	?>
+				eucjp_for['<? reading.reading ?>'] = '<? enc.0 ?>';
+				sjis_for['<? reading.reading ?>'] = '<? enc.1 ?>';
+			  <?
+						foreach representation in reading.representations;
+							enc = representation.representation.encodings_for;
+				?>
+							eucjp_for['<? representation.representation ?>'] = '<? enc.0 ?>';
+							sjis_for['<? representation.representation ?>'] = '<? enc.1 ?>';
+				<? 
+				end;
+			end;
+	  end;
+	?>
+</script>
+
+<div id="result">
+	<div id="result_content">
+		<div id="word_result">
+			<div id="details_box_area" style="display: none;">
+				<div id="details_border">
+					<div id="details_box">
+						<span class="details_sub"></span>
+						<span class="details_main"></span>
+						<div class="details_links">
+							<ul class="local"></ul>
+							<hr />
+							<ul class="actions"></ul>
+							<hr />
+							<ul class="external"></ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<?
+				left = 0;
+				left_column = [];
+				right_column = [];
+				foreach word in c.stash.result.words.all;
+					left = !left;
+					if left;
+						left_column.push(word);
+					else;
+						right_column.push(word);
+					end;
+				end;
+			?>
+			<div id="left_column">
+				<?
+					even = 0;
+					foreach word in left_column;
+						even = !even;
+						include "flavour/www/words/result-row.tt";
+					end;
+				?>
+			</div>
+			<div id="right_column">
+				<?
+					even = 0;
+					foreach word in right_column;
+						even = !even;
+						include "flavour/www/words/result-row.tt";
+					end;
+				?>
+			</div>
+		</div>
+	</div>
+</div>
+
+<? if c.stash.limit > 0 && c.stash.result.total > c.stash.limit ?>
+	<div class="text_block_wide">
+	<h2 class="pagination">
+	Found <b><? c.stash.result.total ?></b> <? if c.stash.result.total == '1' ?> word. <? else ?> words. <? end ?>
+	<? pages; ?>
+	</h2>
+	</div>
+<? end ?>
+
+<? else ?> <!-- Found no words -->
+
+<div class="text_block" id="suggest_box">
+	<? if suggest.key_has_kanji == 1 ?>
+		<p>
+			Look up <a href="/kanji/details/<? suggest.key ?>"><b>kanji details</b> for <? suggest.key ?></a>.
+		</p>
+	<? end ?>
+	
+	<? if c.req.params.common == 'on' ?>
+		<p>
+			Try again <a href="<? c.req.uri | replace('common=on', 'common=off') ?>">without limiting to common words only</a>.
+		</p>
+	<? end ?>
+	
+	<p>
+		Try a <a href="http://dic.yahoo.co.jp/bin/dsearch?p=<? c.stash.suggest.key_euc ?>+<? c.req.params.translation ?>&amp;stype=0&amp;dtype=2" class="external"><b>Yahoo Jisho</b> search for <? c.stash.suggest.key ?> <? ' ' ?> <? c.req.params.translation ?></a>.<br/>
+	
+		Try a <a href="http://dictionary.goo.ne.jp/search.php?MT=<? c.stash.suggest.key_euc ?>+<? c.req.params.translation ?>&amp;kind=&amp;kwassist=0&amp;mode=1" class="external"><b>Goo Jisho</b> search for <? c.stash.suggest.key ?> <? ' ' ?> <? c.req.params.translation ?></a>.<br/>
+	
+		Try a <a href="http://www.jekai.org/cgi-jekai/siteindex/jsearch.pl?Q=<? c.stash.suggest.key_euc ?>+<? c.req.params.translation ?>" class="external"><b>JeKai</b> search for <? c.stash.suggest.key ?> <? ' ' ?> <? c.req.params.translation ?></a>.<br/>
+		
+		Try a <a href="http://www.google.com/search?ie=utf8&amp;oe=utf8&amp;lr=lang_ja&amp;q=<? c.stash.suggest.key ?>+<? c.req.params.translation ?>" class="external"><b>Google</b> search for <? c.stash.suggest.key ?> <? ' ' ?> <? c.req.params.translation ?></a>.<br/>
+	</p>
+</div>
+
+<?	end;
+	end;
+?>

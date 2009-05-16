@@ -1,0 +1,10 @@
+<div class="search clearfix">
+	<form action="/text" method="get">
+		<label for="text_field">
+		<span class="accesskey">J</span>apanese text:</label>
+		<textarea name="text" id="text_field" accesskey="j" cols="80" rows="5"><? c.req.params.text ?></textarea>
+		
+		<input type="submit" value="Search" />
+		<input type="reset" value="Reset" />
+	</form>
+</div>

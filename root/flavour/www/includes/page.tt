@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<title><? c.stash.title ?></title>
+	
+	<meta name="MSSmartTagsPreventParsing" content="true" />
+	<meta name="Content-type" content="text/html; charset=utf-8" />
+	<meta name="Description" content="Powerful and easy-to-use online Japanese-English dictionary with words, kanji and example sentences." />
+	
+	<link rel="search" type="application/opensearchdescription+xml" title="<? c.config.site_name ?> - J to E" href="http://jisho.org/static/files/denshijisho_je_opensearch.xml" />
+	<link rel="search" type="application/opensearchdescription+xml" title="<? c.config.site_name ?> - E to J" href="http://jisho.org/static/files/denshijisho_ej_opensearch.xml" />
+	<link rel="stylesheet" type="text/css" href="/static/styles/default.v20.css" />
+	<link rel="shortcut icon" href="/static/images/favicon.ico" />
+	<link rel="icon" href="/static/images/favicon.ico" />
+	<!-- Stuff for IE -->
+	<!--[if IE]>
+		<style>@import /static/styles/ie.v3.css;</style>
+	<![endif]-->
+	
+</head>
+
+<body id="page_<? c.stash.page ?>">
+	<div id="top"><a name="top"></a>
+		<h1 id="logo"><strong><? c.config.site_name ?></strong> <small> — Online Japanese dictionary</small></h1>
+		<? process 'flavour/www/includes/menu.tt' ?>
+	</div>
+
+	<div id="main_content">
+
+		<? content ?>
+	
+		<div id="important_notice">
+			<div class="ads">
+				<script type="text/javascript"><!--
+				google_ad_client = "pub-2041681684284441";
+				google_ad_width = 728;
+				google_ad_height = 90;
+				google_ad_format = "728x90_as";
+				google_ad_type = "text";
+				//2007-06-08: JishoBottomBox
+				google_ad_channel = "7518813015";
+				google_color_border = "dddddd";
+				google_color_bg = "FFFFFF";
+				google_color_link = "0000FF";
+				google_color_text = "000000";
+				google_color_url = "008000";
+				//-->
+				</script>
+				<script type="text/javascript"
+				  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+				</script>
+			</div>
+		</div>
+
+	</div>
+	
+	<? if page != 'home' and page != 'about' and page != 'links' ?>	
+		<div id="footer">
+			<div class="author">
+				<p>
+					<? c.config.site_name ?> (previously "Denshi Jisho") by <a href="mailto:kim.ahlstrom@gmail.com">Kim Ahlström</a>.<br />
+					Please <a href="/about#donations">Donate</a> to <? c.config.site_name ?>.
+				</p>
+			</div>
+			<div class="files">
+				<p>
+					<? c.config.site_name ?> uses the <a href="http://www.csse.monash.edu.au/~jwb/edict.html">Edict</a> and <a href="http://www.csse.monash.edu.au/~jwb/kanjidic2/index.html">Kanjidic2</a> dictionaries, provided by the <a href="http://www.csse.monash.edu.au/~jwb/edrdg/">Electronic Dictionary Research and Development Group at Monash University</a>.
+
+					<? if page == 'kanji' ?>
+						The SKIP codes for kanji are derived from the <a href="http://www.kanji.org/kanji/index.htm">Kodansha Kanji Learner's Dictionary</a> by Jack Halpern. Jack Halpern also holds the copyright for the kanji frequency information, the <a href="http://www.kanji.org/kanji/dictionaries/njecd/njecd.htm">New Japanese-English Character Dictionary</a> numbers and Kodansha Kanji Learner's Dictionary numbers.
+					<? end ?>
+
+					Please see the <a href="/about#files">data and copyright information</a> for more details.
+	   			</p>
+			</div>
+			<div class="general">
+				<p>
+					ASCII safe link to this page: <? c.req.uri ?>
+				</p>
+			</div>
+		</div>
+	<? end ?>
+
+		<script type="text/javascript" charset="utf-8">
+		// <![CDATA[
+			
+			var section = "<? c.stash.page ?>";
+			var is_ie = 0;
+			
+			<?
+				if page == 'kanji_by_rad';
+					if c.request.cookies.radicals_are_expanded.value == 0;
+						'var radicals_are_expanded = 0;';
+					else;
+						'var radicals_are_expanded = 1;';
+					end;
+				end;
+			?>
+		// ]]>
+		</script>
+		
+		<!-- Stuff for IE -->
+		<!--[if IE]>
+			<script type="text/javascript" charset="utf-8" src="/static/js/ADxMenu.v1.js"></script>
+			<script type="text/javascript" language="javascript" charset="utf-8">
+				var is_ie = 1;
+			</script>
+		<![endif]-->
+		
+		<script type="text/javascript" charset="utf-8" src="/static/js/jquery.v5.js"></script>
+		<script type="text/javascript" charset="utf-8" src="/static/js/jisho.v9.js"></script>
+		
+		<script type="text/javascript">
+		var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+		document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+		<script type="text/javascript">
+		var pageTracker = _gat._getTracker("UA-63389-1");
+		pageTracker._initData();
+		pageTracker._trackPageview();
+		</script>
+	</body>
+</html>

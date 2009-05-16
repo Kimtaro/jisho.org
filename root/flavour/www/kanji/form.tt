@@ -1,0 +1,75 @@
+﻿<div class="search clearfix">
+		<form action="/kanji" method="get">
+		<div class="fs_container">
+			<fieldset>
+				<legend>Readings / Kanji</legend>
+				<select id="reading_select" name="rt" size="" tabindex="1">
+					<option label="Japanese / Kanji" value="japanese" selected="selected">Japanese</option>
+					<option label="Chinese (pinyin)" value="pinyin">Chinese (pinyin)</option>
+					<option label="Korean (ME roman)" value="korean">Korean (ME roman)</option>
+				</select>
+				
+				<input type="text" name="reading" id="reading_field" tabindex="2" accesskey="j" />
+			</fieldset>
+		</div>
+		
+		<div class="fs_container">
+			<fieldset>
+				<legend>Codes</legend>
+				<select id="codes_select" name="ct" size="" tabindex="5">
+					<option value="sakade">A Guide to Reading and Writing Japanese index</option>
+					<option value="henshall3">A Guide to Reading and Writing Japanese 3rd ed. index</option>
+					<option value="henshall">A Guide to Remembering Japanese Characters index</option>
+					<option value="gakken">A New Dictionary of Kanji Usage index</option>
+					<option value="nelson_c">Classic Nelson index</option>
+					<option value="moro">Daikanwa Jiten index</option>
+					<option value="deroo">De Roo code</option>
+					<option value="oneill_kk">Essential Kanji index</option>
+					<option value="four_corner">Four corner code</option>
+					<option value="busy_people">Japanese for Busy People index</option>
+					<option value="oneill_names">Japanese Names index</option>
+					<option value="sh_kk">Kanji and Kana index</option>
+					<option value="kanji_in_context">Kanji in Context</option>
+					<option value="halpern_kkld">Kanji Learner's Dictionary index</option>
+					<option value="kodansha_compact">Kodansha Compact Kanji Guide index</option>
+					<option value="halpern_njecd">New Japanese English Character Dictionary index</option>
+					<option value="nelson_n">New Nelson index</option>
+					<option value="rad">Radical number (Classical)</option>
+					<option value="rad_n">Radical number (Nelson)</option>
+					<option value="heisig">Remembering the Kanji index</option>
+					<option value="skip">SKIP code</option>
+					<option value="stroke_count" selected="selected">Stroke count</option>
+					<option value="sh_desc">The Kanji Dictionary code</option>
+					<option value="crowley">The Kanji Way to Japanese Language Power index</option>
+					<option value="tutt_cards">Tuttle Kanji Cards index</option>
+					<option value="ucs">Unicode code point (hex)</option>
+				</select>
+				
+				<input type="text" name="code" id="codes_field" tabindex="6" accesskey="j" value="<? c.req.params.code ?>" />
+			</fieldset>
+		</div>
+			
+		<div class="fs_container">
+			<fieldset>
+				<legend>Meanings</legend>
+				<select id="meaning_select" name="mt" size="" tabindex="3">
+					<option label="English" value="en" selected="selected">English</option>
+					<option label="French" value="fr">French</option>
+					<option label="Spanish" value="es">Spanish</option>
+					<option label="Portuguese" value="pt">Portuguese</option>
+				</select>
+				
+				<input type="text" name="meaning" id="meaning_field" tabindex="4" accesskey="j" value="<? c.req.params.meaning ?>" />
+			</fieldset>
+		</div>
+				
+		<div class="fs_container" style="padding-top: 1em;">
+			<label for="jy_only">Only jouyou (common) kanji:</label>
+			<input type="checkbox" name="jy_only" id="jy_only" <? if params.jy_only == "on" ?> checked="checked" <? end ?>/>
+		</div>
+		
+		<div class="row lowest_row" style="padding-left: 19em;">
+			<input type="submit" value="Search" />
+		</div>
+		</form>
+	</div>

@@ -1,0 +1,84 @@
+<div class="japanese_readings">
+	
+	<dl>
+		<dt>Japanese kun: </dt>
+		<dd>
+			<ul>
+				<? i = 1 ?>
+				<? foreach kun = the_kanji.data.readings_meanings.groups.0.reading.ja_kun ?>
+		      <? url = c.uri_for('/words', { japanese => the_kanji.kanji _ ' ' _ kun.content.replace('[-.]', '') }) ?>
+			   	<? if i mod 2 == 0; even = 'even'; else; even = ''; end; i = i + 1 ?>
+					<li><a href="<? url ?>" class="<? even ?>"><? kun.content ?></a><?- if loop.index != loop.max -?>&#12289; <?- end -?></li>
+				<? end ?>
+			</ul>
+		</dd>
+
+		<dt>Japanese on: </dt>
+		<dd>
+			<ul>
+				<? i = 1 ?>
+				<? foreach on = the_kanji.data.readings_meanings.groups.0.reading.ja_on ?>
+		      <? url = c.uri_for('/words', { japanese => the_kanji.kanji _ ' ' _ on.content }) ?>
+			   	<? if i mod 2 == 0; even = 'even'; else; even = ''; end; i = i + 1 ?>
+					<li><a href="<? url ?>" class="<? even ?>"><? on.content ?></a><?- if loop.index != loop.max -?>&#12289; <?- end -?></li>
+				<? end ?>
+			</ul>
+		</dd>
+		
+		<? if the_kanji.data.readings_meanings.nanori.size > 0 ?>
+			<dt>Japanese names: </dt>
+			<dd>
+				<ul>
+					<? i = 1 ?>
+					<? foreach nanori = the_kanji.data.readings_meanings.nanori ?>
+			      <? url = c.uri_for('/words', { japanese => the_kanji.kanji _ ' ' _ nanori, source => 'jmnedict' }) ?>
+				   	<? if i mod 2 == 0; even = 'even'; else; even = ''; end; i = i + 1 ?>
+						<li><a href="<? url ?>" class="<? even ?>"><? nanori ?></a><?- if loop.index != loop.max -?>&#12289; <?- end -?></li>
+					<? end ?>
+				</ul>
+			</dd>
+		<? end ?>
+	</dl>
+				
+</div>
+
+<div class="other_readings">
+	<dl>
+		<dt>Chinese: </dt>
+		<dd>
+			<ul>
+				<? i = 1 ?>
+				<? foreach pinyin = the_kanji.data.readings_meanings.groups.0.reading.pinyin ?>
+			   	<? if i mod 2 == 0; even = 'even'; else; even = ''; end; i = i + 1 ?>
+					<li><span class="<? even ?>"><? pinyin.content ?></span><? if loop.index != loop.max ?>,&nbsp;<? end ?></li>
+				<? end ?>
+			</ul>
+		</dd>
+		
+		<dt>Korean: </dt>
+		<dd>
+			<ul>
+				<? i = 1 ?>
+				<? foreach korean_r = the_kanji.data.readings_meanings.groups.0.reading.korean_r ?>
+			   	<? if i mod 2 == 0; even = 'even'; else; even = ''; end; i = i + 1 ?>
+					<li><span class="<? even ?>"><? korean_r.content ?></span><? if loop.index != loop.max ?>,&nbsp;<? end ?></li>
+				<? end ?>
+			</ul>
+		</dd>
+		
+		<? if the_kanji.data.radical_names.size > 0 ?>
+			<dt>Name as radical: </dt>
+			<dd>
+				<ul>
+					<? i = 1 ?>
+					<? foreach rad_name = the_kanji.data.radical_names ?>
+				   	<? if i mod 2 == 0; even = 'even'; else; even = ''; end; i = i + 1 ?>
+						<li><span class="<? even ?>"><? rad_name ?></span><?- if loop.index != loop.max -?>&#12289; <?- end -?></li>
+					<? end ?>
+				</ul>
+			</dd>
+		<? end ?>
+		
+	</dl>
+		
+</div>

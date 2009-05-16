@@ -1,0 +1,37 @@
+﻿<? process 'flavour/www/includes/macros.tt' ?>
+
+<div class="search clearfix">
+		<form action="/words" method="get">
+		<div id="terms">
+			<div class="row">
+				<label for="japanese">
+				<span class="accesskey">J</span>apanese:</label>
+				<input type="text" size="30" tabindex="1" name="japanese" id="japanese" accesskey="j" />
+			</div>
+			<div class="row">
+				<label for="translation">
+					<select name="translation_language" id="translation_language" tabindex="3">
+						<option value="eng">English</option>
+						<option value="ger">German</option>
+						<option value="fre">French</option>
+						<option value="rus">Russian</option>
+					</select>:
+				</label>
+				<input type="text" size="30" tabindex="2" name="translation" id="translation" accesskey="e" />
+			</div>
+		</div>
+		<div id="options">
+			<div class="row">
+				<label for="common_check">Common words only:</label>
+				<input type="checkbox" tabindex="4" name="common" id="common_check" />
+			</div>
+			<div class="row">
+				<label for="romaji_check">Kana as romaji:</label>
+				<input type="checkbox" tabindex="5" name="romaji" id="romaji_check" />
+			</div>
+		</div>
+		
+		<? source_tabs_for('words') ?>
+		
+		</form>
+	</div>

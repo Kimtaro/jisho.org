@@ -1,0 +1,86 @@
+﻿<? use Dumper ?>
+<div id="word_<?- word.id -?>" class="word <?	if even; 'even'; else; 'odd';	end ?>">
+	<!-- <? word.id ?> -->
+	<? word = word.data ?>
+	<div class="readings">
+		<?
+			foreach reading in word.readings;
+		?>
+			<div class="reading_group">
+				<span class="reading"><span class="reading_text" xml:lang="jpn" lang="jpn"><? reading.reading | romaji(c.req.params.romaji) | html ?></span><?- if reading.is_common; -?><sup class="common">Common</sup><?- end -?></span><?-
+				 	if reading.representations
+				-?><div class="representations">【<?-
+						foreach representation in reading.representations;
+						-?><span class="representation" xml:lang="jpn" lang="jpn"><? representation.representation | romaji(c.req.params.romaji) | html ?></span><?- if representation.is_common; -?><sup class="common">Common</sup><?- end -?><?- if loop.count <= loop.max -?>・<?- end;
+							end -?>】</div><?-
+					else
+					-?>&#12288;<?-
+				 	end
+				-?></div>
+		<? end ?>
+	</div>
+
+	<ol class="senses">
+		<?
+			foreach sense in word.senses;
+				first_tag = 0;
+				glosses = sense.glosses_for_language(c.stash.display_language);
+				next if glosses.size == 0;
+		?>
+			<ul class="tags">
+				<? if sense.tags && sense.tags.size > 0 ?>
+					<li class="tag <? unless first_tag ?>first_tag<? end ?>"> 
+						<? foreach tag in sense.tags ?>
+							<?- c.loc('tag', tag.tag) -?><?- if loop.count <= loop.max -?>, <? end ?>
+						<? end ?>
+					</li>
+					<? first_tag = 1 ?>
+				<? end ?>
+				<? if sense.crossrefs && sense.crossrefs.size > 0 ?>
+					<? foreach ref in sense.crossrefs ?>
+						<li class="tag <? unless first_tag ?>first_tag<? end ?>">
+							<? if ref.tag == 'ant' ?>
+								Antonym: 
+							<? else ?>
+								See 
+							<? end ?>
+							<a href="<? c.uri_for('/words', {'japanese' => ref.value, 'dict' => c.req.params.source}) ?>"><?- ref.value -?></a><?- if loop.count <= loop.max -?>, <? end ?>
+						</li>
+					<? end ?>
+					<? first_tag = 1 ?>
+				<? end ?>
+				<? if sense.origins && sense.origins.size > 0 ?>
+					<li class="tag <? unless first_tag ?>first_tag<? end ?>">
+						<? foreach origin in sense.origins ?>
+							<? lang = origin.type ? '<span xml_lang="'_ origin.type _'" lang="'_ origin.type _'">' : '' ?>
+							From <? c.loc('language', origin.type) | ucfirst ?><? ' &#8220;' _ lang _ origin.value _ (lang ? '</span>' : '') _ '</span>&#8221;' if origin.value ?><?- if loop.count <= loop.max -?>, <? end ?>
+						<? end ?>
+					</li>
+					<? first_tag = 1 ?>
+				<? end ?>
+				<? if sense.details && sense.details.size > 0 ?>
+					<li class="tag <? unless first_tag ?>first_tag<? end ?>"> 
+						<? foreach detail in sense.details ?>
+							<? detail.value | ucfirst ?><?- if loop.count <= loop.max -?>, <? end ?>
+						<? end ?>
+					</li>
+					<? first_tag = 1 ?>
+				<? end ?>
+				<? if sense.restrs && sense.restrs.size > 0 ?>
+					<li class="tag <? unless first_tag ?>first_tag<? end ?> restrictions">
+						<? foreach restriction in sense.restrs ?>
+							<?- restriction.value -?><?- if loop.count <= loop.max -?>, <? end ?>
+						<? end ?>
+						only
+					</li>
+					<? first_tag = 1 ?>
+				<? end ?>
+			</ul>
+			<li class="sense">
+				<? foreach gloss in glosses ?>
+					<span class="gloss" xml:lang="<? gloss.type ?>" lang="<? gloss.type ?>"><? gloss.value | html ?></span><?- if loop.count <= loop.max -?><span class="between">;</span>&nbsp; <? end ?>
+				<? end ?>
+			</li>
+		<? end ?>
+	</ol>
+</div>

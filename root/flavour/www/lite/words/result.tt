@@ -1,0 +1,101 @@
+﻿<?	wrapper 'flavour/www/lite/page.tt';
+	c.stash.title = "Find words - " _ c.config.site_name;
+?>
+
+<div class="text_block" id="search_box">
+	Searched for <? c.req.params.japanese ?>
+</div>
+
+<? if c.stash.suggest.deinflected ?>
+<div class="text_block" id="deinflect_box">
+	Did you mean <a href="<? c.uri.base ?>/words?jap=<? c.stash.suggest.deinflected ?>;eng=<? c.req.params.translation ?>;source=<? c.req.params.source ?>;common=<? c.req.params.common ?>;nolimit=<? c.req.params.nolimit ?>"><? c.stash.suggest.deinflected ?></a>?
+</div>
+<? end ?>
+
+<? if c.stash.result.total > 0 ?> <!-- Found words -->
+
+<table border="0" id="word_result" cellspacing="0">
+<? even = 1 ?>
+<? foreach word = c.stash.result.words ?>
+<? even = !even ?>
+		<tr <? if even ?> class="even" <? else ?> class="odd" <? end ?> >
+			<td style="width: 20%">
+				<span class="kanji" style="z-index: <? 150000 - (word.rid - 1) ?>;">
+					<? word.kanji ?>
+				</span>
+			</td>
+			<td style="width: 20%" class="kana">
+				<? word.kana ?>
+			</td>
+			<td style="width: 60%" class="meanings">
+				<?
+					if word.meanings.size == 1;
+						word.meanings.0;
+					else;
+						count = 1;
+						foreach meaning in word.meanings;
+							"<strong>$count: </strong>$meaning<br />";
+							count = count + 1;
+						end;
+					end;
+				?>
+			</td>
+		</tr>
+		<tr <? if even ?> class="even lower" <? else ?> class="odd lower" <? end ?>>
+			<td colspan="3">
+				<span class="tags">					
+					<?
+						if word.is_common == 1;
+							'<span class="common">Common word, </span>';
+						end;
+					
+						foreach tag in word.tags;
+							"<span title='$tag.tag'>$tag.expanded</span>";
+							if loop.index != loop.max;
+								', ';
+							end;
+						end;
+					?>&nbsp;
+				</span>
+			</td>
+		</tr>
+<? end ?>
+</table>
+
+<div class="text_block">
+	<h2>
+	Found <b><? c.stash.result.total ?></b> <? if c.stash.result.total == '1' ?> word. <? else ?> words. <? end ?>
+	<? if c.stash.limit > 0 && c.stash.result.total > c.stash.limit ?>
+		Showing first <? c.stash.limit ?>. <a href="<? c.req.uri | replace('&', '&amp;') ?>&amp;nolimit=1">Show all</a>
+	<? end ?>
+	</h2>
+</div>
+
+<? else ?> <!-- Found no words -->
+
+<div class="text_block" id="suggest_box">
+	<? if suggest.key_has_kanji == 1 ?>
+		<p>
+			Look up <a href="/kanji/details/<? suggest.key ?>"><b>kanji details</b> for <? suggest.key ?></a>.
+		</p>
+	<? end ?>
+	
+	<? if c.req.params.common == 'on' ?>
+		<p>
+			Try again <a href="<? c.req.uri | replace('common=on', 'common=off') ?>">without limiting to common words only</a>.
+		</p>
+	<? end ?>
+	
+	<p>
+		Try a <a href="http://dic.yahoo.co.jp/bin/dsearch?p=<? c.stash.suggest.key_euc ?>+<? c.stash.req.params.translation ?>&amp;stype=0&amp;dtype=2" class="external"><b>Yahoo Jisho</b> search for <? c.stash.suggest.key ?> <? ' ' ?> <? c.req.params.translation ?></a>.<br/>
+	
+		Try a <a href="http://dictionary.goo.ne.jp/search.php?MT=<? c.stash.suggest.key_euc ?>+<? c.req.params.translation ?>&amp;kind=&amp;kwassist=0&amp;mode=1" class="external"><b>Goo Jisho</b> search for <? c.stash.suggest.key ?> <? ' ' ?> <? c.req.params.translation ?></a>.<br/>
+	
+		Try a <a href="http://www.jekai.org/cgi-jekai/siteindex/jsearch.pl?Q=<? c.stash.suggest.key_euc ?>+<? c.req.params.translation ?>" class="external"><b>JeKai</b> search for <? c.stash.suggest.key ?> <? ' ' ?> <? c.req.params.translation ?></a>.<br/>
+		
+		Try a <a href="http://www.google.com/search?ie=utf8&amp;oe=utf8&amp;lr=lang_ja&amp;q=<? c.stash.suggest.key ?>+<? c.req.params.translation ?>" class="external"><b>Google</b> search for <? c.stash.suggest.key ?> <? ' ' ?> <? c.req.params.translation ?></a>.<br/>
+	</p>
+</div>
+
+<? end ?>
+<? end ?>

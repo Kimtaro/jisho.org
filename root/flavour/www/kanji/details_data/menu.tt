@@ -1,0 +1,31 @@
+<?
+	words_containing = c.uri_for('/words', {
+		japanese => '*' _ the_kanji.kanji _ '*',
+	});
+	words_beginning = c.uri_for('/words', {
+		japanese => the_kanji.kanji _ '*',
+	});
+	words_ending = c.uri_for('/words', {
+		japanese => '*' _ the_kanji.kanji,
+	});
+	sentences = c.uri_for('/sentences', {
+		japanese => the_kanji.kanji,
+	});
+	
+?>
+
+<ul class="adxm menu">
+	<li><a href="<? words_containing ?>">Words <strong>containing</strong></a></li>
+	<li><a href="<? words_beginning ?>">Words <strong>beginning with</strong></a></li>
+	<li><a href="<? words_ending ?>">Words <strong>ending in</strong></a></li>
+	<li><a href="<? sentences ?>">Sentences</a></li>
+	<li>
+		<span class="title">External links</span>
+		<ul>
+			<li><a href="http://www.unicode.org/cgi-bin/GetUnihanData.pl?codepoint=<? the_kanji.kanji | ord | format('%lx') ?>&amp;useutf8=true" class="external">Unihan database</a></li>
+			<li><a href="http://en.wiktionary.org/wiki/<? the_kanji.kanji | uri ?>" class="external">Wiktionary</a></li>
+			<li><a href="http://www.google.com/search?ie=utf8&amp;oe=utf8&amp;lr=lang_ja&amp;q=<? the_kanji.kanji | uri ?>" class="external">Google</a></li>
+			<li><a href="http://images.google.com/images?hl=en&amp;lr=&amp;sa=N&amp;tab=wi&amp;q=<? the_kanji.kanji | uri ?>" class="external">Google image search</a></li>
+		</ul>
+	</li>
+</ul>

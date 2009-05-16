@@ -1,0 +1,12 @@
+﻿<?	wrapper 'flavour/www/includes/page.tt';
+	c.stash.title = c.config.site_name _ " - Online Japanese dictionary";
+?>
+
+<div class="text_block">
+	<h2>Oops</h2>
+	<p>
+		You have to edit either the Japanese or the English sentence (or both) before you send in your correction.
+	</p>
+</div>
+
+<? end ?>

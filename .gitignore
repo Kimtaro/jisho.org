@@ -1,0 +1,4 @@
+*_local.yml
+work/data
+*.sql
+*.tmp

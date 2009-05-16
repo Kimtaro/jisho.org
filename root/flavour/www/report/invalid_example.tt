@@ -1,0 +1,12 @@
+﻿<?	wrapper 'flavour/www/includes/page.tt';
+	c.stash.title = c.config.site_name _ " - Online Japanese dictionary";
+?>
+
+<div class="text_block">
+	<h2>Sorry!</h2>
+	<p>
+		There is no sentence with that id.
+	</p>
+</div>
+
+<? end ?>

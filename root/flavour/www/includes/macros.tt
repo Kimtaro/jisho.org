@@ -1,0 +1,88 @@
+<? use Dumper ?>
+
+<?
+	MACRO build_pages BLOCK;
+
+	pager = c.stash.pager;
+	page = 1;
+	page_info = [];
+	if pager.last_page > 1;
+		'<span>Page ';
+		while page <= pager.last_page;
+			last if page == 100;
+			page_rep = page;
+			if page < 10;
+				page_rep = page | num2en;
+			end;
+			
+			if page == pager.current_page && c.stash.limit;
+				page_info.push("<span class=\"current_page\">$page_rep</span>");
+			else;
+				if page == 1;
+					temp = "<a href='" _ c.req.uri_with({page=>'', nolimit=>''}) _ "'>$page_rep</a>";
+					page_info.push(temp);
+				else;
+					temp = "<a href='" _ c.req.uri_with({page=>page, nolimit=>''}) _ "'>$page_rep</a>";
+					page_info.push(temp);
+				end;
+			end;
+			page = page + 1;
+		end;
+		page_info.join(', ');
+		if c.stash.limit == 0;
+			" or show all";
+		else;
+			" or <a href='" _ c.req.uri_with({page=>'', nolimit=>'on'}) _ "'>show all</a>";
+		end;
+		'</span>';
+	end;
+	END;
+?>
+
+<? MACRO appa BLOCK; "HEST!"; END; ?>
+
+<?
+	MACRO source_tabs_for(type) BLOCK;
+
+	found_current = 0;
+	current_is_leftmost = 0;
+	left_of_current = [];
+	right_of_current = [];
+	
+	foreach dictionary in c.config.sources.${type}.order;
+		if c.req.params.source == dictionary;
+			current = dictionary;
+			found_current = 1;
+			current_is_leftmost = 1 if left_of_current.size == 0;
+			next;
+		end;
+		
+		if found_current;
+			right_of_current.push(dictionary);
+		else;
+			left_of_current.push(dictionary);
+	  end;
+	end;
+	?>
+
+	<div id="sources">
+		<span id="left_and_current">
+			<button id="<? current ?>_dict_button" name="source" value="<? current ?>" accesskey="<? left_of_current.size + 1 ?>" class="current"><? c.config.sources.${type}.names.${current} ?><?- ' (' _ c.stash.source_counts.${current} _ ')' if c.stash.is_search -?></button>
+	
+			<span class="left_of_current">
+				<? foreach dictionary in left_of_current ?>
+					<button id="<? dictionary ?>_dict_button" name="source" value="<? dictionary ?>" accesskey="<? loop.count + current_is_leftmost ?>"><? c.config.sources.${type}.names.${dictionary} ?><?- ' (' _ c.stash.source_counts.${dictionary} _ ')' if c.stash.is_search -?></button>
+				<? end ?>
+			</span>
+		</span>
+	
+		<span class="right_of_current">
+			<? foreach dictionary in right_of_current ?>
+				<button id="<? dictionary ?>_dict_button" name="source" value="<? dictionary ?>" accesskey="<? loop.count + left_of_current.size + 1 ?>"><? c.config.sources.${type}.names.${dictionary} ?><?- ' (' _ c.stash.source_counts.${dictionary} _ ')' if c.stash.is_search -?></button>
+			<? end ?>
+		</span>
+	</div>
+	
+	<?
+	END;
+?>

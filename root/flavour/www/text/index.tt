@@ -1,0 +1,7 @@
+﻿<?	wrapper 'flavour/www/includes/page.tt';
+	c.stash.title = "Text - " _ c.config.site_name;
+	
+	process "flavour/www/text/form.tt";
+?>
+
+<? end ?>

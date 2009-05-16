@@ -1,0 +1,16 @@
+﻿<ul id="menu">
+	<li <? if c.stash.page == "home" ?>      class="selected" <? end ?> ><a accesskey="h" href="/"><span class="accesskey">H</span>ome</a></li>
+	<li <? if c.stash.page == "words" ?>     class="selected" <? end ?> ><a accesskey="w" href="/words/"><span class="accesskey">W</span>ords</a></li>
+	<li <? if c.stash.page == "kanji" ?>     class="selected" <? end ?> ><a accesskey="k" href="/kanji/"><span class="accesskey">K</span>anji</a></li>
+	<li <? if c.stash.page == "kanji_by_rad" ?>     class="selected" <? end ?> ><a accesskey="r" href="/kanji/radicals/">Kanji by <span class="accesskey">r</span>adicals</a></li>
+	<li <? if c.stash.page == "sentences" ?> class="selected" <? end ?> ><a accesskey="s" href="/sentences/"><span class="accesskey">S</span>entences</a></li>
+	
+	<li class="minor">
+		<ul>
+			<li <? if c.stash.page == "about" ?>     class="selected" <? end ?> ><a accesskey="a" class="small" href="/about/"><span class="accesskey">A</span>bout</a></li>
+			<li <? if c.stash.page == "links" ?>     class="selected" <? end ?> ><a accesskey="l" class="small" href="/links/"><span class="accesskey">L</span>inks</a></li>
+			<li><a accesskey="f" class="small" href="http://forum.jisho.org/"><span class="standout"><span class="accesskey">F</span>orum</span></a></li>
+			<li><a accesskey="b" class="small" href="http://blog.jisho.org/"><span class="standout"><span class="accesskey">B</span>log</span></a></li>
+		</ul>
+	</li>
+</ul>

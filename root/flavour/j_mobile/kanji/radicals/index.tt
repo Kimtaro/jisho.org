@@ -1,0 +1,338 @@
+﻿<?	wrapper 'flavour/www/includes/page.tt';
+	c.stash.title = "Find kanji by radicals - " _ c.config.site_name;
+?>
+
+<div id="radicals_fix_scroll"></div>
+
+	<div id="radicals" <? if c.request.cookies.radicals_are_expanded.value == 1 or c.request.cookies.radicals_are_expanded == '' ?>class="search radicals_expanded"<? else ?>class="search radicals_small"<? end ?>>
+		<p>
+			Click on the parts that are in the kanji you are looking for. You can click on them again to de-select them.
+			<input type="button" value="Reset" id="reset_button" onclick='Radicals.reset()' />
+		</p>
+	
+		<div id="radical_table" class="clearfix">
+			<ul class="radical_group">
+			<li class="number">1</li>
+			<li class="radical" id="rad_1_1">一</li>
+			<li class="radical" id="rad_1_2">｜</li>
+			<li class="radical" id="rad_1_3">丶</li>
+			<li class="radical" id="rad_1_4">ノ</li>
+			<li class="radical" id="rad_1_5">乙</li>
+			<li class="radical" id="rad_1_6">亅</li>
+			</ul>
+
+			<ul class="radical_group">
+			<li class="number">2</li>
+			<li class="radical" id="rad_2_7">二</li>
+			<li class="radical" id="rad_2_8">亠</li>
+			<li class="radical" id="rad_2_9">人</li>
+			<li class="radical" id="rad_2_10"><img src="/static/images/radicals/24/2_10.gif" alt="" /></li>
+			<li class="radical" id="rad_2_11"><img src="/static/images/radicals/24/2_11.gif" alt="" /></li>
+			<li class="radical" id="rad_2_12">儿</li>
+			<li class="radical" id="rad_2_13">入</li>
+			<li class="radical" id="rad_2_14">ハ</li>
+			<li class="radical" id="rad_2_15"><img src="/static/images/radicals/24/2_15.gif" alt="" /></li>
+			<li class="radical" id="rad_2_16">冂</li>
+			<li class="radical" id="rad_2_17">冖</li>
+			<li class="radical" id="rad_2_18">冫</li>
+			<li class="radical" id="rad_2_19">几</li>
+			<li class="radical" id="rad_2_20">凵</li>
+			<li class="radical" id="rad_2_21">刀</li>
+			<li class="radical" id="rad_2_22"><img src="/static/images/radicals/24/2_22.gif" alt="" /></li>
+			<li class="radical" id="rad_2_23">力</li>
+			<li class="radical" id="rad_2_24">勹</li>
+			<li class="radical" id="rad_2_25">匕</li>
+			<li class="radical" id="rad_2_26">匚</li>
+			<li class="radical" id="rad_2_27">十</li>
+			<li class="radical" id="rad_2_28">卜</li>
+			<li class="radical" id="rad_2_29">卩</li>
+			<li class="radical" id="rad_2_30">厂</li>
+			<li class="radical" id="rad_2_31">厶</li>
+			<li class="radical" id="rad_2_32">又</li>
+			<li class="radical" id="rad_2_33">マ</li>
+			<li class="radical" id="rad_2_34">九</li>
+			<li class="radical" id="rad_2_35">ユ</li>
+			<li class="radical" id="rad_2_36">乃</li>
+			</ul>
+
+			<ul class="radical_group">
+			<li class="number">3</li>
+			<li class="radical" id="rad_3_37"><img src="/static/images/radicals/24/3_37.gif" alt="" /></li>
+			<li class="radical" id="rad_3_38">口</li>
+			<li class="radical" id="rad_3_39">囗</li>
+			<li class="radical" id="rad_3_40">土</li>
+			<li class="radical" id="rad_3_41">士</li>
+			<li class="radical" id="rad_3_42">夂</li>
+			<li class="radical" id="rad_3_43">夕</li>
+			<li class="radical" id="rad_3_44">大</li>
+			<li class="radical" id="rad_3_45">女</li>
+			<li class="radical" id="rad_3_46">子</li>
+			<li class="radical" id="rad_3_47">宀</li>
+			<li class="radical" id="rad_3_48">寸</li>
+			<li class="radical" id="rad_3_49">小</li>
+			<li class="radical" id="rad_3_50"><img src="/static/images/radicals/24/3_50.gif" alt="" /></li>
+			<li class="radical" id="rad_3_51">尢</li>
+			<li class="radical" id="rad_3_52">尸</li>
+			<li class="radical" id="rad_3_53">屮</li>
+			<li class="radical" id="rad_3_54">山</li>
+			<li class="radical" id="rad_3_55">川</li>
+			<li class="radical" id="rad_3_56">巛</li>
+			<li class="radical" id="rad_3_57">工</li>
+			<li class="radical" id="rad_3_58">已</li>
+			<li class="radical" id="rad_3_59">巾</li>
+			<li class="radical" id="rad_3_60">干</li>
+			<li class="radical" id="rad_3_61">幺</li>
+			<li class="radical" id="rad_3_62">广</li>
+			<li class="radical" id="rad_3_63">廴</li>
+			<li class="radical" id="rad_3_64">廾</li>
+			<li class="radical" id="rad_3_65">弋</li>
+			<li class="radical" id="rad_3_66">弓</li>
+			<li class="radical" id="rad_3_67">ヨ</li>
+			<li class="radical" id="rad_3_68">彑</li>
+			<li class="radical" id="rad_3_69">彡</li>
+			<li class="radical" id="rad_3_70">彳</li>
+			<li class="radical" id="rad_3_71"><img src="/static/images/radicals/24/3_70.gif" alt="" /></li>
+			<li class="radical" id="rad_3_72"><img src="/static/images/radicals/24/3_71.gif" alt="" /></li>
+			<li class="radical" id="rad_3_73"><img src="/static/images/radicals/24/3_72.gif" alt="" /></li>
+			<li class="radical" id="rad_3_74"><img src="/static/images/radicals/24/3_73.gif" alt="" /></li>
+			<li class="radical" id="rad_3_75"><img src="/static/images/radicals/24/3_74.gif" alt="" /></li>
+			<li class="radical" id="rad_3_76"><img src="/static/images/radicals/24/3_75.gif" alt="" /></li>
+			<li class="radical" id="rad_3_77"><img src="/static/images/radicals/24/3_76.gif" alt="" /></li>
+			<li class="radical" id="rad_3_78">也</li>
+			<li class="radical" id="rad_3_79">亡</li>
+			<li class="radical" id="rad_3_80">及</li>
+			<li class="radical" id="rad_3_81">久</li>
+			</ul>
+
+			<ul class="radical_group">
+			<li class="number">4</li>
+			<li class="radical" id="rad_4_82"><img src="/static/images/radicals/24/4_81.gif" alt="" /></li>
+			<li class="radical" id="rad_4_83">心</li>
+			<li class="radical" id="rad_4_84">戈</li>
+			<li class="radical" id="rad_4_85">戸</li>
+			<li class="radical" id="rad_4_86">手</li>
+			<li class="radical" id="rad_4_87">支</li>
+			<li class="radical" id="rad_4_88">攵</li>
+			<li class="radical" id="rad_4_89">文</li>
+			<li class="radical" id="rad_4_90">斗</li>
+			<li class="radical" id="rad_4_91">斤</li>
+			<li class="radical" id="rad_4_92">方</li>
+			<li class="radical" id="rad_4_93">无</li>
+			<li class="radical" id="rad_4_94">日</li>
+			<li class="radical" id="rad_4_95">曰</li>
+			<li class="radical" id="rad_4_96">月</li>
+			<li class="radical" id="rad_4_97">木</li>
+			<li class="radical" id="rad_4_98">欠</li>
+			<li class="radical" id="rad_4_99">止</li>
+			<li class="radical" id="rad_4_100">歹</li>
+			<li class="radical" id="rad_4_101">殳</li>
+			<li class="radical" id="rad_4_102">比</li>
+			<li class="radical" id="rad_4_103">毛</li>
+			<li class="radical" id="rad_4_104">氏</li>
+			<li class="radical" id="rad_4_105">气</li>
+			<li class="radical" id="rad_4_106">水</li>
+			<li class="radical" id="rad_4_107">火</li>
+			<li class="radical" id="rad_4_108"><img src="/static/images/radicals/24/4_107.gif" alt="" /></li>
+			<li class="radical" id="rad_4_109">爪</li>
+			<li class="radical" id="rad_4_110">父</li>
+			<li class="radical" id="rad_4_111">爻</li>
+			<li class="radical" id="rad_4_112">爿</li>
+			<li class="radical" id="rad_4_113">片</li>
+			<li class="radical" id="rad_4_114">牛</li>
+			<li class="radical" id="rad_4_115">犬</li>
+			<li class="radical" id="rad_4_116"><img src="/static/images/radicals/24/4_115.gif" alt="" /></li>
+			<li class="radical" id="rad_4_117">王</li>
+			<li class="radical" id="rad_4_118">元</li>
+			<li class="radical" id="rad_4_119">井</li>
+			<li class="radical" id="rad_4_120">勿</li>
+			<li class="radical" id="rad_4_121">尤</li>
+			<li class="radical" id="rad_4_122">五</li>
+			<li class="radical" id="rad_4_123">屯</li>
+			<li class="radical" id="rad_4_124">巴</li>
+			<li class="radical" id="rad_4_125">毋</li>
+			</ul>
+
+			<ul class="radical_group">
+			<li class="number">5</li>
+			<li class="radical" id="rad_5_126">玄</li>
+			<li class="radical" id="rad_5_127">瓜</li>
+			<li class="radical" id="rad_5_128">瓦</li>
+			<li class="radical" id="rad_5_129">甘</li>
+			<li class="radical" id="rad_5_130">生</li>
+			<li class="radical" id="rad_5_131">用</li>
+			<li class="radical" id="rad_5_132">田</li>
+			<li class="radical" id="rad_5_133">疋</li>
+			<li class="radical" id="rad_5_134"><img src="/static/images/radicals/24/5_132.gif" alt="" /></li>
+			<li class="radical" id="rad_5_135">癶</li>
+			<li class="radical" id="rad_5_136">白</li>
+			<li class="radical" id="rad_5_137">皮</li>
+			<li class="radical" id="rad_5_138">皿</li>
+			<li class="radical" id="rad_5_139">目</li>
+			<li class="radical" id="rad_5_140">矛</li>
+			<li class="radical" id="rad_5_141">矢</li>
+			<li class="radical" id="rad_5_142">石</li>
+			<li class="radical" id="rad_5_143">示</li>
+			<li class="radical" id="rad_5_144"<img src="/static/images/radicals/24/5_142.gif" alt="" /></li>
+			<li class="radical" id="rad_5_145">禾</li>
+			<li class="radical" id="rad_5_146">穴</li>
+			<li class="radical" id="rad_5_147">立</li>
+			<li class="radical" id="rad_5_148"><img src="/static/images/radicals/24/5_146.gif" alt="" /></li>
+			<li class="radical" id="rad_5_149">世</li>
+			<li class="radical" id="rad_5_150">巨</li>
+			<li class="radical" id="rad_5_151">冊</li>
+			<li class="radical" id="rad_5_152">母</li>
+			<li class="radical" id="rad_5_153"><img src="/static/images/radicals/24/5_151.gif" alt="" /></li>
+			<li class="radical" id="rad_5_154">牙</li>
+			</ul>
+
+			<ul class="radical_group">
+			<li class="number">6</li>
+			<li class="radical" id="rad_6_155">竹</li>
+			<li class="radical" id="rad_6_156">米</li>
+			<li class="radical" id="rad_6_157">糸</li>
+			<li class="radical" id="rad_6_158">缶</li>
+			<li class="radical" id="rad_6_159">羊</li>
+			<li class="radical" id="rad_6_160">羽</li>
+			<li class="radical" id="rad_6_161">而</li>
+			<li class="radical" id="rad_6_162">耒</li>
+			<li class="radical" id="rad_6_163">耳</li>
+			<li class="radical" id="rad_6_164">聿</li>
+			<li class="radical" id="rad_6_165">肉</li>
+			<li class="radical" id="rad_6_166">自</li>
+			<li class="radical" id="rad_6_167">至</li>
+			<li class="radical" id="rad_6_168">臼</li>
+			<li class="radical" id="rad_6_169">舌</li>
+			<li class="radical" id="rad_6_170">舟</li>
+			<li class="radical" id="rad_6_171">艮</li>
+			<li class="radical" id="rad_6_172">色</li>
+			<li class="radical" id="rad_6_173">虍</li>
+			<li class="radical" id="rad_6_174">虫</li>
+			<li class="radical" id="rad_6_175">血</li>
+			<li class="radical" id="rad_6_176">行</li>
+			<li class="radical" id="rad_6_177">衣</li>
+			<li class="radical" id="rad_6_178">西</li>
+			</ul>
+
+			<ul class="radical_group">
+			<li class="number">7</li>
+			<li class="radical" id="rad_7_179">臣</li>
+			<li class="radical" id="rad_7_180">見</li>
+			<li class="radical" id="rad_7_181">角</li>
+			<li class="radical" id="rad_7_182">言</li>
+			<li class="radical" id="rad_7_183">谷</li>
+			<li class="radical" id="rad_7_184">豆</li>
+			<li class="radical" id="rad_7_185">豕</li>
+			<li class="radical" id="rad_7_186">豸</li>
+			<li class="radical" id="rad_7_187">貝</li>
+			<li class="radical" id="rad_7_188">赤</li>
+			<li class="radical" id="rad_7_189">走</li>
+			<li class="radical" id="rad_7_190">足</li>
+			<li class="radical" id="rad_7_191">身</li>
+			<li class="radical" id="rad_7_192">車</li>
+			<li class="radical" id="rad_7_193">辛</li>
+			<li class="radical" id="rad_7_194">辰</li>
+			<li class="radical" id="rad_7_195">酉</li>
+			<li class="radical" id="rad_7_196">釆</li>
+			<li class="radical" id="rad_7_197">里</li>
+			<li class="radical" id="rad_7_198">舛</li>
+			<li class="radical" id="rad_7_199">麦</li>
+			</ul>
+
+			<ul class="radical_group">
+			<li class="number">8</li>
+			<li class="radical" id="rad_8_200">金</li>
+			<li class="radical" id="rad_8_201">長</li>
+			<li class="radical" id="rad_8_202">門</li>
+			<li class="radical" id="rad_8_203">隶</li>
+			<li class="radical" id="rad_8_204">隹</li>
+			<li class="radical" id="rad_8_205">雨</li>
+			<li class="radical" id="rad_8_206">青</li>
+			<li class="radical" id="rad_8_207">非</li>
+			<li class="radical" id="rad_8_208">奄</li>
+			<li class="radical" id="rad_8_209">岡</li>
+			<li class="radical" id="rad_8_210">免</li>
+			<li class="radical" id="rad_8_211">斉</li>
+			</ul>
+
+			<ul class="radical_group">
+			<li class="number">9</li>
+			<li class="radical" id="rad_9_212">面</li>
+			<li class="radical" id="rad_9_213">革</li>
+			<li class="radical" id="rad_9_214">韭</li>
+			<li class="radical" id="rad_9_215">音</li>
+			<li class="radical" id="rad_9_216">頁</li>
+			<li class="radical" id="rad_9_217">風</li>
+			<li class="radical" id="rad_9_218">飛</li>
+			<li class="radical" id="rad_9_219">食</li>
+			<li class="radical" id="rad_9_220">首</li>
+			<li class="radical" id="rad_9_221">香</li>
+			<li class="radical" id="rad_9_222">品</li>
+			</ul>
+
+			<ul class="radical_group">
+			<li class="number">10</li>
+			<li class="radical" id="rad_10_223">馬</li>
+			<li class="radical" id="rad_10_224">骨</li>
+			<li class="radical" id="rad_10_225">高</li>
+			<li class="radical" id="rad_10_226">髟</li>
+			<li class="radical" id="rad_10_227">鬥</li>
+			<li class="radical" id="rad_10_228">鬯</li>
+			<li class="radical" id="rad_10_229">鬲</li>
+			<li class="radical" id="rad_10_230">鬼</li>
+			<li class="radical" id="rad_10_231">竜</li>
+			<li class="radical" id="rad_10_232">韋</li>
+			</ul>
+
+			<ul class="radical_group">
+			<li class="number">11</li>
+			<li class="radical" id="rad_11_233">魚</li>
+			<li class="radical" id="rad_11_234">鳥</li>
+			<li class="radical" id="rad_11_235">鹵</li>
+			<li class="radical" id="rad_11_236">鹿</li>
+			<li class="radical" id="rad_11_237">麻</li>
+			<li class="radical" id="rad_11_238">亀</li>
+			<li class="radical" id="rad_11_239"><img src="/static/images/radicals/24/11_236.gif" alt="" /></li>
+			<li class="radical" id="rad_11_240">黄</li>
+			<li class="radical" id="rad_11_241">黒</li>
+			</ul>
+
+			<ul class="radical_group">
+			<li class="number">12</li>
+			<li class="radical" id="rad_12_242">黍</li>
+			<li class="radical" id="rad_12_243">黹</li>
+			<li class="radical" id="rad_12_244">無</li>
+			</ul>
+
+			<ul class="radical_group">
+			<li class="number">13</li>
+			<li class="radical" id="rad_13_245">黽</li>
+			<li class="radical" id="rad_13_246">鼎</li>
+			<li class="radical" id="rad_13_247">鼓</li>
+			<li class="radical" id="rad_13_248">鼠</li>
+			</ul>
+
+			<ul class="radical_group">
+			<li class="number">14</li>
+			<li class="radical" id="rad_14_249">鼻</li>
+			<li class="radical" id="rad_14_250">齊</li>
+			</ul>
+
+			<ul class="radical_group">
+			<li class="number">15</li>
+			<li class="radical" id="rad_15_251">歯</li>
+			</ul>
+
+			<ul class="radical_group">
+			<li class="number">17</li>
+			<li class="radical" id="rad_17_252">龠</li>
+			</ul>
+		</div>
+	</div>
+	
+<a id="radical_sizer" href="#"></a>
+
+<div id="found_kanji" class="clearfix">
+	<h2>No radicals selected</h2>
+</div>
+
+<? end ?>

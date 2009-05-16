@@ -1,0 +1,24 @@
+<?
+	en = "";
+	es = "";
+	pt = "";
+	i_en = 1; i_es = 1 ; i_pt = 1;
+	
+	foreach meaning = the_kanji.meanings_rs.search({},{order_by=>'meaning'});
+		current = meaning.meaning _ "; ";
+	
+		if meaning.m_lang == 'en';
+			en = en _ current;
+		
+		elsif meaning.m_lang == 'es';
+			es = es _ current;
+		
+		elsif meaning.m_lang == 'pt';
+			pt = pt _ current;
+		end;
+	end;
+	
+	en = en.replace('; $', '');
+?>
+
+<B>English meanings:</B> <? en ?>

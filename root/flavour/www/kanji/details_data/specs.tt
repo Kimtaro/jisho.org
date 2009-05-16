@@ -1,0 +1,36 @@
+﻿<p>
+	<strong><? the_kanji.data.stroke_counts.nsort.join(', ') ?></strong> <?- if the_kanji.data.stroke_counts.0 == 1 -?>stroke<?- else -?>strokes<?- end -?><?-
+		if the_kanji.jlpt > 0;
+			', <a href="http://www.jees.or.jp/jlpt/en/">JLPT</a> level <strong>' _ the_kanji.jlpt _ '</strong>';
+		end;
+	-?>
+</p>
+
+<p>
+	<?
+		switch the_kanji.grade;
+		case 8;
+			'<strong><a href="http://en.wikipedia.org/wiki/J%C5%8Dy%C5%8D_kanji">Jōyō</a></strong> kanji taught in junior high school';
+		case 9;
+			'<strong><a href="http://en.wikipedia.org/wiki/Jinmeiy%C5%8D_kanji">Jinmeiyō</a></strong> kanji used in names';
+		case [1 2 3 4 5 6];
+			'<strong><a href="http://en.wikipedia.org/wiki/Ky%C5%8Diku_kanji">Kyōiku</a></strong> kanji taught in <strong>grade ' _ the_kanji.grade _ '</strong>';
+		case;
+			'Not a general use character';
+		end;
+	?>
+</p>
+
+<p>
+	<?
+		freqs = [];
+		foreach freq = the_kanji.data.frequencies.nsort;
+			freqs.push(freq);
+		end;
+		if freqs.size > 0;
+			'<strong>' _ freqs.join(', ') _ '</strong> of 2500 most used kanji in newspapers';
+		else;
+			'Not one of the 2500 most used kanji in newspapers';
+		end;
+	?>
+<p>

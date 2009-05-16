@@ -1,0 +1,35 @@
+﻿<?	wrapper 'flavour/j_mobile/includes/page.tt';
+
+ 	if c.stash.kanji.size >= 1;
+		all_kanji = '';
+		foreach the_kanji = c.stash.kanji;
+			all_kanji = all_kanji _ the_kanji.literal _ ' ';
+		end;
+		c.stash.title = "Kanji details for " _ all_kanji _ " - Denshi Jisho";
+	else;
+		c.stash.title = "Kanji details - Denshi Jisho";
+	end;
+	
+	process "flavour/j_mobile/kanji/form.tt";
+?>
+
+<HR>
+
+<? if c.stash.kanji.size >= 1 ?>
+<P>
+	Found information for these kanji: 
+	<? foreach the_kanji = c.stash.kanji ?>	
+		<A href="#kanji-<? the_kanji.id ?>"><? the_kanji.literal ?></A> 
+	<? end ?>
+</P>
+
+	<? process "flavour/j_mobile/kanji/details_data.tt" ?>
+<? else ?>
+   <P>
+	  Couldn't find any info for the characters supplied.
+   </P>
+<? end ?>
+
+<?
+	end;
+?>

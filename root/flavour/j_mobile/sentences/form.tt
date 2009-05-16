@@ -1,0 +1,5 @@
+﻿<FORM action="/sentences" method="get">
+	Japanese: <INPUT type="text" name="jap" istyle="1"><BR>
+	English: <INPUT type="text" name="eng" istyle="3"><BR>
+	<INPUT type="submit" value="Search">
+</FORM>

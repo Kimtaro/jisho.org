@@ -1,0 +1,36 @@
+﻿<FORM action="/kanji" method="get">
+	<P>
+	Readings / Kanji:<BR>
+		<SELECT name="rt">
+			<OPTION label="Japanese / Kanji" value="jap" selected="selected">Japanese
+			<OPTION label="Chinese (pinyin)" value="pinyin">Chinese (pinyin)
+			<OPTION label="Korean (ME roman)" value="korean">Korean (ME roman)
+		</SELECT>
+				
+		<INPUT type="text" name="reading" istyle="1" value="<?
+		IF  kanji;
+			foreach the_kanji = c.stash.kanji;
+				the_kanji.literal;
+			end;
+		ELSE;
+			c.req.params.reading;
+		END;
+		?>">
+	</P>
+			
+	<P>
+		Meanings:<BR>
+		<SELECT name="mt">
+			<OPTION label="English" value="en" selected="selected">English
+			<OPTION label="French" value="fr">French
+			<OPTION label="Spanish" value="es">Spanish
+			<OPTION label="Portuguese" value="pt">Portuguese
+		</SELECT>
+		
+		<INPUT type="text" name="meaning" istyle="3" value="<? c.req.params.meaning ?>">
+	</P>
+	
+	Only jouyou kanji: <INPUT type="checkbox" name="jy_only" <? if params.jy_only == "on" ?> checked="checked" <? end ?>><BR>
+		
+	<INPUT type="submit" value="Search">
+</FORM>

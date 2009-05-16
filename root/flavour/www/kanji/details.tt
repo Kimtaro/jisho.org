@@ -1,0 +1,36 @@
+﻿<?	wrapper 'flavour/www/includes/page.tt';
+
+ 	if c.stash.kanji.size >= 1;
+		all_kanji = '';
+		foreach the_kanji = c.stash.kanji;
+			all_kanji = all_kanji _ the_kanji.kanji _ ' ';
+		end;
+		c.stash.title = "Kanji details for " _ all_kanji _ " - " _ c.config.site_name;
+	else;
+		c.stash.title = "Kanji details - " _ c.config.site_name;
+	end;
+	
+	process "flavour/www/kanji/form.tt";
+?>
+
+<? if c.stash.kanji.size >= 1 ?>
+	   <div class="text_block">
+    	   <h2>
+    	      Found information for these kanji: 
+    		   <? foreach the_kanji = c.stash.kanji ?>	
+               <a href="#kanji-<? the_kanji.id ?>"><? the_kanji.kanji ?></a> 
+            <? end ?>
+         </h2>
+      </div>
+
+	<? process "flavour/www/kanji/details_data.tt" ?>
+<? else ?>
+   <div class="text_block">
+	   <h2>Couldn't find any info for the characters supplied</h2>
+   </div>
+<? end ?>
+
+<?
+	process "flavour/www/includes/querylog.tt";
+	end;
+?>

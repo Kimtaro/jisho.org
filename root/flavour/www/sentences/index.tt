@@ -1,0 +1,23 @@
+﻿<?	wrapper 'flavour/www/includes/page.tt';
+	c.stash.title = "Find sentences - " _ c.config.site_name;
+	
+	process "flavour/www/sentences/form.tt";
+?>
+
+<div class="text_block">
+   <h2>Search tips</h2>
+   
+	<ul id="tips">
+   		<li><strong>Automatic conversion</strong> from roman characters to kana.</li>
+   		<li><strong>Bundle search terms</strong> with quotation marks (") to search for phrases. Like this: "to eat"</li>
+   		<li><strong>Use Japanese and English</strong> in the same query to make your search more precise.</li>
+   		<li><strong>Use the wildcards</strong> * (zero or more characters) and ? (exactly one character).</li>
+   		<li><strong>English or Japanese input mode</strong> doesn't matter. Asterisks, question marks, spaces and quotation marks work from both input modes.</li>
+   	</ul>
+
+	<h2>Information about the accuracy of the Tanaka sentences</h2>
+	
+	<p>Before making heavy use of the Tanaka sentences it is a good idea to read <a href="http://www.csse.monash.edu.au/~jwb/tanakacorpus.html#tanaka_warning">this note</a> about them. It talks about how they came to be and what level of accuracy to expect.</p>
+</div>
+
+<? end ?>

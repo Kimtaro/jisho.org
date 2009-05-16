@@ -1,0 +1,17 @@
+<?	wrapper 'flavour/www/includes/page.tt';
+	c.stash.title = "About - " _ c.config.site_name;
+?>
+
+<div id="content">
+
+<div class="text_block">
+   <h2>Thanks!</h2>
+   
+	<p>
+		Thank you for donating to <? c.config.site_name ?>! It is really appreciated and will help me to work more and make <? c.config.site_name ?> ever better.
+	</p>
+</div>
+
+</div>
+
+<? end ?>

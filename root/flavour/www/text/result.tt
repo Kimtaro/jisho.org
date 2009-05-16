@@ -1,0 +1,15 @@
+<?	wrapper 'flavour/www/includes/page.tt';
+	c.stash.title = "Text - " _ c.config.site_name;
+	
+	process "flavour/www/text/form.tt";
+?>
+
+<p id="result" class="text_block">
+	<?
+		foreach node = c.stash.parsed_text;
+			'<span class="word">' _ node.surface _ '</span><small>(' _ node.genkei _ '(' _ node.dict.kana _ '), ' _ node.dict.meanings _ ')</small><br />';
+		end;
+	?>
+</p>
+
+<? end ?>

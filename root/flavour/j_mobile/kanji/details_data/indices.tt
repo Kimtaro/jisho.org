@@ -1,0 +1,23 @@
+<table summary="Dictionary indices" width="100%" cellspacing="0" cellpadding="0" border="0">
+<?
+	i = 1;
+	foreach dic = the_kanji.dictionary_numbers_rs.search({},{order_by=>'dj_sort_order'});
+		'<tr class="'; if i mod 2 == 0; 'even'; end; '">';
+		'<td class="dic_ref">';
+			dic.dic_ref;
+		'</td>';
+		'<td class="dic_name">';
+			if dic.dr_type == 'moro';
+				'Daikanwa Jiten (Morohashi) ';
+				if dic.m_vol;
+					'(Volume ' _ dic.m_vol _ ', page ' _ dic.m_page _ ')';
+				end;
+			end;
+			
+			c.config.kanjidic.dr_type.${dic.dr_type};
+		'</td>';
+		'</tr>';
+		i = i + 1;
+	end
+?>
+</table>

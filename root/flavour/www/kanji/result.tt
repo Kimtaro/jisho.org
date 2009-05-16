@@ -1,0 +1,146 @@
+﻿<?	wrapper 'flavour/www/includes/page.tt';
+	c.stash.title = "Find kanji - " _ c.config.site_name;
+	process 'flavour/www/includes/macros.tt';
+	process "flavour/www/kanji/form.tt";
+	use Dumper;
+?>
+
+<div class="text_block_wide">
+<h2>
+Found <b><? c.stash.pager.total_entries ?></b> kanji.
+
+<?
+	pages = build_pages;
+	pages;
+?>
+</h2>
+</div>
+
+<? if c.stash.pager.total_entries > 0 ?> <!-- Found kanji -->
+
+<div style="margin: 15px;">
+<table border="0" id="kanji_list_result" cellspacing="0">
+<?
+	even = 1;
+	kanji_counter = 1;
+?>
+<? foreach kanji = c.stash.kanji.all ?>
+	<? kanji = kanji.data ?>
+	<? even = !even ?>
+		<tr <? if even ?> class="even" <? else ?> class="odd" <? end ?> >
+			<td class="the_kanji" rowspan="2">
+				<a href="/kanji/details/<? kanji.kanji ?>"><? kanji.kanji ?></a>
+			</td>
+			<td class="meaning">
+				<?
+				i = 1;
+				meanings = kanji.readings_meanings.groups.0.meaning.${c.req.params.mt};
+				if meanings == '';
+					meanings = kanji.readings_meanings.groups.0.meaning.en;
+				end;
+				foreach meaning = meanings;
+					"<span class='even'>" if i mod 2 == 0;
+					meaning;
+					"; &#160; ";
+					"</span>" if i mod 2 == 0;
+					i = i + 1;
+				end;
+				?>
+			</td>
+			<td class="reading">
+				<?
+				i = 1;
+				readings = kanji.readings_meanings.groups.0.reading.ja_kun;
+				if readings == '';
+					readings = [];
+				end;
+				readings = readings.merge(kanji.readings_meanings.groups.0.reading.ja_on);
+				foreach reading = readings;
+					"<span class='even'>" if i mod 2 == 0;
+					reading.content;
+					"</span>" if i mod 2 == 0;
+					i = i + 1;
+					" &#160;&#160; ";
+				end;
+				?>
+			</td>
+		</tr>
+		<tr <? if even ?> class="even lower" <? else ?> class="odd lower" <? end ?> >
+			<td>
+				<span class="tags">
+					<?
+					if kanji.grade && kanji.grade >= 1 && kanji.grade <= 8;
+						"<span class='common'>Jouyou kanji, </span>";
+					end;
+					
+					strokes = [];
+					foreach count = kanji.stroke_counts;
+						strokes.push(count);
+					end;
+					
+					strokes.nsort.join(', ');
+					if strokes.0 == 1;
+						" stroke";
+					else;
+						" strokes";
+					end;
+					?>
+				</span>
+			</td>
+			<td class="links">
+				<ul class="adxm menu">
+					<? words_url = c.uri_for('/words', {japanese => '*' _ kanji.kanji _ '*'}) ?>
+					<? sent_url = c.uri_for('/sentences', {japanese => kanji.kanji }) ?>
+					<li><a href="<? words_url ?>">Words</a></li>
+					<li><a href="<? sent_url ?>">Sentences</a></li>
+					<li>
+						<span class="title">External links</span>
+						<ul>
+							<li><a href="http://www.unicode.org/cgi-bin/GetUnihanData.pl?codepoint=<? kanji.kanji | ord | format('%lx') ?>&amp;useutf8=true" class="external">Unihan database</a></li>
+							<li><a href="http://en.wiktionary.org/wiki/<? kanji.kanji ?>" class="external">Wiktionary</a></li>
+							<li><a href="http://www.google.com/search?ie=utf8&amp;oe=utf8&amp;lr=lang_ja&amp;q=<? kanji.kanji ?>" class="external">Google</a></li>
+							<li><a href="http://images.google.com/images?hl=en&amp;lr=&amp;sa=N&amp;tab=wi&amp;q=<? kanji.kanji ?>" class="external">Google image search</a></li>
+						</ul>
+					</li>
+				</ul>
+				
+			</td>
+		</tr>
+		<? kanji_counter = kanji_counter + 1 ?>
+<? end ?>
+</table>
+</div>
+
+<? if c.stash.limit > 0 && c.stash.result.total > c.stash.limit ?>
+	<div class="text_block_wide">
+	<h2>
+	Found <b><? c.stash.result.total ?></b> kanji. 
+	<? pages; ?>
+	</h2>
+	</div>
+<? end ?>
+
+<? else ?> <!-- Found no words -->
+	<? if (c.req.params.rt == 'japanese' && c.req.params.reading) || c.req.params.meaning ?>
+
+<div class="text_block" id="suggest_box">
+	<p>
+		Try a <a href="/words?jap=<? suggest.key ?>&amp;eng=<? c.req.params.meaning ?>&amp;dict=edict&amp;sortorder=relevance"><b>word search</b> for <? c.stash.suggest.key ?> <? ' ' ?> <? c.req.params.meaning ?></a>.
+	</p>
+	
+	<p>
+		Try a <a href="http://dic.yahoo.co.jp/bin/dsearch?p=<? c.stash.suggest.key_euc ?>+<? c.req.params.meaning ?>&amp;stype=0&amp;dtype=2" class="external"><b>Yahoo Jisho</b> search for <? c.stash.suggest.key ?> <? ' ' ?> <? c.req.params.meaning ?></a>.<br/>
+	
+		Try a <a href="http://dictionary.goo.ne.jp/search.php?MT=<? c.stash.suggest.key_euc ?>+<? c.req.params.meaning ?>&amp;kind=&amp;kwassist=0&amp;mode=1" class="external"><b>Goo Jisho</b> search for <? c.stash.suggest.key ?> <? ' ' ?> <? c.req.params.meaning ?></a>.<br/>
+	
+		Try a <a href="http://www.jekai.org/cgi-jekai/siteindex/jsearch.pl?Q=<? c.stash.suggest.key_euc ?>+<? c.req.params.meaning ?>" class="external"><b>JeKai</b> search for <? c.stash.suggest.key ?> <? ' ' ?> <? c.req.params.meaning ?></a>.<br/>
+		
+		Try a <a href="http://www.google.com/search?ie=utf8&amp;oe=utf8&amp;lr=lang_ja&amp;q=<? c.stash.suggest.key ?>+<? c.req.params.meaning ?>" class="external"><b>Google</b> search for <? c.stash.suggest.key ?> <? ' ' ?> <? c.req.params.meaning ?></a>.<br/>
+	</p>
+</div>
+
+<?
+		end;
+	end;
+	end;
+?>

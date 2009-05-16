@@ -1,0 +1,69 @@
+﻿<?	wrapper 'flavour/www/includes/page.tt';
+	c.stash.title = c.config.site_name _ " - Online Japanese dictionary";
+?>
+
+<div class="text_block">
+	<h2>Correct a sentence</h2>
+	<p>
+		This page allows you to send in corrections to a sentence. Your correction will be sent to me, Kim, and the maintainers of the example sentence database. If it looks right it will be included in a future upgrade.
+	</p>
+	
+	<p><strong>Big thanks for helping!</strong></p>
+	
+	<form id="report_form" action="/report/example/<? c.stash.the_example.eid ?>/submit" method="post" accept-charset="utf-8">
+		<input type="hidden" name="eid" value="<? c.stash.the_example.eid ?>" id="eid" />
+		
+		<p><h3>These are the original sentences as they are in the database</h3></p>
+		<p>
+			<div class="row">
+				<label for="org_jap">Original Japanese:</label>
+				<input type="hidden" name="org_jap" id="org_jap" value="<? c.stash.the_example.japanese ?>" /><div><? c.stash.the_example.japanese ?></div>
+			</div>
+		
+			<div class="row">
+				<label for="org_eng">Original English:</label>
+				<input type="hidden" name="org_eng" id="org_eng" value="<? c.stash.the_example.english ?>" /><div><? c.stash.the_example.english ?></div>
+			</div>
+		</p>
+		
+		<p><h3>Make your corrections here</h3></p>
+		<p>
+			<div class="row">
+				<label for="jap">Japanese:</label>
+				<textarea name="jap" id="jap" rows="3" cols="50"><? c.stash.the_example.japanese ?></textarea>
+			</div>
+		
+			<div class="row">
+				<label for="eng">English:</label>
+				<textarea name="eng" id="eng" rows="3" cols="50"><? c.stash.the_example.english ?></textarea>
+			</div>
+		</p>
+		
+		<p><h3>Optionally supply a comment, your name and your e-mail address</h3></p>
+		<p>
+			<div class="row">
+				<label for="comment">Comment:</label>
+				<textarea name="comment" id="comment" rows="3" cols="50"></textarea>
+			</div>
+		
+			<div class="row">
+				<label for="name">Name:</label>
+				<input type="text" name="name" value="" id="name" size="50" />
+			</div>
+		
+			<div class="row">
+				<label for="email">E-mail:</label>
+				<input type="text" name="email" value="" id="email" size="50" />
+			</div>
+		</p>
+		
+		<p><h3>Done!</h3></p>
+		<p>
+			<div class="row">
+				<input type="submit" name="submit" value="Send" id="submit" />
+			</div>
+		</p>
+	</form>
+</div>
+
+<? end ?>

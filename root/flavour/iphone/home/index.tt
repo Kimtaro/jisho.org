@@ -1,0 +1,24 @@
+<?	wrapper 'flavour/iphone/includes/page.tt';
+	c.stash.page_title = "Home";
+	c.stash.title = c.config.site_name _ " - Online Japanese dictionary";
+?>
+
+    <div id="fp_search">
+    	<div class="search">
+	
+			<h2>Find words</h2>
+    		<form action="words" method="get">
+				<label for="jap_field">Japanese:</label>
+				<input type="search" autosave="DJWordJapHistory" results="10" name="jap" id="jap_field" />
+				
+				<label for="eng_field">English:</label>
+				<input type="search" autosave="DJWordEngHistory" results="10" name="eng" id="eng_field" />
+				
+				<input type="hidden" name="dict" value="jmdict" />
+				<input type="submit" value="Search" />
+    		</form>
+
+    	</div>
+    </div>
+
+<? end ?>

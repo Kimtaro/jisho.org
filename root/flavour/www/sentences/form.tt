@@ -1,0 +1,19 @@
+﻿<? process 'flavour/www/includes/macros.tt' ?>
+
+<div class="search clearfix">
+	<form action="/sentences" method="get">
+		<div class="row">
+			<label for="j_field">
+			<span class="accesskey">J</span>apanese:</label>
+			<input type="input" name="japanese" id="j_field" accesskey="j" />
+		</div>
+		<div class="row">
+			<label for="e_field">
+			<span class="accesskey">E</span>nglish:</label>
+			<input type="input" name="translation" id="e_field" accesskey="e" />
+		</div>
+
+		<? source_tabs_for('sentences') ?>
+		
+	</form>
+</div>

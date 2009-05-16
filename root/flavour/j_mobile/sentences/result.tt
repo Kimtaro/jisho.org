@@ -1,0 +1,45 @@
+﻿<?	wrapper 'flavour/j_mobile/includes/page.tt';
+	c.stash.title = "Find sentences - Denshi Jisho";
+	
+	process "flavour/j_mobile/sentences/form.tt";
+?>
+
+<HR>
+	
+<P>Found <B><? c.stash.result.total ?></B> <?if c.stash.result.total == '1' ?> sentence. <? else ?> sentences. <? end ?>
+<? if c.stash.limit > 0 && c.stash.result.total > c.stash.limit ?>
+	Showing first <? c.stash.limit ?>. <A href="<? c.req.uri | replace('&', '&amp;') ?>&amp;nolimit=1">Show all</A>
+<? end ?>
+</P>
+
+<? if c.stash.result.total > 0 ?> <!-- Found sentences -->
+
+<?
+	foreach sentence = c.stash.result.sentences;
+		"<HR><P>$sentence.japanese";
+		if sentence.tag;
+			" ($sentence.tag)";
+		end;
+		"<BR>$sentence.english</P>";
+	end;
+?>
+
+<? if c.stash.limit > 0 && c.stash.result.total > c.stash.limit ?>
+	<HR>
+	<P>
+	Found <B><? c.stash.result.total ?></B> <?if c.stash.result.total == '1' ?> sentence. <? else ?> sentences. <? end ?>
+	Showing first <? c.stash.limit ?>. <A href="<? c.req.uri | replace('&', '&amp;') ?>&amp;nolimit=1">Show all</A>
+	</P>
+<? end ?>
+
+<? else ?> <!-- Found no sentences -->
+
+<? if suggest.key_has_kanji == 1 ?>
+	<P>
+		Look up <A href="/kanji/details/<? suggest.key ?>"><B>kanji details</B> for <? suggest.key ?></A>.
+	</P>
+<? end ?>
+
+<? end ?>
+
+<? end ?>

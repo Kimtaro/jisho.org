@@ -1,0 +1,14 @@
+<dl>
+	<? i = 1 ?>
+	<? foreach point = c.config.kanjidic.code_points_sort_order ?>
+		<? foreach ref = the_kanji.data.code_points.${point} ?>
+			<dt class="<? if i mod 2 == 0; 'even'; end; ?>">
+				<? c.config.kanjidic.cp_type.${point} ?>
+			</dt>
+			<dd class="<? if i mod 2 == 0; 'even'; end; ?>">
+				<? ref ?>
+			</dd>
+			<? i = i + 1 ?>	
+		<? end ?>
+	<? end ?>
+</dl>

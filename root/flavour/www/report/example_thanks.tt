@@ -1,0 +1,12 @@
+﻿<?	wrapper 'flavour/www/includes/page.tt';
+	c.stash.title = c.config.site_name _ " - Online Japanese dictionary";
+?>
+
+<div class="text_block">
+	<h2>Thank you!</h2>
+	<p>
+		Thank you for helping to improve the sentence database!
+	</p>
+</div>
+
+<? end ?>

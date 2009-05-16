@@ -1,0 +1,49 @@
+﻿<?	wrapper 'flavour/www/includes/page.tt';
+	c.stash.title = "Find kanji by similarity - " _ c.config.site_name;
+	use dumper;
+?>
+
+	<div id="similarity" class="search">
+		<p>
+			Click on the parts that are in the kanji you are looking for. You can click on them again to de-select them.
+			<input type="button" value="Reset" id="reset_button" onclick='Similarity.reset()' />
+		</p>
+	
+		<ul class="similar_kanji">
+			<?
+				foreach key in c.stash.choices.keys.sort;
+					kanji = c.stash.choices.item(key);
+					if kanji.selected == 1;
+						"<li id='$kanji.id' class='selected'>$kanji.kanji </li>";
+					else;
+						"<li id='$kanji.id'><a href='$c.req.uri$kanji.kanji/'>$kanji.kanji</a> </li>";
+					end;
+				end;
+			?>
+		</ul>
+	</div>
+
+<div id="found_kanji" class="clearfix">
+	<?		
+		if c.stash.result.kanji;
+			current_strokes = 0;
+			
+			"<h2>Found $c.stash.result.count kanji</h2><p class='clearfix'>";
+			
+			foreach kanji in c.stash.result.kanji;
+				if kanji.kanji_strokes > current_strokes;
+					current_strokes = kanji.kanji_strokes;
+					"<span>$current_strokes</span> ";
+				end;
+				
+				"<a href='/kanji/details/$kanji.kanji' class='g$kanji.kanji_grade'>$kanji.kanji</a>";
+			end;
+			
+			"</p>";
+		else;
+			'<h2>No kanji selected</h2>';
+		end;
+	?>
+</div>
+
+<? end ?>

@@ -1,0 +1,6 @@
+<UL>
+	<LI><A href="/words?jap=*<? literal_utf8 ?>*&amp;eng=&amp;dict=edict&amp;tag=&amp;sortorder=relevance">Words <B>containing</B> <? literal_utf8 ?></a>
+	<LI><A href="/words?jap=<? literal_utf8 ?>&amp;eng=&amp;dict=edict&amp;tag=&amp;sortorder=relevance">Words <B>beginning with</B> <? literal_utf8 ?></a>
+	<LI><A href="/words?jap=*<? literal_utf8 ?>&amp;eng=&amp;dict=edict&amp;tag=&amp;sortorder=relevance">Words <B>ending in</B> <? literal_utf8 ?></a>
+	<LI><A href="/sentences?jap=<? literal_utf8 ?>">Sentences containing <? literal_utf8 ?></a>
+</UL>

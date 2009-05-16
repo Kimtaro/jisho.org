@@ -1,0 +1,8 @@
+﻿<?	wrapper 'flavour/j_mobile/includes/page.tt';
+	c.stash.page_title = "Words";
+	c.stash.title = "Find words - " _ c.config.site_name;
+	
+	process "flavour/j_mobile/words/form.tt";
+?>
+
+<? end ?>

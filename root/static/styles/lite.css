@@ -1,0 +1,130 @@
+body {
+	width:  500px;
+	font-family: Sans-serif;
+	background: #fff;
+	font-size: 62.5%;
+	color: black;
+	margin: 0;
+	padding: 0;
+}
+
+#top {
+	background: #EDF9FF;
+	border-bottom: 1px solid #ADB5B9;
+}
+
+h1 {
+	font-size: 1.6em;
+	font-family: Helvetica, Arial, Sans-serif;
+	color: rgb(118,200,64);
+	margin: 0;
+	padding: 0.5em;
+}
+
+h2 {
+	font-size: 1.1em;
+	font-weight: bold;
+}
+
+/* =============== */
+/* = Word result = */
+/* =============== */
+
+#word_result {
+	border-width:		1px 0 1px 0;
+	border-style:		solid;
+	border-color:		#666;
+	margin-top: 		1em;
+}
+
+#word_result td {
+	vertical-align:		top;
+	padding:			3px;
+}
+
+#word_result tr.even {
+	background-color:	#EDF9FF;
+}
+
+#word_result tr.odd {
+	background-color:	#fff;
+}
+
+#word_result .tags {
+	font-family:		'Times New Roman', Times, Serif;
+	font-style:			italic;
+	font-size:			1.5em;
+	font-weight:		normal;
+	color:				#444;
+}
+
+#word_result .mn_tags {
+	/* Meanings specific tags */
+	font-size: 0.8125em;
+}
+
+#word_result .common {
+	font-weight:		normal;
+	color:				#007100;
+}
+
+#word_result .kanji {
+	font-family:		sans-serif;
+	font-size:			1.6em;
+	position:			relative;
+	width:				98%;
+	display:			block;
+	color:				#000;
+}
+
+#word_result .kanji:hover,
+#word_result .kanji.over_kanji {
+	font-size:			6em;
+	background-color:	#FFFFEA;
+	padding:			3px;
+	border:				1px dotted #333;
+	position:			absolute;
+	width:				auto;
+	display:			inline;
+}
+
+#word_result .kana {
+	font-family:		sans-serif;
+	font-size:			1.6em;
+}
+
+#word_result .meanings {
+	font:				1.6em Georgia, 'Lucida Grande', Helvetica, Sans-serif;
+}
+
+#word_result .match {
+	background-color:	#FFFF65;
+}
+
+#word_result a .match {
+    text-decoration: underline;
+}
+
+.text_block {
+	padding: 0.5em;
+	font-size: 1.2em;
+}
+
+#search_box {
+	margin:				0;
+	border-width:		0 0 1px 0;
+	border-style:		solid;
+	border-color:		#4EB800;
+	background:			#EFFFDE;
+}
+
+#deinflect_box {
+	margin: 0;
+	background-color: #FFFFC3;
+}
+
+#copyright {
+	border-top: 1px solid #666;
+	background-color: #eee;
+	padding: 1em;
+}

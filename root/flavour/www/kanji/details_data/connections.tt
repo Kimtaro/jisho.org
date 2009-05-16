@@ -1,0 +1,31 @@
+<?
+	foreach rad = the_kanji.data.radicals;
+		if rad.rad_type == 'classical';
+			'<strong>Radical: </strong> ' _ c.config.radicals.${rad.content}.glyph _ ' (KanXi: ' _ rad.content;
+		elsif rad.rad_type == 'nelson_c';
+			', Nelson: ' _ rad.content;
+		end;
+	end;
+	')<br />';
+?>
+
+<?
+	parts = [];
+	foreach part = c.stash.kanji_parts.${the_kanji.id};
+		parts.push(part.radical);
+	end;
+	if parts.size > 0;
+		'<strong>Parts:</strong> ' _ parts.join(', ');
+		'<br />';
+	end;
+?>
+
+<?
+	variants = "";
+  	foreach variant = c.stash.kanji_variants.${the_kanji.id};
+		variants = variants _ variant.kanji.kanji;
+	end;
+	if variants;
+		'<strong>Variants:</strong> <a href="/kanji/details/' _ variants _ '">' _ variants _ '</a><br/>';
+	end;
+?>

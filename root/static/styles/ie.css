@@ -1,0 +1,145 @@
+#top {
+	filter:				progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/static/images/layout/top_faint.png', sizingMethod='crop');
+	background-image:	none;
+	background-position:right top;
+}
+
+#menu {
+	filter:				progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/static/images/layout/top_menu_bottom_long.png', sizingMethod='crop');
+	background-image:	none;
+	background-position:bottom;
+}
+
+#front_content {
+	filter:				progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/static/images/layout/intro-back-ie.png', sizingMethod='crop');
+	background-image: none;
+	background-position: left top;
+	margin-bottom: 22em;
+}
+
+#menu div a {
+	height: 102%;
+}
+
+#sidebar {
+	margin-top: 0;
+	position: absolute;
+}
+
+div.search #terms {
+	width: 26em;
+}
+
+div.search #options {
+	width: 38em;
+}
+
+ul#tips,
+#index ul {
+	padding:	0;
+	margin:		0;
+}
+
+form {
+	margin: 0;
+}
+
+span.radical img {
+	margin: 0;
+	padding: 0;
+	display: block;
+}
+
+#radicals_fix_scroll {
+	display: none;
+}
+
+#radical_table .disabled_radical {
+	filter: alpha(opacity=20);
+}
+
+/* ================ */
+/* = Word results = */
+/* ================ */
+
+#word_result {
+}
+
+#result {
+	border: 1px solid white;
+}
+
+#result_content {
+	float: left;
+	clear: none;
+}
+
+#vertical_ad_right {
+	clear: none;
+	display: inline;
+}
+
+/* ================= */
+/* = Kanji details = */
+/* ================= */
+
+.kanji_result .dictionary_indices {
+	margin-left: 1.6em;
+	padding-bottom: 1em;
+}
+
+/* ============= */
+/* = Resources = */
+/* ============= */
+
+.resources .title {
+	text-decoration:	underline;
+}
+
+.resource .text a {
+	width:				100%;
+	height:				100%;
+}
+
+/* ======================== */
+/* = IE6 fix for the menu = */
+/* ======================== */
+
+.menu ul {
+	width: 200px;
+}
+
+.kanji_result .menu {
+	font-size: 0.9em;
+	line-height: 1.3em;
+	margin: 1em 0 0.8em 0;
+	float: left;
+}
+
+.kanji_result .menu ul {
+	width: 200px;
+}
+
+/* Standard from ADx */
+
+.menu, .menu ul {	/* float.clear */
+	zoom: 1;
+}
+
+.menu li.adxmhover {
+	z-index: 10000;
+}
+
+.menu .adxmhoverUL {	/* li:hover>ul selector */
+	visibility: visible;
+}
+
+.menu .adxmhoverUL {	/* 1st-level submenu go below their parent item */
+	top: 100%;
+	left: 0;
+}
+
+.menu .adxmhoverUL .adxmhoverUL {	/* 2nd+ levels go on the right side of the parent item */
+	top: 0;
+	left: 100%;
+}

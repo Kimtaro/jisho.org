@@ -1,0 +1,8 @@
+<?
+	foreach cp = the_kanji.codepoints_rs.search({},{order_by=>'cp_type'});
+		if cp.cp_type == 'ucs';
+			'<B>Unicode hex:</B> ';
+			cp.cp_value;
+		end;
+	end;
+?>

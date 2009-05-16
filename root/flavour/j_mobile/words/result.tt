@@ -1,0 +1,82 @@
+﻿<?	wrapper 'flavour/j_mobile/includes/page.tt';
+	c.stash.page_title = "Words";
+	c.stash.title = "Find words - Denshi Jisho";
+	
+	process "flavour/j_mobile/words/form.tt";
+?>
+
+<HR>
+<? if c.stash.suggest.deinflected ?>
+	<P>Did you mean <A href="<? c.uri.base ?>/words?jap=<? c.stash.suggest.deinflected ?>;translation=<? c.req.params.translation ?>;source=<? c.req.params.source ?>;;common=<? c.req.params.common ?>;nolimit=<? c.req.params.nolimit ?>"><? c.stash.suggest.deinflected ?></A>?</P>
+<? end ?>
+
+<P>Found <B><? c.stash.result.total ?></B> <? if c.stash.result.total == '1' ?> word. <? else ?> words. <? end ?>
+<? if c.stash.limit > 0 && c.stash.result.total > c.stash.limit ?>
+	Showing first <? c.stash.limit ?>. <A href="<? c.req.uri | replace('&', '&amp;') ?>&amp;nolimit=1">Show all</A>
+<? end ?>
+</P>
+
+<? if c.stash.result.total > 0 ?> <!-- Found words -->
+
+<? foreach word = c.stash.result.words; ?>
+<HR>
+<P>
+	<?	if word.kanji;
+			"<A href='/kanji/details/$word.kanji'>$word.kanji</A> ($word.kana)";
+		else;
+			word.kana;
+		end;
+		
+		'<BR><FONT size="1">';
+		
+		if word.is_common == 1;
+			'<FONT color="#007100">Common word</FONT>, ';
+		end;
+		
+		foreach tag in word.tags;
+			tag.expanded;
+			if loop.index != loop.max;
+				', ';
+			end;
+		end;
+		
+		'</FONT><BR>';
+		
+		if word.meanings.size == 1;
+			word.meanings.0;
+		else;
+			count = 1;
+			foreach meaning in word.meanings;
+				"<B>$count: </B>$meaning<BR>";
+				count = count + 1;
+			end;
+		end;
+	?>
+</P>
+<? end ?>
+
+<? if c.stash.limit > 0 && c.stash.result.total > c.stash.limit ?>
+	<HR>
+	<P>Found <B><? c.stash.result.total ?></B> <? if c.stash.result.total == '1' ?> word. <? else ?> words. <? end ?>
+	<? if c.stash.limit > 0 && c.stash.result.total > c.stash.limit ?>
+		Showing first <? c.stash.limit ?>. <A href="<? c.req.uri | replace('&', '&amp;') ?>&amp;nolimit=1">Show all</A>
+	<? end ?>
+	</P>
+<? end ?>
+
+<? else ?> <!-- Found no words -->
+
+<P>
+	<? if suggest.key_has_kanji == 1 ?>
+		Look up <A href="/kanji/details/<? suggest.key ?>"><B>kanji details</B> for <? suggest.key ?></A>.
+	<? end ?>
+	
+	<? if c.req.params.common == 'on' ?>
+		Try again <A href="<? c.req.uri | replace('common=on', 'common=off') ?>">without limiting to common words only</A>.
+	<? end ?>
+</P>
+
+<?
+	end;
+	end;
+?>

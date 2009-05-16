@@ -1,0 +1,97 @@
+---
+View::JSON:
+  expose_stash: json
+authentication:
+  dbic:
+    password_field: password
+    user_class: DenshiJisho::Model::DJUserDB::User
+    user_field: username
+sources:
+  words:
+    names:
+      jmdict: General Dictionary
+      jmnedict: Names and Places
+      4jword3: Yojijukugo
+      engscidic: Engineering and Science
+      classical: Classical Japanese
+      smartfm: Smart.fm
+    order:
+      - jmdict
+      - jmnedict
+      - engscidic
+      - 4jword3
+      - classical
+      - smartfm
+  sentences:
+    names:
+      tanaka: Tanaka
+      smartfm: Smart.fm
+    order:
+      - tanaka
+      - smartfm
+kanjidic:
+  cp_type:
+    jis208: JIS X 0208-1997 kuten code
+    jis212: JIS X 0212-1990 kuten code
+    jis213: JIS X 0213-2000 kuten code
+    ucs: Unicode hex code
+  code_points_sort_order:
+    - ucs
+    - jis208
+    - jis212
+    - jis213
+  dr_type:
+    busy_people: Japanese for Busy People
+    crowley: '<span title="Dale Crowley">The Kanji Way to Japanese Language Power</span>'
+    gakken: A New Dictionary of Kanji Usage
+    halpern_kkld: '<span title="Jack Halpern">Kanji Learners Dictionary</span>'
+    halpern_njecd: '<span title="Jack Halpern">New Japanese English Character Dictionary</span>'
+    heisig: '<span title="James Heisig">Remembering The Kanji</span>'
+    henshall: '<span title="Kenneth G. Henshall">A Guide To Remembering Japanese Characters</span>'
+    henshall3: '<span title="Henshall, Seeley and De Groot">A Guide To Reading and Writing Japanese 3rd ed.</span>'
+    jf_cards: '<span title="Max Hodges and Tomoko Okazaki">Japanese Kanji Flashcards</span>'
+    kanji_in_context: '<span title="Nishiguchi and Kono">Kanji in Context</span>'
+    kodansha_compact: Kodansha Compact Kanji Guide
+    nelson_c: '<span title="Andrew Nelson">Classic Nelson</span>'
+    nelson_n: '<span title="John Haig">New Nelson</span>'
+    oneill_kk: "<span title=\"P.G. O'Neill\">Essential Kanji</span>"
+    oneill_names: "<span title=\"P.G. O'Neill\">Japanese Names</span>"
+    sakade: '<span title="Florence Sakade">A Guide To Reading and Writing Japanese</span>'
+    sh_kk: '<span title="Spahn and Hadamitzky">Kanji and Kana</span>'
+    tutt_cards: '<span title="Alexander Kask">Tuttle Kanji Cards</span>'
+    maniette: '<span title="Yves Maniette">Les Kanji dans la tête</span>'
+  qc_type:
+    deroo: '<span title="Joseph De Roo">2001 Kanji</span>'
+    four_corner: Four corner code
+    sh_desc: '<span title="Spahn and Hadamitzky">The Kanji Dictionary</span>'
+    skip: '<span title="System of Kanji Indexing by Patterns">SKIP code</span>'
+  codes_sort_order:
+    - skip
+    - sh_desc
+    - four_corner
+    - deroo
+  indices_sort_order:
+    - sakade
+    - henshall3
+    - henshall
+    - gakken
+    - nelson_c
+    - moro
+    - oneill_kk
+    - busy_people
+    - jf_cards
+    - oneill_names
+    - sh_kk
+    - kanji_in_context
+    - halpern_kkld
+    - kodansha_compact
+    - halpern_njecd
+    - nelson_n
+    - heisig
+    - crowley
+    - tutt_cards
+    - maniette    
+name: DenshiJisho
+result_limit: 25
+default_view: TT
+site_name: Jisho.org

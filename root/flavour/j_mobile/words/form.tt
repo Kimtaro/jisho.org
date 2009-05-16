@@ -1,0 +1,14 @@
+﻿<FORM action="/words" method="get">
+	Japanese: <INPUT type="text" name="jap" istyle="1"><BR>
+	English: <INPUT type="text" name="eng" istyle="3"><BR>
+	Dictionary: <SELECT name="dict">
+		<OPTION value="edict">General
+		<OPTION value="compdic">Computer terms
+		<OPTION value="engscidic">Scientific terms
+		<OPTION value="enamdic">Names &amp; places
+	</SELECT>
+	<BR>
+	Common only: <INPUT type="checkbox" name="common"><BR>
+	Romaji: <INPUT type="checkbox" name="romaji"><BR>
+	<INPUT type="submit" value="Search">
+</FORM>

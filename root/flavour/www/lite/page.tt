@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<title><? c.stash.title ?></title>
+	
+	<meta name="MSSmartTagsPreventParsing" content="true" />
+	<meta name="Content-type" content="text/html; charset=utf8" />
+	<meta name="Description" content="Easy-to-use and powerful online Japanese-English word and character dictionary" />
+	
+	<link rel="stylesheet" type="text/css" href="/static/styles/lite.css" />
+	<link rel="shortcut icon" href="/static/images/favicon.ico" />
+	<link rel="icon" href="/static/images/favicon.ico" />
+	<!-- Stuff for IE -->
+	<!--[if lt IE 7]>
+		<style>@import /static/styles/ie.css;</style>
+	<![endif]-->
+	
+</head>
+
+<body>
+	<div id="top"><a name="top"></a>
+		<h1 id="logo"><strong><? c.config.site_name ?></strong> <small> — Online Japanese dictionary</small></h1>
+	</div>
+
+	<? content ?>
+
+	<div id="copyright">
+		<div class="author">
+			<p>
+				<a href="http://jisho.org/"><? c.config.site_name ?></a> by <a href="mailto:kim.ahlstrom@gmail.com">Kim Ahlström</a>.<br />
+				<a href="/about#donations">Donate</a> to <? c.config.site_name ?>.<br />
+				<a href="http://jisho.wordpress.com/">Development blog</a>
+			</p>
+		</div>
+		<div class="files">
+			<p>
+				This service uses the <a href="http://www.csse.monash.edu.au/~jwb/edict.html">Edict</a> dictionary, provided by the <a href="http://www.csse.monash.edu.au/~jwb/edrdg/">Electronic Dictionary Research and Development Group at Monash University</a>.
+   			</p>
+		</div>
+	</div>
+</body>
+</html>

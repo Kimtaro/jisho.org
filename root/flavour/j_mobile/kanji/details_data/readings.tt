@@ -1,0 +1,74 @@
+<?
+   ja_kun    = "";
+   ja_on     = "";
+   pinyin    = "";
+   korean_r  = "";
+   i_kun = 1; i_on = 1; i_pin = 1; i_kor = 1;
+   reading_url_start  = "<A href=\"/words?jap=" _ literal_utf8 _ "%20";
+   reading_url_middle = "&amp;dict=edict\">";
+   reading_url_end    = "</A>";
+   
+   foreach reading = the_kanji.readings_rs.search({},{order_by=>'normalized'});
+	   current     = reading.reading;
+	   normalized  = reading.normalized;
+
+	   if reading.r_type == 'ja_kun';
+	       current = reading_url_start _ normalized _ reading_url_middle _ current _ reading_url_end;
+		   ja_kun = ja_kun _ current _ "&#12289; ";
+		   
+	   elsif reading.r_type == 'ja_on';
+	       current = reading_url_start _ normalized _ reading_url_middle _ current _ reading_url_end;
+		   ja_on = ja_on _ current _ "&#12289; ";
+		   
+	   elsif reading.r_type == 'pinyin';
+		   pinyin = pinyin _ current _ ", ";
+		   
+	   elsif reading.r_type == 'korean_r';
+		   korean_r = korean_r _ current _ ", ";
+	   end;
+   end;
+
+   ja_kun   = ja_kun.replace('&#12289; $', '');
+   ja_on    = ja_on.replace('&#12289; $', '');
+   pinyin   = pinyin.replace(', $', '');
+   korean_r = korean_r.replace(', $', '');
+?>
+
+	<B>Japanese kun: </B> <? ja_kun ?>
+	<BR>
+
+	<B>Japanese on: </B> <? ja_on ?>
+	<BR>
+				
+	<?
+		nanori = "";
+	
+		foreach reading = the_kanji.nanoris_rs.search({},{order_by=>'nanori'});
+			nanori = nanori _ reading.nanori _ "&#12289; ";
+		end;
+		
+		nanori = nanori.replace('&#12289; $', '');
+		
+		if nanori != "";
+			'<B>Japanese names: </B>' _ nanori;
+		end;
+	?>
+</div>
+
+<div class="other_readings">
+	
+	<?
+		if the_kanji.kanji_rad_names;
+			'<strong>Name as radical: </strong>';
+			i = 1;
+			foreach rad_name = the_kanji.rad_names;
+				rad_name.rad_name;
+				
+				if i != the_kanji.kanji_rad_names.size;
+					'&#12289;';
+				end;
+				i = i + 1;
+			end;
+		end;
+	?>
+</div>

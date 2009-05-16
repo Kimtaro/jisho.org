@@ -1,0 +1,89 @@
+﻿<?	wrapper 'flavour/www/includes/page.tt';
+	c.stash.title = "Find sentences - " _ c.config.site_name;
+	process 'flavour/www/includes/macros.tt';	
+	process "flavour/www/sentences/form.tt";
+?>
+
+<div class="text_block_wide">
+<h2>
+Found <b><? c.stash.result.total ?></b> <?if c.stash.result.total == '1' ?> sentence. <? else ?> sentences. <? end ?>
+
+<?
+	pages = build_pages;
+	pages;
+?>
+</h2>
+</div>
+
+<? if c.stash.result.total > 0 ?> <!-- Found sentences -->
+
+<div style="margin: 15px;">
+<table border="0" id="word_result" class="sentence_result" cellspacing="0">
+<? even = 1 ?>
+<? foreach sentence = c.stash.result.sentences ?>
+<? even = !even ?>
+		<tr <? if even ?> class="even" <? else ?> class="odd" <? end ?> >
+			<td style="width: 50%" class="japanese">
+				<? sentence.japanese ?>
+			</td>
+			<td style="width: 50%" class="english">
+				<? sentence.english ?>
+			</td>
+		</tr>
+		<tr <? if even ?> class="even lower" <? else ?> class="odd lower" <? end ?>>
+			<td>
+				<span class="tags">					
+					<? sentence.tag ?>
+				</span>
+			</td>
+			<td class="links">
+				<ul class="adxm menu">
+					<li><a href="/kanji/details/<? sentence.key ?>">Kanji details</a></li>
+					<li><a href="/report/example/<? sentence.eid ?>">Report inaccuracies</a></li>
+					<li>
+						<span class="title">External links</span>
+						<ul>
+							<li><a href="http://www.csse.monash.edu.au/cgi-bin/cgiwrap/jwb/wwwjdic?9MII<? sentence.key ?>" class="external">WWWJDIC word translation</a></li>
+							<li><a href="http://www.google.com/search?ie=utf8&amp;oe=utf8&amp;lr=lang_ja&amp;q=<? sentence.key ?>" class="external">Google search</a></li>
+							<li><a href="http://images.google.com/images?hl=en&amp;lr=&amp;sa=N&amp;tab=wi&amp;q=<? sentence.key ?>" class="external">Google image search</a></li>
+						</ul>
+					</li>
+				</ul>
+			</td>
+		</tr>
+<? end ?>
+</table>
+</div>
+
+<? if c.stash.limit > 0 && c.stash.result.total > c.stash.limit ?>
+	<div class="text_block_wide">
+	<h2>
+	Found <b><? c.stash.result.total ?></b> <?if c.stash.result.total == '1' ?> sentence. <? else ?> sentences. <? end ?>
+	<? pages; ?>
+	</h2>
+	</div>
+<? end ?>
+
+<? else ?> <!-- Found no sentences -->
+
+<div class="text_block" id="suggest_box">
+	<? if suggest.key_has_kanji == 1 ?>
+		<p>
+			Look up <a href="/kanji/details/<? suggest.key ?>"><b>kanji details</b> for <? suggest.key ?></a>.
+		</p>
+	<? end ?>
+	
+	<p>
+		Try a <a href="http://dic.yahoo.co.jp/bin/dsearch?p=<? c.stash.suggest.key_euc ?>+<? c.req.params.translation ?>&amp;stype=0&amp;dtype=2" class="external"><b>Yahoo Jisho</b> search for <? c.stash.suggest.key ?> <? ' ' ?> <? c.req.params.translation ?></a>.<br/>
+	
+		Try a <a href="http://dictionary.goo.ne.jp/search.php?MT=<? c.stash.suggest.key_euc ?>+<? c.req.params.translation ?>&amp;kind=&amp;kwassist=0&amp;mode=1" class="external"><b>Goo Jisho</b> search for <? c.stash.suggest.key ?> <? ' ' ?> <? c.req.params.translation ?></a>.<br/>
+	
+		Try a <a href="http://www.jekai.org/cgi-jekai/siteindex/jsearch.pl?Q=<? c.stash.suggest.key_euc ?>+<? c.req.params.translation ?>" class="external"><b>JeKai</b> search for <? c.stash.suggest.key ?> <? ' ' ?> <? c.req.params.translation ?></a>.<br/>
+		
+		Try a <a href="http://www.google.com/search?ie=utf8&amp;oe=utf8&amp;lr=lang_ja&amp;q=<? c.stash.suggest.key ?>+<? c.req.params.translation ?>" class="external"><b>Google</b> search for <? c.stash.suggest.key ?> <? ' ' ?> <? c.req.params.translation ?></a>.<br/>
+	</p>
+</div>
+
+<? end ?>
+
+<? end ?>

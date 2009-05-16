@@ -1,0 +1,107 @@
+/* ============== */
+/* = Page cruft = */
+/* ============== */
+
+body { font-family: Helvetica; padding: 0; margin: 0; overflow-x: hidden; /*-webkit-user-select: none;*/ -webkit-text-size-adjust: none; }
+#top { background: #245695 url(/static/images/iphone/top.png) top left repeat-x; height: 35px; }
+h1 { color: white; font-size: 1.3em; text-align: center; margin: 0; padding: 5px; text-shadow: #2D4E7D 1px 2px 2px; }
+
+#menu { padding: 0; margin: 0; height: 33px; background: #eee; border-bottom: 1px solid #aaa; }
+#menu li { text-indent: 0; float: left; width: 25%; list-style-type: none; }
+#menu li a { display: block; text-align: center; height: 25px; padding-top: 8px; text-decoration: none; font-weight: bold; color: #245695; font-size: 0.9em; border-right: 1px solid #aaa; }
+#menu li.last  {  }
+#menu li.last a { border-width: 0; }
+#menu li.selected { border-bottom: 3px solid #62199F; }
+#menu li.selected a { background: #DDD4E5; color: #62199F; }
+
+#content { margin: 0; }
+
+#footer { padding: 5px; font-size: 0.8em; color: #666; background: #eee url(/static/images/iphone/footer.png) top left repeat-x;}
+#footer a { color: #333; }
+
+/* ============= */
+/* = Utilities = */
+/* ============= */
+
+.hidden { display: none; }
+.clearfix:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+
+/* ========= */
+/* = Pages = */
+/* ========= */
+
+.page { margin: 0; padding: 0 0 10px 0; background: #c8c8c8 url(/static/images/iphone/pinstripes.png); }
+
+.page .search { margin: 0 0 10px 0; padding: 5px 10px; background-image: url(/static/images/iphone/search-gradient.png), url(/static/images/iphone/search-back.png); background-position: top left, top left; background-repeat: repeat-x, repeat; border-bottom: 1px solid #656E7C; }
+.page .search form { margin: 0; }
+.page .search input, .page .search select { box-sizing: border-box; -webkit-box-sizing: border-box; width: 49%; margin: 5px 0; padding: 6px; font-size: 16px; font-weight: normal; float: left; }
+.page .search select { width: 100%; }
+.page .search input[type="checkbox"] { width: auto; clear: left; margin: 5px 2px 5px 0; }
+.page .search label { font-size: 16px; line-height: 28px; padding-left: 3px; display: inline; color: #2B3C5C; }
+.page .search .checkbox { width: 49%; display: inline; }
+.page .search .right { float: right; }
+
+.page .result { display: none; }
+.page .result ul { background: white; border: 1px solid rgb(217,217,217); -webkit-border-radius: 8px; margin: 10px 10px 17px 10px; padding: 0; font-size:17px; font-family: Helvetica; color: black; }
+.page .result ul > li { border-top: 1px solid rgb(217,217,217); padding: 10px 10px 10px 10px; list-style-type: none; }
+.page .result ul > li:first-child { border-top:0; }
+.page .result .reading { font-weight: normal; }
+.page .result .status { font-size: 17px; color: rgb(76,86,108); margin: 10px 10px 10px 15px; padding: 0; text-shadow: rgba(255, 255, 255, 0.75) 2px 2px 0; }
+.page .result .status a { color: rgb(76,86,108); }
+.page .result .more_link { font-size: 17px; font-weight: bold; padding: 0; }
+.page .result .more_link a, .page .result .more_link span { display: block; padding: 10px; color: #2653AF; }
+.page .result .tags { color: #444; font-style: italic; font-size: 0.8em; }
+.page .result .common { color: #007100; }
+.page .result .links a { color: #2653AF; font-size: 0.8em; }
+
+#words .result ul > li .kanji { font-weight: normal; }
+#words .result ol { padding: 0; }
+#words .result ol li { margin-left: 1.5em; }
+
+#kanji .result .kanji { float: left; font-size: 34px; }
+#kanji .result .rest { margin-left: 45px; }
+
+#kanji .details .rest { margin-left: 0; }
+#kanji .details .kanji { font-size: 49px; padding: 0 14px 0 0; }
+#kanji .details .tags { line-height: 1.4; }
+#kanji .details .title { font-size: 0.8em; width: 65px; padding-top: 3px; font-weight: bold; float: left; color: #1D65CF; }
+#kanji .details .value { padding-left: 65px; }
+#kanji .details .portuguese .value { padding-left: 87px; }
+#kanji .details a { color: #00a; }
+#kanji .details .links a { color: #2653AF; line-height: 1.5; }
+
+#sentences .result .japanese a { color: #00a; }
+
+#radical_table { font-size: 1.5em; font-weight: normal; text-align: left; padding: 10px; }
+#radical_table ul {	margin: 0; padding: 0; border: 0; clear: none; list-style-type: none; list-style-position: inside; }
+#radical_table li {	margin: 0; padding: 0; border: 0; float: left; clear: none; }
+#radical_table .number { border: 1px solid transparent; width: 24px; height: 24px; padding: 2px; display: block; float: left; clear: none; text-align: center; vertical-align: middle; margin: 2px; font-weight: normal; font-size: 18px; line-height: 24px; color: #19335C; }
+#radical_table .radical { border: 1px solid #9399A6; border-color: #9399A6 #6B6F78 #6B6F78 #9399A6; background: #fff; width: 24px; height: 24px; padding: 3px 2px 1px 2px; display: block; float: left; clear: none; text-align: center; vertical-align: middle; margin: 2px; font-size: 24px; line-height: 24px; color: #000; }
+#radical_table .radical img { float: left; margin-top: -1px; }
+#radical_table .selected_radical { background: #FFFC7B; border: 1px solid #6B6F78; border-color: #6B6F78 #9399A6 #9399A6 #6B6F78; }
+#radical_table .disabled_radical { opacity: 0.2; }
+
+#radicals_result_ul { padding-bottom: 10px; }
+#radicals .result span { width: 24px; height: 24px; padding: 1px; display: block; float: left; clear: none; text-align: center; vertical-align: middle; margin: 2px; font-weight: normal; font-size: 18px; line-height: 24px; color: #19335C; }
+#radicals .result a { width: 24px; height: 24px; padding: 1px; display: block; float: left; clear: none; text-align: center; vertical-align: middle; margin: 2px; font-size: 24px; line-height: 24px; text-decoration: none; color: #77f; }
+#radicals .result a.g1,
+#radicals .result a.g2,
+#radicals .result a.g3,
+#radicals .result a.g4,
+#radicals .result a.g5,
+#radicals .result a.g6,
+#radicals .result a.g7,
+#radicals .result a.g8 {
+	color: #00d;
+}
+
+/* ========= */
+/* = Forms = */
+/* ========= */
+
+label { display: block; text-shadow: rgba(0, 0, 0, 0.6) 0 1px 0; }
+
+input { width: 100%; font-size: 2em; margin: 3px; padding: 5px 3px; box-sizing: border-box;
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;}
+

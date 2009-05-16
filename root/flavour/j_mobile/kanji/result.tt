@@ -1,0 +1,85 @@
+﻿<?	wrapper 'flavour/j_mobile/includes/page.tt';
+	c.stash.page_title = "Kanji";
+	c.stash.title = "Find kanji - Denshi Jisho";
+	
+	process "flavour/j_mobile/kanji/form.tt";	
+?>
+
+<HR>
+<P>
+	Found <B><? c.stash.result.total ?></B> kanji.
+	<? if c.stash.limit > 0 && c.stash.result.total > c.stash.limit ?>
+		Showing first <? c.stash.limit ?>. <A href="<? c.req.uri | replace('&', '&amp;') ?>&amp;nolimit=1">Show all</A>
+	<? end ?>
+</P>
+
+<? if c.stash.result.total > 0 ?> <!-- Found kanji -->
+
+<?	foreach kanji = c.stash.result.kanjis ?>
+<HR>
+	<A href="/kanji/details/<? kanji.literal ?>"><? kanji.literal ?></A>
+	
+	<?
+	foreach reading = kanji.readings;
+		if reading.r_type == 'ja_on' or reading.r_type == 'ja_kun';
+			reading.reading;
+			" &#160;&#160; ";
+		end;
+	end;
+	?>
+	
+	<BR>
+		
+	<?
+	if kanji.grade && kanji.grade >= 1 && kanji.grade <= 8;
+		"<FONT color='#007100'>Jouyou kanji, </FONT>";
+	end;
+
+	strokes = [];
+	foreach count = kanji.stroke_counts;
+		strokes.push(count.stroke_count);
+	end;
+
+	strokes.nsort.join(', ');
+	if strokes.0 == 1;
+		" stroke";
+	else;
+		" strokes";
+	end;
+	?>
+		
+	<BR>
+
+	<?
+	foreach meaning = kanji.meanings;
+		if meaning.m_lang == 'en';
+			meaning.meaning;
+			"; &#160; ";
+		end;
+	end;
+	?>
+				
+<? end ?>
+
+<? if c.stash.limit > 0 && c.stash.result.total > c.stash.limit ?>
+<HR>
+<P>
+	Found <B><? c.stash.result.total ?></B> kanji.
+	<? if c.stash.limit > 0 && c.stash.result.total > c.stash.limit ?>
+		Showing first <? c.stash.limit ?>. <A href="<? c.req.uri | replace('&', '&amp;') ?>&amp;nolimit=1">Show all</A>
+	<? end ?>
+</P>
+<? end ?>
+
+<? else ?> <!-- Found no words -->
+	<? if (c.req.params.rt == 'jap' && c.req.params.reading) || c.req.params.meaning ?>
+
+<P>
+	Try a <A href="/words?jap=<? suggest.key ?>&amp;eng=<? c.req.params.meaning ?>&amp;dict=edict&amp;sortorder=relevance"><B>word search</B> for <? c.stash.suggest.key ?> <? ' ' ?> <? c.req.params.meaning ?></A>.
+</P>
+
+<?
+		end;
+	end;
+	end;
+?>

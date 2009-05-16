@@ -1,0 +1,112 @@
+﻿<?	wrapper 'flavour/www/includes/page.tt';
+	c.stash.title = c.config.site_name _ " - Online Japanese dictionary";
+?>
+
+    <div id="fp_search" class="clearfix">
+		<div class="fp_container">
+    	<div class="search clearfix">
+			<h2>Find words</h2>
+    		<form action="words" method="get">
+    				<div class="row">
+    				<label for="japanese_word">
+    				<span class="accesskey">J</span>apanese:</label>
+    				<input type="text" name="japanese" id="japanese_word" accesskey="j"/>
+    			</div>
+    			<div class="row">
+    				<label for="translation_word">
+    				<span class="accesskey">E</span>nglish:</label>
+    				<input type="text" name="translation" id="translation_word" accesskey="e"/>
+    			</div>
+    			<div class="row lowest_row" style="padding-left: 6.5em;">
+    				<input type="submit" value="Search" />
+    			</div>
+    		</form>
+    	</div>
+		</div>
+	
+		<div class="fp_container">
+    	<div class="search clearfix">
+			<h2>Find kanji</h2>
+    		<form action="kanji" method="get">
+    			<div class="row">
+    				<label for="jap_field_kanji">Japanese:</label>
+    				<input type="text" name="reading" id="jap_field_kanji" />
+    			</div>
+    			<div class="row">
+    				<label for="eng_field_kanji">English:</label>
+    				<input type="text" name="meaning" id="eng_field_kanji" />
+    			</div>
+    			<div class="row lowest_row" style="padding-left: 6.5em;">
+					<input type="hidden" name="rt" value="jap" />
+					<input type="hidden" name="mt" value="en" />
+    				<input type="submit" value="Search" />
+    			</div>
+    		</form>
+    	</div>
+		</div>
+	
+	    <div class="fp_container">
+    	<div class="search search_last clearfix">
+			<h2>Find sentences</h2>
+    		<form action="sentences" method="get">
+    			<div class="row">
+    				<label for="japanese_sentence">Japanese:</label>
+    				<input type="text" name="japanese" id="japanese_sentence" />
+    			</div>
+    			<div class="row">
+    				<label for="translation_sentence">English:</label>
+    				<input type="text" name="translation" id="translation_sentence" />
+    			</div>
+    			<div class="row lowest_row" style="padding-left: 6.5em;">
+    				<input type="submit" value="Search" />
+    			</div>
+    		</form>
+    	</div>
+    	</div>
+    </div>
+
+	<div id="front_content">
+		<div id="intro">
+			<h3>Welcome!</h3>
+			<p>
+				<? c.config.site_name ?> is an easy-to-use and powerful online Japanese dictionary. It lets you find words, kanji and example sentences by searching in many ways.
+			</p>
+			<p>
+				The dictionaries are also interlinked so that you can check what the kanji in a word mean individually or what context a word can be used in. You can also look up kanji by the parts it contain. 
+			</p>
+			<p>
+				The data is publicly available and comes from the excellent <a href="http://www.csse.monash.edu.au/~jwb/wwwjdic.html" title="WWWJDIC project homepage">WWWJDIC</a> project.
+			</p>
+			
+			<h3><? c.config.site_name ?> in your browser</h3>
+			<p>
+				<? c.config.site_name ?> uses Open Search so you can use the word search from your browser's search box. For example, to use this in Firefox, choose "Add <? c.config.site_name ?> …" from the menu in the search box.
+			</p>
+		</div>
+
+		<div id="sidebar">
+			<div id="bookmarklet">
+				<h3>Bookmarklet</h3>
+				<p>
+					<a href="javascript:void(q=window.getSelection?window.getSelection():(document.getSelection?document.getSelection():(document.selection?document.selection.createRange().text:'')));if(q=='')void(q=prompt('Enter%20a%20Japanese',''));if(q){void(djwin=window.open('http://jisho.org/lite/words?jap='+encodeURIComponent(q),'djwin','width=520,height=200,resizable=yes,scrollbars=yes,toolbar=no,location=no,directories=no,status=yes,menubar=no,copyhistory=no'));void(setTimeout('djwin.focus()',1));};
+				"><? c.config.site_name ?> Bookmarklet</a>. Drag the link to the favourites/bookmark bar in your browser. Select a Japanese word on a page, then click the bookmarklet to make a quick lookup on that word.
+				</p>
+			</div>
+			
+			<div id="keitai">
+				<h3>For keitai users</h3>
+				<p>
+					<? c.config.site_name ?> is also available for Japanese mobile phones. Just go to <em>jisho.org</em> with your keitai and it should automatically take you to the mobile version. You can also use <a href="http://k.jisho.org/">k.jisho.org</a> to access it from any device.
+				</p>
+			</div>
+			
+			<div id="iphone">
+				<h3>For iPhone users</h3>
+				<p>
+					By going to <em>jisho.org</em> with your iPhone or iPod Touch you will automatically get <? c.config.site_name ?> optimized for those devices. You can also access it from any device by going to <a href="http://iphone.jisho.org/">iphone.jisho.org</a>.
+				</p>
+			</div>
+		</div>
+	</div>
+
+<? end ?>

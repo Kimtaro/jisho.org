@@ -1,0 +1,43 @@
+<div class="english_meanings">
+	<h2>English meanings</h2>
+	<ul>
+		<? i = 1 ?>
+		<? foreach meaning = the_kanji.data.readings_meanings.groups.0.meaning.en ?>
+	   	<? if i mod 2 == 0; even = 'even'; else; even = ''; end; i = i + 1 ?>
+			<li><p class="<? even ?>"><? meaning ?></p></li>
+		<? end ?>
+	</ul>
+</div>
+
+<div class="french_meanings">
+	<h2>French meanings</h2>
+	<ul>
+		<? i = 1 ?>
+		<? foreach meaning = the_kanji.data.readings_meanings.groups.0.meaning.fr ?>
+	   	<? if i mod 2 == 0; even = 'even'; else; even = ''; end; i = i + 1 ?>
+			<li><p class="<? even ?>"><? meaning ?></p></li>
+		<? end ?>
+	</ul>
+</div>
+
+<div class="spanish_meanings">
+	<h2>Spanish meanings</h2>
+	<ul>
+		<? i = 1 ?>
+		<? foreach meaning = the_kanji.data.readings_meanings.groups.0.meaning.es ?>
+	   	<? if i mod 2 == 0; even = 'even'; else; even = ''; end; i = i + 1 ?>
+			<li><p class="<? even ?>"><? meaning ?></p></li>
+		<? end ?>
+	</ul>
+</div>
+
+<div class="portuguese_meanings">
+	<h2>Portuguese meanings</h2>
+	<ul>
+		<? i = 1 ?>
+		<? foreach meaning = the_kanji.data.readings_meanings.groups.0.meaning.pt ?>
+	   	<? if i mod 2 == 0; even = 'even'; else; even = ''; end; i = i + 1 ?>
+			<li><p class="<? even ?>"><? meaning ?></p></li>
+		<? end ?>
+	</ul>
+</div>

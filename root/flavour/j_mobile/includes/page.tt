@@ -1,0 +1,27 @@
+﻿<HTML>
+	<HEAD>
+		<TITLE><? c.stash.title ?></TITLE>
+		<META http-equiv="Content-Type" content="text/html;charset=shift_jis">
+	</HEAD>
+	<BODY>
+		<P align="center"><B>Denshi Jisho: <? c.stash.page_title ?></B></P>
+		
+		<? content ?>
+	
+		<HR>
+		<P>
+			<MENU>
+				<LI><A href="/words/">Words</A>
+				<LI><A href="/kanji/">Kanji</A>
+				<LI><A href="/sentences/">Sentences</A>
+			</MENU>
+		</P>
+			
+		<P>
+			Denshi Jisho uses dictionaries provided by the <A HREF="http://www.csse.monash.edu.au/~jwb/edrdg/">Electronic Dictionary Research and Development Group</A>.
+
+			<? if page == 'kanji' ?>
+				The SKIP codes for kanji are derived from the <A HREF="http://www.kanji.org/kanji/index.htm">Kodansha Kanji Learner's Dictionary</A> by Jack Halpern. Jack Halpern also holds the copyright for the kanji frequency information.
+			<? end ?>
+	</BODY>
+</HTML>
