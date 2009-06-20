@@ -55,7 +55,6 @@ sub index : Private {
 	  limit => $c->stash->{limit},
 	});
 
-  $c->ce($dictionary_counts);
   $c->stash->{source_counts} = $dictionary_counts;
   $c->stash->{pager} = $pager;
 
