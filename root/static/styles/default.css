@@ -131,7 +131,7 @@ dl dd {
 
 .pagination {
 	font-weight: normal;
-	font-size: 1em;
+	font-size: 1.2em;
 }
 
 .pagination .current_page {
@@ -1041,9 +1041,11 @@ button:hover {
 #word_result .reading_group {
 	display: block;
 	float: left;
+	clear: both;
 	margin: 0;
 	padding: 0;
 	line-height: 1.4;
+	font-size: 1.2em;
 }
 
 #word_result .reading {
