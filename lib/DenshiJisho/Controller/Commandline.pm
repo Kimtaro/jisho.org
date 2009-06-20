@@ -1,7 +1,7 @@
 package DenshiJisho::Controller::Commandline;
 
 use strict;
-use base 'Catalyst::Base';
+use base 'Catalyst::Controller';
 
 sub jap : Regex('^\s*/?\s*jap(?:anese)?\s+(.*)$') {
     my ( $self, $c ) = @_;

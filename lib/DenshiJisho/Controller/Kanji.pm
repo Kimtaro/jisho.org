@@ -1,7 +1,7 @@
 package DenshiJisho::Controller::Kanji;
 
 use strict;
-use base 'Catalyst::Base';
+use base 'Catalyst::Controller';
 use Encode;
 use utf8;
 use List::Compare;

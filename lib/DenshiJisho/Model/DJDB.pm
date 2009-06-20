@@ -1,18 +1,19 @@
 package DenshiJisho::Model::DJDB;
 
 use strict;
-use base 'Catalyst::Model::DBIC::Schema::QueryLog';
+use base 'Catalyst::Model::DBIC::Schema';
+use Data::Dumper;
 
 sub new {
-    my $self = shift->NEXT::new(@_);
+    my $self = shift->next::method(@_);
 
-    push @{$self->{connect_info}}, {
+    $self->{connect_info} = {
       on_connect_do => [
         'SET NAMES utf8',
         'SET character set utf8',
       ]
     };
-    $self->schema->connection(@{$self->{connect_info}});
+#    $self->schema->connection(@{$self->{connect_info}});
 
     return $self;
 }

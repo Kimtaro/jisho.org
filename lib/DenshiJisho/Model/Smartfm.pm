@@ -26,7 +26,7 @@ sub new {
     }
   );
   
-  return $self->NEXT::new(@_);
+  return $self->next::method(@_);
 }
 
 sub items {

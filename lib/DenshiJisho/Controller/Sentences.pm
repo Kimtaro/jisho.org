@@ -1,7 +1,7 @@
 package DenshiJisho::Controller::Sentences;
 
 use strict;
-use base 'Catalyst::Base';
+use base 'Catalyst::Controller';
 use Unicode::Japanese;
 use URI::Escape;
 use Data::Dumper;

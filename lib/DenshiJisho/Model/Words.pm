@@ -1,7 +1,7 @@
 package DenshiJisho::Model::Words;
 
 use strict;
-use base 'Catalyst::Base';
+use base 'Catalyst::Model';
 use Carp;
 use URI::Escape;
 use Data::Dumper;

@@ -1,7 +1,7 @@
 package DenshiJisho::Controller::Utilities;
 
 use strict;
-use base 'Catalyst::Base';
+use base 'Catalyst::Controller';
 use Encode;
 use Data::Dumper;
 use utf8;

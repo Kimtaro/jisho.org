@@ -1,7 +1,7 @@
 package DenshiJisho::Controller::Links;
 
 use strict;
-use base 'Catalyst::Base';
+use base 'Catalyst::Controller';
 
 =head1 NAME
 

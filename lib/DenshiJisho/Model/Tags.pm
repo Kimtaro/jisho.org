@@ -1,7 +1,7 @@
 package DenshiJisho::Model::Tags;
 
 use strict;
-use base 'Catalyst::Base';
+use base qw/Catalyst::Model/;
 
 sub load_tags {
 	my( $self, $c ) = @_;

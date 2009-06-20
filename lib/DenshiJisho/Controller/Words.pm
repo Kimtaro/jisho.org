@@ -1,7 +1,7 @@
 package DenshiJisho::Controller::Words;
 
 use strict;
-use base 'Catalyst::Base';
+use base 'Catalyst::Controller';
 use Unicode::Japanese;
 use utf8;
 use URI::Escape;

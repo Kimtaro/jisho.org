@@ -43,7 +43,7 @@ sub new {
 		$self->config->{TIMER} = 1;
 	}
 	
-	return $self->NEXT::new(@_);
+	return $self->next::method(@_);
 }
 
 sub decode_utf8_filter {

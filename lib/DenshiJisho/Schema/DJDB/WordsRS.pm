@@ -83,12 +83,19 @@ sub _get_word_ids {
     }
     $where->{q{meanings.meaning}} = ['-and' => @gloss_conds];
   }
+  warn Dumper $where;
   
-  if ( $japanese_count > 0 ) {    
+  if ( $japanese_count > 0 ) {
     foreach my $token (@japanese_tokens) {
-      push @jap_conds, {'like' => $token};
+      warn Dumper $token;
+      push @jap_conds, { 'IN' =>
+      #[1,2]
+      $self->search_related_rs('representations', {representation => {-like => $token}}, {select => [qw/me.id/]})->as_query
+      #"(SELECT word_id FROM representations WHERE representation LIKE '$token')"
+      };
+      warn Dumper \@jap_conds;
     }
-    $where->{q{representations.representation}} = ['-and' => @jap_conds];
+    $where->{q{me.id}} = ['-and' => @jap_conds];
   }
 
   warn Dumper $where;

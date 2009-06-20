@@ -17,7 +17,7 @@ sub new {
 	my $class = shift;
 	
 	# Class::Accessor provides new()
-	my $self = $class->NEXT::new(@_);
+	my $self = $class->next::method(@_);
 	
     $self->mecab( Text::MeCab->new() );
 	
