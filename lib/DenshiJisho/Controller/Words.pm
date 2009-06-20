@@ -55,7 +55,8 @@ sub index : Private {
 	  limit => $c->stash->{limit},
 	});
 
-  $c->stash->{dictionary_counts} = $dictionary_counts;
+  $c->ce($dictionary_counts);
+  $c->stash->{source_counts} = $dictionary_counts;
   $c->stash->{pager} = $pager;
 
 	# Check with MeCab if it's an inflected word
