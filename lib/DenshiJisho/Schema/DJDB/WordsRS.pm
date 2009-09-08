@@ -35,7 +35,12 @@ sub find_words_with_dictionary_counts {
     source => $options->{source},
     {select => [qw/me.data me.id/]}
   )->slice($pager->first-1, $pager->last-1);
-    
+  
+#  foreach my $word ($words_limited->all) {
+#    warn "APPA"x100;
+#    warn Dumper($word->data);
+#  }
+  
   return( ($words_limited, $pager, \%dictionary_counts) );
 }
 
@@ -91,6 +96,7 @@ sub _get_word_ids {
       push @jap_conds, { 'IN' =>
       #[1,2]
       $self->search_related_rs('representations', {representation => {-like => $token}}, {select => [qw/me.id/]})->as_query
+#      $self->result_source->resultset('representations')->search({representation => {-like => $token}}, {select => [qw/me.id/]})->as_query
       #"(SELECT word_id FROM representations WHERE representation LIKE '$token')"
       };
       warn Dumper \@jap_conds;

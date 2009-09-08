@@ -125,17 +125,17 @@ Jisho = function() {
 	  
 	  // External links
 	  links = $(".details_links ul.external");
-	  links.empty();
-	  links.append("<li><a href='http://smart.fm/items/matching/"+word.text()+"'>Smart.fm search</a></li>");
-	  links.append("<li><a href='http://dictionary.goo.ne.jp/search.php?kind=&kwassist=0&mode=1&MT="+sjis_for[word.text()]+"'>Goo Jisho</a></li>");
-	  links.append("<li><a href='http://dic.yahoo.co.jp/bin/dsearch?stype=0&dtype=2&p="+sjis_for[word.text()]+"'>Yahoo Jisho</a></li>");
-	  links.append("<li><a href='http://www.google.com/search?ie=utf8&oe=utf8&lr=lang_ja&q="+word.text()+"'>Google</a></li>");
-	  links.append("<li><a href='http://images.google.com/images?hl=en&lr=&sa=N&tab=wi&q="+word.text()+"'>Google Image Search</a></li>");
-	  links.append("<li><a href='http://eow.alc.co.jp/"+word.text()+"'>Eijiro (ALC)</a></li>");
-	  links.append("<li><a href='http://www.jekai.org/cgi-jekai/siteindex/jsearch.pl?Q="+sjis_for[word.text()]+"'>JeKai</a></li>");
-	  links.append("<li><a href='http://www.jgram.org/pages/viewList.php?search.x=16&search.y=8&s="+sjis_for[word.text()]+"'>Jgram</a></li>");
-	  links.append("<li><a href='http://en.wiktionary.org/wiki/"+word.text()+"'>Wiktionary</a></li>");
-	  links.append("<li><a href='http://ja.wikipedia.org/wiki/"+word.text()+"'>Wikipedia (Japanese)</a></li>");
+	  links.empty()
+	       .append("<li><a href='http://smart.fm/items/matching/"+word.text()+"'>Smart.fm search</a></li>");
+	       .append("<li><a href='http://dictionary.goo.ne.jp/srch/all/"+word.text()+"/m0u'>Goo Jisho</a></li>");
+	       .append("<li><a href='http://dic.yahoo.co.jp/bin/dsearch?stype=0&dtype=2&p="+sjis_for[word.text()]+"'>Yahoo Jisho</a></li>");
+	       .append("<li><a href='http://www.google.com/search?ie=utf8&oe=utf8&lr=lang_ja&q="+word.text()+"'>Google</a></li>");
+	       .append("<li><a href='http://images.google.com/images?hl=en&lr=&sa=N&tab=wi&q="+word.text()+"'>Google Image Search</a></li>");
+	       .append("<li><a href='http://eow.alc.co.jp/"+word.text()+"'>Eijiro (ALC)</a></li>");
+	       .append("<li><a href='http://www.jekai.org/cgi-jekai/siteindex/jsearch.pl?Q="+sjis_for[word.text()]+"'>JeKai</a></li>");
+	       .append("<li><a href='http://www.jgram.org/pages/viewList.php?search.x=16&search.y=8&s="+sjis_for[word.text()]+"'>Jgram</a></li>");
+	       .append("<li><a href='http://en.wiktionary.org/wiki/"+word.text()+"'>Wiktionary</a></li>");
+	       .append("<li><a href='http://ja.wikipedia.org/wiki/"+word.text()+"'>Wikipedia (Japanese)</a></li>");
     
 	  box.show();
 	};

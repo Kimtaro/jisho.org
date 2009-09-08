@@ -936,8 +936,8 @@ button:hover {
 	float: left;
 	width: 47%;
 	margin: 0 0 2em 0;
-	padding: 0 0 0 25px;
-	border-width: 0 0 0 1px;
+	padding: 0;
+	border-width: 0;
 	border-style: solid;
 	border-color: white #999 white #ccc;
 }
@@ -947,19 +947,19 @@ button:hover {
 	width: 47%;
 	margin-bottom: 2em;
 	padding: 0 0 0 25px;
-	border-width: 0 1px;
+	border-width: 0;
 	border-style: solid;
 	border-color: white #ccc white #ccc;
 }
 
-/*#word_result .even {
+#word_result .even {
 	background-color:	#EDF9FF;
 }
 
 #word_result .odd {
 	background-color:	#fff;
 }
-*/
+
 #word_result .word {
 	vertical-align: top;
 	margin-bottom: 2em;
@@ -988,7 +988,7 @@ button:hover {
 
 #word_result .first_tag {
 	list-style-image: url('/static/images/layout/tags_bullet.png');
-	padding-top: 5px;
+	/*padding-top: 5px;*/
 }
 
 #word_result .tag {
@@ -996,7 +996,7 @@ button:hover {
 	font-size: 1.2em;
 	font-style: italic;
 	font-weight: normal;
-	margin: 0 0 0 30px;
+	margin: 0;
 }
 
 #word_result .tag a, #word_result .tag a:visited {

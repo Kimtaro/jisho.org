@@ -76,7 +76,7 @@ Found <b><? c.stash.result.total ?></b> <?if c.stash.result.total == '1' ?> sent
 	<p>
 		Try a <a href="http://dic.yahoo.co.jp/bin/dsearch?p=<? c.stash.suggest.key_euc ?>+<? c.req.params.translation ?>&amp;stype=0&amp;dtype=2" class="external"><b>Yahoo Jisho</b> search for <? c.stash.suggest.key ?> <? ' ' ?> <? c.req.params.translation ?></a>.<br/>
 	
-		Try a <a href="http://dictionary.goo.ne.jp/search.php?MT=<? c.stash.suggest.key_euc ?>+<? c.req.params.translation ?>&amp;kind=&amp;kwassist=0&amp;mode=1" class="external"><b>Goo Jisho</b> search for <? c.stash.suggest.key ?> <? ' ' ?> <? c.req.params.translation ?></a>.<br/>
+		Try a <a href="dictionary.goo.ne.jp/srch/all/<? c.stash.suggest.key ?>+<? c.req.params.translation ?>/m0u" class="external"><b>Goo Jisho</b> search for <? c.stash.suggest.key ?> <? ' ' ?> <? c.req.params.translation ?></a>.<br/>
 	
 		Try a <a href="http://www.jekai.org/cgi-jekai/siteindex/jsearch.pl?Q=<? c.stash.suggest.key_euc ?>+<? c.req.params.translation ?>" class="external"><b>JeKai</b> search for <? c.stash.suggest.key ?> <? ' ' ?> <? c.req.params.translation ?></a>.<br/>
 		
