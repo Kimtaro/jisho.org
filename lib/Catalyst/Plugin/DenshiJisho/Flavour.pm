@@ -35,6 +35,7 @@ sub prepare_parameters {
 	}
     elsif (  $c->req->header('host') =~ m{ ^iphone\. }ix
         ||   $c->req->user_agent =~ m{ Mobile/\S+\s+ Safari/ }ix
+        ||   $c->req->user_agent =~ m{ iPhone \s+ OS }x
         ) {
         $c->flavour('iphone');
     }
