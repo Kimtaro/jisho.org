@@ -27,7 +27,7 @@ __PACKAGE__->add_columns(
   grade => {
     data_type => 'INTEGER',
     size => 4,
-    is_nullable => 0,
+    is_nullable => 1,
     default_value => 0,
   },
   strokes => {
