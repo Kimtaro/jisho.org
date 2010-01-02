@@ -4,10 +4,12 @@ name 'DenshiJisho';
 all_from 'lib/DenshiJisho.pm';
 
 requires 'Catalyst::Runtime' => '5.7011';
+requires 'Catalyst::Engine::HTTP::Restarter';
 requires 'Catalyst::Plugin::ConfigLoader';
 requires 'Catalyst::Plugin::Static::Simple';
 requires 'Catalyst::Action::RenderView';
 requires 'Catalyst::Plugin::Log::Colorful';
+requires 'Catalyst::TraitFor::Model::DBIC::Schema::QueryLog';
 requires 'Catalyst::Plugin::I18N';
 requires 'YAML'; # This should reflect the config file format you've chosen
                  # See Catalyst::Plugin::ConfigLoader for supported formats
