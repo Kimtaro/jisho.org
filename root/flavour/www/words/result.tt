@@ -34,18 +34,20 @@ Found <b><? c.stash.result.total ?></b> <? if c.stash.result.total == '1' ?> wor
 		foreach word in c.stash.result.words.all;
 			word = word.data;
 			
-		  foreach reading in word.readings;
-		  	enc = reading.reading.encodings_for;
-	?>
-				eucjp_for['<? reading.reading ?>'] = '<? enc.0 ?>';
-				sjis_for['<? reading.reading ?>'] = '<? enc.1 ?>';
-			  <?
-						foreach representation in reading.representations;
-							enc = representation.representation.encodings_for;
-				?>
-							eucjp_for['<? representation.representation ?>'] = '<? enc.0 ?>';
-							sjis_for['<? representation.representation ?>'] = '<? enc.1 ?>';
-				<? 
+		  foreach group in word.reading_groups;
+		    foreach reading in group.readings
+  		  	enc = reading.reading.encodings_for;
+  	      ?>
+  				eucjp_for['<? reading.reading ?>'] = '<? enc.0 ?>';
+  				sjis_for['<? reading.reading ?>'] = '<? enc.1 ?>';
+			    <?
+			  end;
+				foreach representation in group.representations;
+					enc = representation.representation.encodings_for;
+				  ?>
+						eucjp_for['<? representation.representation ?>'] = '<? enc.0 ?>';
+						sjis_for['<? representation.representation ?>'] = '<? enc.1 ?>';
+				  <? 
 				end;
 			end;
 	  end;

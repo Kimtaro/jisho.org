@@ -4,13 +4,15 @@
 	<? word = word.data ?>
 	<div class="readings">
 		<?
-			foreach reading in word.readings;
+			foreach group in word.reading_groups;
 		?>
 			<div class="reading_group">
-				<span class="reading"><span class="reading_text" xml:lang="jpn" lang="jpn"><? reading.reading | romaji(c.req.params.romaji) | html ?></span><?- if reading.is_common; -?><sup class="common">Common</sup><?- end -?></span><?-
-				 	if reading.representations
+			  <? foreach reading in group.readings; ?>
+				  <span class="reading"><span class="reading_text" xml:lang="jpn" lang="jpn"><? reading.reading | romaji(c.req.params.romaji) | html ?></span><?- if reading.is_common; -?><sup class="common">Common</sup><?- end -?><?- if loop.count <= loop.max -?>・<?- end -?></span><?-
+				end;
+				if group.representations;
 				-?><div class="representations">【<?-
-						foreach representation in reading.representations;
+						foreach representation in group.representations;
 						-?><span class="representation" xml:lang="jpn" lang="jpn"><? representation.representation | romaji(c.req.params.romaji) | html ?></span><?- if representation.is_common; -?><sup class="common">Common</sup><?- end -?><?- if loop.count <= loop.max -?>・<?- end;
 							end -?>】</div><?-
 					else

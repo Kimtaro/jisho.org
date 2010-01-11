@@ -10,7 +10,7 @@ use Encode;
 use utf8;
 use XML::Parser;
 use Data::Dumper;
-use List::MoreUtils qw(first_value);
+use List::MoreUtils qw(any first_value uniq);
 use File::Basename;
 use Path::Class;
 use FindBin qw($Bin);
@@ -94,7 +94,7 @@ sub handle_start {
 	}
 	elsif ($element eq 'r_ele') {
 	  $current->{re_nokanji} = 0;
-	  $current->{re_restr} = {};
+	  $current->{re_restrs} = [];
 	}
 	elsif ($element eq 'sense' || $element eq 'trans') {
 	  $current->{sense} = {};
@@ -140,7 +140,7 @@ sub handle_end {
 		$current->{reading}->{re_nokanji} = 1;
 	}
 	elsif ( $element eq 're_restr' ) {
-		$current->{reading}->{re_restr} = $current->{string};
+		push @{$current->{reading}->{re_restrs}}, $current->{string};
 	}
 	elsif ( $element eq 're_inf' || $element eq 're_pri' || $element eq 'ke_inf' || $element eq 'ke_pri' ) {
 	  my $tag = {
@@ -164,7 +164,19 @@ sub handle_end {
     }
 	}
 	elsif ( $element eq 'r_ele' ) {
-    push @{$current->{readings}}, $current->{reading};
+	  if ( $current->{re_restrs} && scalar @{$current->{re_restrs}} > 0 ) {
+  	  foreach my $re_restr (@{$current->{reading}->{re_restrs}}) {
+        push @{$current->{readings}}, {
+          re_restr => $re_restr,
+          reading => $current->{reading}->{reading},
+          is_common => $current->{reading}->{is_common},
+          tags => $current->{reading}->{tags},
+        };
+  	  }
+	  }
+	  else {
+      push @{$current->{readings}}, $current->{reading};
+	  }
 	}
 	elsif ( $element eq 'keb' ) {
 		$current->{representation}->{representation} = $current->{string};
@@ -248,34 +260,17 @@ sub save {
 	  data => $data,
   });
   
+  # Grab the readings and representations and make sure there are no duplicates
+  my @readings = ();
+  my @representations = ();
   foreach my $group (@{$current->{reading_groups}}) {
     foreach my $reading (@{$group->{readings}}) {
-      insert('INSERT INTO representations SET representation = ?, word_id = ?',
-        $reading->{reading},
-        $word->id
-      );
-      
-      if ($reading->{reading} =~ /\p{InKatakana}/) {
-        insert('INSERT INTO representations SET representation = ?, word_id = ?',
-          katakana_to_hiragana($reading->{reading}),
-          $word->id
-        );
-      }
+      push @readings, $reading->{reading};
     }
-      
     foreach my $representation (@{$group->{representations}}) {
-      insert('INSERT INTO representations SET representation = ?, word_id = ?',
-        $representation->{representation},
-        $word->id
-      );
+      push @representations, $representation->{representation};
       
-      if ($representation->{representation} =~ /\p{InKatakana}/) {
-        insert('INSERT INTO representations SET representation = ?, word_id = ?',
-          katakana_to_hiragana($representation->{representation}),
-          $word->id
-        );
-      }
-      
+      # While we're in here, let's take the tags
       foreach my $tag ( @{$representation->{tags}} ) {
         insert('INSERT INTO word_tags SET `group` = ?, type = ?, value = ?, word_id = ?',
           'representation',
@@ -286,7 +281,41 @@ sub save {
       }
     }
   }
+  @readings = uniq @readings;
+  @representations = uniq @representations;
   
+  foreach my $reading (@readings) {
+    insert('INSERT INTO representations SET representation = ?, word_id = ?',
+      $reading,
+      $word->id
+    );
+    
+    if ($reading =~ /\p{InKatakana}/) {
+      $reading = katakana_to_hiragana($reading);
+      next if any { $_ eq $reading } @readings;
+      insert('INSERT INTO representations SET representation = ?, word_id = ?',
+        $reading,
+        $word->id
+      );
+    }
+  }
+    
+  foreach my $representation (@representations) {
+    insert('INSERT INTO representations SET representation = ?, word_id = ?',
+      $representation,
+      $word->id
+    );
+    
+    if ($representation =~ /\p{InKatakana}/) {
+      $representation = katakana_to_hiragana($representation);
+      next if any { $_ eq $representation } @representations;
+      insert('INSERT INTO representations SET representation = ?, word_id = ?',
+        $representation,
+        $word->id
+      );
+    }
+  }
+    
   foreach my $sense (@{$current->{senses}}) {
     foreach my $gloss (@{$sense->{glosses}}) {
       insert('INSERT INTO meanings SET language = ?, meaning = ?, word_id = ?',
@@ -314,42 +343,43 @@ sub compile_reading_groups {
   my $representations = $current->{representations};
   my $groups = {};
   $current->{reading_groups} = [];
-  
+    
   # Create reading groups based on the kanji they are restricted to
   foreach my $reading (@{$readings}) {
-    my $key = $reading->{re_nokanji} ? 'nokanji' : ($reading->{re_rest} || 'none');
+    my $key = $reading->{re_nokanji} ? 'nokanji'
+                                     : $reading->{re_restrs} ? join(';', @{$reading->{re_restrs}})
+                                                             : 'none';
     $groups->{$key} ||= {};
     my $group = $groups->{$key};
     $group->{readings} ||= [];
     push @{$group->{readings}}, $reading;
   }
-  
-  # Add the representation to the appropriate reading group
+    
+  # Add the representations to the appropriate reading groups
   foreach my $representation (@{$representations}) {
-    my $key = first_value { $_ eq $representation->{representation} } keys %{$groups};
-    $key ||= 'none';
-    my $group = $groups->{$key};
-    $group->{representations} ||= [];
-    push @{$group->{representations}}, $representation
-      unless ${$group->{readings}}[0]->{re_nokanji};
-  }
-  
-  # Create the proper reading group array, ordered by the representations
-  foreach my $representation (@{$representations}) {
-    if ( $groups->{$representation->{representation}} ) {
-      push @{$current->{reading_groups}}, $groups->{$representation->{representation}};
+    my @keys;
+    foreach my $g_key (keys %{$groups}) {
+      push(@keys, $g_key) if any { $_ eq $representation->{representation} } split(';', $g_key);
+    }
+    @keys = ('none') unless scalar @keys > 0;
+    foreach my $key (@keys) {
+      my $group = $groups->{$key};
+      $group->{representations} ||= [];
+      push @{$group->{representations}}, $representation
+        unless ${$group->{readings}}[0]->{re_nokanji};
     }
   }
-  
-  # Then those with re_nokanji
-  if ( $groups->{nokanji} ) {
-    foreach my $reading (@{$groups->{nokanji}->{readings}}) {
-      push @{$current->{reading_groups}}, {readings => [$reading]};
+    
+  # Create the proper reading group array, ordered by the readings
+  foreach my $reading (@{$readings}) {
+    foreach my $key (keys %{$groups}) {
+      my $group = $groups->{$key};
+      if ( any { $_->{reading} eq $reading->{reading} } @{$group->{readings}} ) {
+        push @{$current->{reading_groups}}, $group;
+        last;
+      }
     }
-  }
-  
-  # The the normal ones
-  unshift @{$current->{reading_groups}}, $groups->{none};
+  }  
 }
 
 #
