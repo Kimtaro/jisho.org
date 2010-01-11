@@ -376,6 +376,7 @@ sub compile_reading_groups {
       my $group = $groups->{$key};
       if ( any { $_->{reading} eq $reading->{reading} } @{$group->{readings}} ) {
         push @{$current->{reading_groups}}, $group;
+        delete $groups->{$key};
         last;
       }
     }
