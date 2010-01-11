@@ -86,13 +86,13 @@ sub _to_words_json {
             tag => $item->{cue}->{part_of_speech}
           }]
         }],
-        readings => [{
+        reading_groups => [{
           representations => ($responses->{character} ? [{
               representation => $responses->{character}->{text},
               is_common => 0,
               tags => 'null',
             }] : undef),
-          reading => $item->{cue}->{text},
+          readings => [$item->{cue}->{text}],
           is_common => 0,
         }],
       },
