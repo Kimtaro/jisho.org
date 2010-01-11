@@ -10,7 +10,7 @@ use Encode;
 use utf8;
 use XML::Parser;
 use Data::Dumper;
-use List::MoreUtils;
+use List::MoreUtils qw(first_value);
 use File::Basename;
 use Path::Class;
 use FindBin qw($Bin);
@@ -54,7 +54,8 @@ $djdb_schema->txn_begin;
 #
 
 print "Deleting\n";
-$djdb_schema->resultset('Words')->search({source => $TYPE})->delete;
+my $words = $djdb_schema->resultset('Words');
+$words->search({source => $TYPE})->delete;
 
 #
 # Create an XML::Parser that will iterate over all the entry elements
@@ -116,6 +117,7 @@ sub handle_end {
 	#print "  " x @{$expat->{Context}} . $element . "\n";
 	
 	if ( $element eq 'entry' ) {
+	  compile_reading_groups($current);
 	  save($current);
 	  
   	if ( $counter++ % 10  == 0 ) {
@@ -135,10 +137,10 @@ sub handle_end {
 		};
 	}
 	elsif ( $element eq 're_nokanji' ) {
-		$current->{re_nokanji} = 1;
+		$current->{reading}->{re_nokanji} = 1;
 	}
 	elsif ( $element eq 're_restr' ) {
-		$current->{re_restr}->{$current->{string}} = 1;
+		$current->{reading}->{re_restr} = $current->{string};
 	}
 	elsif ( $element eq 're_inf' || $element eq 're_pri' || $element eq 'ke_inf' || $element eq 'ke_pri' ) {
 	  my $tag = {
@@ -162,20 +164,6 @@ sub handle_end {
     }
 	}
 	elsif ( $element eq 'r_ele' ) {
-	  unless ( $current->{re_nokanji} ) {
-	    foreach my $representation ( @{$current->{representations}} ) {
-	      if ( keys %{$current->{re_restr}} > 0 && !defined $current->{re_restr}->{$representation->{representation}} ) {
-          next;
-        }
-        
-        push @{$current->{reading}->{representations}}, {
-          representation => $representation->{representation},
-          is_common => $representation->{is_common} || 0,
-          tags => $representation->{tags},
-        };
-	    }
-    }
-    
     push @{$current->{readings}}, $current->{reading};
 	}
 	elsif ( $element eq 'keb' ) {
@@ -249,31 +237,33 @@ sub save {
   my $data = {
     source => $TYPE,
     source_id => $current->{entry}->{source_id},
-    readings => $current->{readings},
+    reading_groups => $current->{reading_groups},
     senses => $current->{senses},
   };
   
-  my $word = $djdb_schema->resultset('Words')->create({
+  my $word = $words->create({
 	  source => $TYPE,
 	  source_id => $current->{entry}->{source_id},
 	  has_common => $current->{has_common},
 	  data => $data,
   });
   
-  foreach my $reading (@{$current->{readings}}) {
-    insert('INSERT INTO representations SET representation = ?, word_id = ?',
-      $reading->{reading},
-      $word->id
-    );
-    
-    if ($reading->{reading} =~ /\p{InKatakana}/) {
+  foreach my $group (@{$current->{reading_groups}}) {
+    foreach my $reading (@{$group->{readings}}) {
       insert('INSERT INTO representations SET representation = ?, word_id = ?',
-        katakana_to_hiragana($reading->{reading}),
+        $reading->{reading},
         $word->id
       );
+      
+      if ($reading->{reading} =~ /\p{InKatakana}/) {
+        insert('INSERT INTO representations SET representation = ?, word_id = ?',
+          katakana_to_hiragana($reading->{reading}),
+          $word->id
+        );
+      }
     }
-    
-    foreach my $representation (@{$reading->{representations}}) {
+      
+    foreach my $representation (@{$group->{representations}}) {
       insert('INSERT INTO representations SET representation = ?, word_id = ?',
         $representation->{representation},
         $word->id
@@ -315,6 +305,51 @@ sub save {
       );
     }
   }
+}
+
+sub compile_reading_groups {
+  my ($current) = @_;
+  
+  my $readings = $current->{readings};
+  my $representations = $current->{representations};
+  my $groups = {};
+  $current->{reading_groups} = [];
+  
+  # Create reading groups based on the kanji they are restricted to
+  foreach my $reading (@{$readings}) {
+    my $key = $reading->{re_nokanji} ? 'nokanji' : ($reading->{re_rest} || 'none');
+    $groups->{$key} ||= {};
+    my $group = $groups->{$key};
+    $group->{readings} ||= [];
+    push @{$group->{readings}}, $reading;
+  }
+  
+  # Add the representation to the appropriate reading group
+  foreach my $representation (@{$representations}) {
+    my $key = first_value { $_ eq $representation->{representation} } keys %{$groups};
+    $key ||= 'none';
+    my $group = $groups->{$key};
+    $group->{representations} ||= [];
+    push @{$group->{representations}}, $representation
+      unless ${$group->{readings}}[0]->{re_nokanji};
+  }
+  
+  # Create the proper reading group array, ordered by the representations
+  foreach my $representation (@{$representations}) {
+    if ( $groups->{$representation->{representation}} ) {
+      push @{$current->{reading_groups}}, $groups->{$representation->{representation}};
+    }
+  }
+  
+  # Then those with re_nokanji
+  if ( $groups->{nokanji} ) {
+    foreach my $reading (@{$groups->{nokanji}->{readings}}) {
+      push @{$current->{reading_groups}}, {readings => [$reading]};
+    }
+  }
+  
+  # The the normal ones
+  unshift @{$current->{reading_groups}}, $groups->{none};
 }
 
 #
