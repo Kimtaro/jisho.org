@@ -92,7 +92,7 @@ sub _to_words_json {
               is_common => 0,
               tags => 'null',
             }] : undef),
-          readings => [$item->{cue}->{text}],
+          readings => [{reading => $item->{cue}->{text}}],
           is_common => 0,
         }],
       },
