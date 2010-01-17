@@ -952,10 +952,10 @@ button:hover {
 	border-color: white #ccc white #ccc;
 }
 
-#word_result .even {
-	background-color:	#EDF9FF;
+/*#word_result .even {
+  background-color: #EDF9FF;
 }
-
+*/
 #word_result .odd {
 	background-color:	#fff;
 }

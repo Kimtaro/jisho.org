@@ -9,18 +9,20 @@ __PACKAGE__->mk_accessors(qw/_dictionaries/);
 
 sub find_words_with_dictionary_counts {
   my ( $self, $options ) = @_;
-  
   my %dictionary_counts = map { $_ => 0 } @{$self->dictionaries};
-  my $all_words = $self->_get_word_ids($options);
   
-  if ( ref $all_words eq 'ARRAY' ) {
-    return( ([], [], \%dictionary_counts) );
-  }
+  my $all_words = $self->_find_word_ids($options);
   
+  # No matches at all
+  return( ([], [], \%dictionary_counts) ) if ref $all_words eq 'ARRAY';
+  
+  # Setup counts
   foreach my $dictionary (keys %dictionary_counts) {
     $dictionary_counts{$dictionary} = $all_words->count({source => $dictionary});
   }
   
+  # No matches in the chosen dictionary
+  # TODO: Redirect to any dictionary with matches
   if ( !defined $dictionary_counts{$options->{source}} || $dictionary_counts{$options->{source}} == 0 ) {
     return( ([], [], \%dictionary_counts) );
   }
@@ -44,6 +46,48 @@ sub find_words_with_dictionary_counts {
   return( ($words_limited, $pager, \%dictionary_counts) );
 }
 
+sub _find_word_ids {
+  my ( $self, $options ) = @_;
+  
+  my @tokens = $self->_setup_tokens($options);
+  my @ids;
+  
+  foreach my $token (@tokens) {
+    my $column = substr($token->{table}, 0, -1);
+    my $where = {$column => {q(-).$token->{operator} => $token->{token}}};
+       $where->{word_id} = {-IN => \@ids} if scalar @ids;
+    my $rs = $self->related_resultset($token->{table});
+    my $references = $rs->search($where,
+                                 {select => [qw/me.word_id/]});
+    @ids = $references->get_column('word_id')->all;
+  }
+  
+  return $self->search({'id' => {-IN => \@ids}}, {select => qw/me.id me.data/});
+}
+
+sub _setup_tokens {
+  my ( $self, $options ) = @_;
+  my @tokens;
+
+	# Special JMdict convention for references
+	$options->{japanese} =~ s/・/ /g;
+
+  my @japanese_tokens = get_tokens( romaji_to_kana($options->{japanese}) );
+     @japanese_tokens = make_sql_wildcards(\@japanese_tokens, q{}, q{%});
+  
+  my @gloss_tokens = get_tokens($options->{gloss});
+  my @gloss_tokens_re = make_sql_wildcards(\@gloss_tokens, q{[[:<:]]}, q{[[:>:]]});
+     @gloss_tokens = make_sql_wildcards(\@gloss_tokens, q{%}, q{%});
+
+   push @tokens, map { {token => $_, operator => 'like',   table => 'representations'} } @japanese_tokens;
+   push @tokens, map { {token => $_, operator => 'regexp', table => 'meanings'} } @gloss_tokens_re;
+   push @tokens, map { {token => $_, operator => 'like',   table => 'meanings'} } @gloss_tokens;
+   
+   @tokens = grep { $_->{token} !~ /^ [%_\s]+ $/x } @tokens;
+   
+   return @tokens;
+}
+
 sub _get_word_ids {
   my ( $self, $options ) = @_;
   
@@ -65,7 +109,7 @@ sub _get_word_ids {
      @gloss_tokens = make_sql_wildcards(\@gloss_tokens, q{%}, q{%});
   
   my @order_bys;
-  my $joins = [qw/representations meanings/];
+  my $joins = [qw//];
   my $japanese_count = scalar @japanese_tokens;
   my $gloss_count = scalar @gloss_tokens;
   my $where = {};
@@ -75,7 +119,7 @@ sub _get_word_ids {
 #	@{$c->stash->{markup}->{japanese_tokens}} = make_regexp_wildcards(\@japanese_tokens, q(ja));
 #	@{$c->stash->{markup}->{gloss_tokens}} = make_regexp_wildcards(\@gloss_tokens, q(en));
 
-  $where->{q{meanings.language}} = $options->{language};
+#  $where->{q{meanings.language}} = $options->{language};
 
   if ( $options->{common_only} ) {
     $where->{q{me.has_common}} = 1;
@@ -108,7 +152,7 @@ sub _get_word_ids {
   return $self->search($where, {
     select => [qw/me.id/],
     join => $joins,
-    order_by => q(LENGTH(representations.representation)),
+    #order_by => q(LENGTH(representations.representation)),
     group_by => [qw/me.id/],
   });
 }

@@ -254,7 +254,7 @@ sub make_sql_wildcards {
     
     foreach my $token ( @{$tokens} ) {
     if ($token =~ m/ $QUESTION_MARKS_RE | $STARS_RE /x) {
-        $token =~ s/ ([%_]) /\\$1/gx;
+      $token =~ s/ ([%_]) /\\$1/gx;
       $token =~ s/ $STARS_RE /%/gx;
       $token =~ s/ $QUESTION_MARKS_RE /_/gx;
       push @result, $token;
