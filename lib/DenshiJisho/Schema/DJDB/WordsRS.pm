@@ -54,15 +54,20 @@ sub _find_word_ids {
   
   foreach my $token (@tokens) {
     my $column = substr($token->{table}, 0, -1);
+    my $len = length($token->{token});
     my $where = {$column => {q(-).$token->{operator} => $token->{token}}};
        $where->{word_id} = {-IN => \@ids} if scalar @ids;
-    my $rs = $self->related_resultset($token->{table});
-    my $references = $rs->search($where,
-                                 {select => [qw/me.word_id/]});
+    my $schema = $self->result_source->schema;
+    my $related = $schema->resultset(ucfirst $token->{table});
+    my $references = $related->search($where,
+                                      {order_by => qq| $len / LENGTH($column)|,
+                                       select => [qw/me.word_id/]});
     @ids = $references->get_column('word_id')->all;
   }
   
-  return $self->search({'id' => {-IN => \@ids}}, {select => qw/me.id me.data/});
+  return $self->search({'id' => {-IN => \@ids}},
+                       {order_by => q(has_common DESC),
+                        select => qw/me.id me.data/});
 }
 
 sub _setup_tokens {
