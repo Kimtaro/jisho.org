@@ -1045,10 +1045,12 @@ button:hover {
 
 #word_result .readings {
 	font-size: 1.8em;
-	margin: 0 0 0 0;
+	height: 1.7em;
+	margin: 0 0 4px 0;
 	padding: 0 0 0 3px;
 	clear: both;
-	float: left;
+	color: #777;
+	border-bottom: 1px dotted #ccc;
 }
 
 #word_result sup.common {
@@ -1068,7 +1070,7 @@ button:hover {
 }
 
 #word_result span.common {
-  color: #377E2D;
+  color: #000;
 }
 
 /*#word_result .even .readings {
@@ -1112,7 +1114,7 @@ button:hover {
 
 #word_result .representation {
 	display: inline;
-	color: #333;
+	color: #777;
 }
 
 #word_result .senses {
@@ -1128,7 +1130,7 @@ button:hover {
 
 #word_result .sense {
 	margin-left: 27px;
-	margin-bottom: 0em;
+	margin-bottom: 0.3em;
 }
 
 #word_result .gloss {
