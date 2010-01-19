@@ -980,10 +980,11 @@ button:hover {
 }
 
 #word_result .tags {
-	line-height: 1.4;
+	line-height: 1.6;
 	list-style-type: none;
+	margin-left: 30px;
 	padding: 0;
-	color: #777;
+	color: #666;
 }
 
 #word_result .first_tag {
@@ -992,9 +993,8 @@ button:hover {
 }
 
 #word_result .tag {
-	font-family: 'Times New Roman', Times, Serif;
-	font-size: 1.2em;
-	font-style: italic;
+	font-family: Geneva, Arial, Sans-Serif;
+	font-size: 1em;
 	font-weight: normal;
 	margin: 0;
 }
@@ -1005,14 +1005,44 @@ button:hover {
 
 #word_result .restrictions {
 	font-style: normal;
+	font-family: Geneva, Arial, Sans-Serif;
+	font-size: 12px;
+	color: #fff;
+	padding: 1px 2px 1px 1px;
+  margin-left: 5px;
+  position: relative;
+	background: #f66;
+	-webkit-border-bottom-left-radius: 2px;
+  -webkit-border-bottom-right-radius: 2px;
+  -webkit-border-top-left-radius: 2px;
+  -webkit-border-top-right-radius: 2px;
 /*	color: #DD3D1C;
 */}
 
 #word_result .antonyms,
 #word_result .references {
+  font-style: normal;
+	font-family: Geneva, Arial, Sans-Serif;
+	font-size: 12px;
+	color: #fff;
+	padding: 1px 2px 1px 1px;
+  margin-left: 5px;
+  position: relative;
+	background: #5EB3F2;
+	-webkit-border-bottom-left-radius: 2px;
+  -webkit-border-bottom-right-radius: 2px;
+  -webkit-border-top-left-radius: 2px;
+  -webkit-border-top-right-radius: 2px;
 	font-style: normal;
 /*	color: #225CF5;
 */}
+
+#word_result .antonyms a,
+#word_result .references a,
+#word_result .antonyms a:visited,
+#word_result .references a:visited {
+  color: #fff;
+}
 
 #word_result .readings {
 	font-size: 1.8em;
@@ -1023,11 +1053,18 @@ button:hover {
 }
 
 #word_result .common {
-	color: #007100;
-	font-family: 'Times New Roman', Times, Serif;
-	font-style: italic;
+	border: 1px solid #007100;
+	background: #CEFAA0;
+  -webkit-border-bottom-left-radius: 2px;
+  -webkit-border-bottom-right-radius: 2px;
+  -webkit-border-top-left-radius: 2px;
+  -webkit-border-top-right-radius: 2px;
+  color: #007100;
+  position: relative;
+	font-family: Geneva, Arial, Sans-serif;
 	font-weight: normal;
-	font-size: 0.7em;
+	font-size: 10px;
+	padding: 0 1px;
 }
 
 /*#word_result .even .readings {
@@ -1073,13 +1110,13 @@ button:hover {
 }
 
 #word_result .senses {
-	list-style-type: none;
-	font-size: 1.3em;
+/*  list-style-type: none;
+*/	font-size: 1.3em;
 	margin: 0;
 	padding: 0;
 	font-family: Georgia, 'Lucida Grande', Helvetica, Sans-serif;
-	font-weight: bold;
-	color: #666;
+/*  font-weight: bold;
+*/	color: #666;
 	clear: both;
 }
 
