@@ -1,8 +1,10 @@
 ﻿<? use Dumper ?>
+<a name="<? word.id ?>"></a>
 <div id="word_<?- word.id -?>" class="word <?	if even; 'even'; else; 'odd';	end ?>">
 	<!-- <? word.id ?> -->
+	<div class="readings clearfix <?- if word.has_common -?>has_common<?- end -?>">
+	<a href="#<?- word.id -?>">§</a>
 	<? word = word.data ?>
-	<div class="readings">
 		<?
 			foreach group in word.reading_groups;
 		?>
@@ -11,10 +13,10 @@
 				  <span class="reading"><?- if reading.is_common; -?><sup class="common">Common</sup><?- end -?><span class="reading_text <?- if reading.is_common; -?>common<?- end -?>" xml:lang="jpn" lang="jpn"><? reading.reading | romaji(c.req.params.romaji) | html ?></span><?- if loop.count <= loop.max -?>・<?- end -?></span><?-
 				end;
 				if group.representations;
-				-?><div class="representations">【<?-
+				-?><div class="representations"><?-
 						foreach representation in group.representations;
 						-?><?- if representation.is_common; -?><sup class="common">Common</sup><?- end -?><span class="representation <?- if representation.is_common; -?>common<?- end -?>" xml:lang="jpn" lang="jpn"><? representation.representation | romaji(c.req.params.romaji) | html ?></span><?- if loop.count <= loop.max -?>・<?- end;
-							end -?>】</div><?-
+							end -?></div><?-
 					else
 					-?>&#12288;<?-
 				 	end
@@ -56,49 +58,48 @@
   					</li>
   					<? first_tag = 1 ?>
   				<? end ?>
-  				
-  				<li class="tag">
-  				<? if sense.restrs && sense.restrs.size > 0 ?>
-  					<span class="tag restrictions">
-  						<? foreach restriction in sense.restrs ?>
-  							<?- restriction.value -?><?- if loop.count <= loop.max -?>, <? end ?>
-  						<? end ?>
-  						only
-  					</span>
-  				<? end ?>
-  				<? if sense.crossrefs && sense.crossrefs.size > 0 ?>
-  			    <? crossrefs = [] ?>
-  			    <? antonyms = [] ?>
-  					<? foreach ref in sense.crossrefs ?>
-  					  <? if ref.tag == 'ant' ?>
-  					    <? antonyms.push(ref) ?>
-  					  <? else ?>
-  					    <? crossrefs.push(ref) ?>
-  					  <? end ?>
-  					<? end ?>
-  					<? if crossrefs.size > 0 ?>
-  				    <span class="tag references">
-  				      See
-    					  <? foreach crossref in crossrefs ?>
-    							<a href="<? c.uri_for('/words', {'japanese' => crossref.value, 'dict' => c.req.params.source}) ?>"><?- crossref.value -?></a><?- if loop.count <= loop.max -?>, <? end ?>
-    					  <? end ?>
-    					</span>
-    				<? end ?>
-    				<? if antonyms.size > 0 ?>
-  				    <span class="tag antonyms">
-  				      Opposite
-    					  <? foreach antonym in antonyms ?>
-    							<a href="<? c.uri_for('/words', {'japanese' => antonym.value, 'dict' => c.req.params.source}) ?>"><?- antonym.value -?></a><?- if loop.count <= loop.max -?>, <? end ?>
-    					  <? end ?>
-    					</span>
-    				<? end ?>
-  				<? end ?>
-  				</li>
-  				
+  				  				
   			</ul>
 				<? foreach gloss in glosses ?>
 					<span class="gloss" xml:lang="<? gloss.type ?>" lang="<? gloss.type ?>"><? gloss.value | html ?></span><?- if loop.count <= loop.max -?><span class="between">;</span>&nbsp; <? end ?>
 				<? end ?>
+				
+				<? if sense.restrs && sense.restrs.size > 0 ?>
+					<span class="tag restrictions">
+						<? foreach restriction in sense.restrs ?>
+							<?- restriction.value -?><?- if loop.count <= loop.max -?>, <? end ?>
+						<? end ?>
+						only
+					</span>
+				<? end ?>
+				<? if sense.crossrefs && sense.crossrefs.size > 0 ?>
+			    <? crossrefs = [] ?>
+			    <? antonyms = [] ?>
+					<? foreach ref in sense.crossrefs ?>
+					  <? if ref.tag == 'ant' ?>
+					    <? antonyms.push(ref) ?>
+					  <? else ?>
+					    <? crossrefs.push(ref) ?>
+					  <? end ?>
+					<? end ?>
+					<? if crossrefs.size > 0 ?>
+				    <span class="tag references">
+				      See
+  					  <? foreach crossref in crossrefs ?>
+  							<a href="<? c.uri_for('/words', {'japanese' => crossref.value, 'dict' => c.req.params.source}) ?>"><?- crossref.value -?></a><?- if loop.count <= loop.max -?>, <? end ?>
+  					  <? end ?>
+  					</span>
+  				<? end ?>
+  				<? if antonyms.size > 0 ?>
+				    <span class="tag antonyms">
+				      Opposite
+  					  <? foreach antonym in antonyms ?>
+  							<a href="<? c.uri_for('/words', {'japanese' => antonym.value, 'dict' => c.req.params.source}) ?>"><?- antonym.value -?></a><?- if loop.count <= loop.max -?>, <? end ?>
+  					  <? end ?>
+  					</span>
+  				<? end ?>
+				<? end ?>
+				
 			</li>
 		<? end ?>
 	</ol>

@@ -1006,16 +1006,16 @@ button:hover {
 	font-style: normal;
 	font-family: Geneva, Arial, Sans-Serif;
 	font-size: 12px;
-	color: #fff;
+	color: #f66;
 	padding: 1px 2px 1px 1px;
   margin-left: 5px;
   position: relative;
-	background: #f66;
-	-webkit-border-bottom-left-radius: 2px;
+/*  background: #f66;
+  -webkit-border-bottom-left-radius: 2px;
   -webkit-border-bottom-right-radius: 2px;
   -webkit-border-top-left-radius: 2px;
   -webkit-border-top-right-radius: 2px;
-/*	color: #DD3D1C;
+*//*	color: #DD3D1C;
 */}
 
 #word_result .antonyms,
@@ -1043,14 +1043,28 @@ button:hover {
   color: #fff;
 }
 
+#word_result .readings > a {
+  float: left;
+  display: block;
+  clear: none;
+  position: absolute;
+  margin-left: 5px;
+  margin-right: -17px;
+  color: #eaeaea;
+  text-decoration: none;
+}
+
 #word_result .readings {
 	font-size: 1.8em;
-	height: 1.7em;
 	margin: 0 0 4px 0;
 	padding: 0 0 0 3px;
 	clear: both;
 	color: #777;
 	border-bottom: 1px dotted #ccc;
+}
+
+#word_result div.has_common {
+  color: #777;
 }
 
 #word_result sup.common {
@@ -1069,6 +1083,10 @@ button:hover {
 	padding: 1px 2px 0 2px;
 }
 
+#word_result .representations sup.common {
+  top: -18px;
+}
+
 #word_result span.common {
   color: #000;
 }
@@ -1085,7 +1103,7 @@ button:hover {
 	display: block;
 	float: left;
 	clear: both;
-	margin: 0;
+	margin: 0 0 0 20px;
 	padding: 0;
 	line-height: 1.4;
 	font-size: 1.1em;
@@ -1105,11 +1123,12 @@ button:hover {
 #word_result .representations {
 	display: block;
 	float: left;
-	margin: 0.1em 1em 0 0;
+	margin: 0.1em 1em 0 1em;
 	padding: 0 0 0 0;
 	color: #666;
-	font-size: 1.3em;
-	line-height: 0.7;
+	font-size: 1.5em;
+	line-height: 0.5;
+	height: 1em;
 }
 
 #word_result .representation {
@@ -1791,24 +1810,21 @@ body#page_text .word {
 	background-color:	#CCFF99; /*#D9EEF7;*/
 }
 
-/* BEGIN: http://www.positioniseverything.net/easyclearing.html */
+/* BEGIN: http://perishablepress.com/press/2009/12/06/new-clearfix-hack/ */
 
+/* new clearfix */
 .clearfix:after {
-    content: "."; 
-    display: block; 
-    height: 0; 
-    clear: both; 
-    visibility: hidden;
-}
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: " ";
+	clear: both;
+	height: 0;
+	}
+* html .clearfix             { zoom: 1; } /* IE6 */
+*:first-child+html .clearfix { zoom: 1; } /* IE7 */
 
-.clearfix {display: inline;}
-
-/* Hides from IE-mac \*/
-* html .clearfix {height: 1%;}
-.clearfix {display: block;}
-/* End hide from IE-mac */
-
-/* END: http://www.positioniseverything.net/easyclearing.html */
+/* END: http://perishablepress.com/press/2009/12/06/new-clearfix-hack/ */
 
 /* BEGIN: ADxMenu */
 
