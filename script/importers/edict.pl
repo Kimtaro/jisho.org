@@ -124,12 +124,14 @@ sub parse_line {
 	$entry->{is_common} = $is_common;
 	
 	# Build readings
-  $entry->{readings} = [{
-    reading => $reading,
-    is_common => $is_common,
+  $entry->{reading_groups} = [{
+    readings => [{
+      reading => $reading,
+      is_common => $is_common,
+    }]
   }];
   if ( $representation ) {
-    ${$entry->{readings}}[0]->{representations} = [{
+    ${$entry->{reading_groups}}[0]->{representations} = [{
       representation => $representation,
       is_common => $is_common,
       tags => [],
