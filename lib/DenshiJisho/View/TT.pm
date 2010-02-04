@@ -88,6 +88,7 @@ sub romaji {
     my $run = shift @args;
     
     $kana = decode_utf8($romaji->chars(encode_utf8($kana))) if $run;
+    $kana =~ s/\s+//;
     
     return $kana;
   }
