@@ -65,7 +65,10 @@ sub _find_word_ids {
     @ids = $references->get_column('word_id')->all;
   }
   
-  return $self->search({'id' => {-IN => \@ids}},
+  my $where = {id => {-IN => \@ids}};
+     $where->{has_common} = 1 if $options->{common_only};
+  
+  return $self->search($where,
                        {order_by => q/has_common DESC, FIELD(id, /. join(',', @ids) .q/)/,
                         select => qw/me.id me.data/});
 }
