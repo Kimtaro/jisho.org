@@ -6,8 +6,6 @@ after 'prepare_action' => sub {
 	my $c = shift;
 	my $path = $c->req->path;
 	
-	$c->next::method;
-	
 	if ( $path =~ m{^/?(.*\.)v[0-9.]+\.(css|js|gif|png|jpg)$}i ) {
 		$c->res->redirect("/$1$2");
 	}

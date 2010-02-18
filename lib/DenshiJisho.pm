@@ -12,6 +12,7 @@ use Catalyst qw/
   Session::State::Cookie
   Session::Store::File
 	
+	Static::Simple
 	DenshiJisho::Static
 	DenshiJisho::Encoding	
 	DenshiJisho::Flavour
