@@ -1,21 +1,17 @@
 package Catalyst::Plugin::DenshiJisho::Static;
 
-use strict;
-use warnings;
-use base qw/Catalyst::Plugin::Static::Simple/;
+use Moose::Role;
 
-our $VERSION = '0.1';
-
-sub prepare_action {
+after 'prepare_action' => sub {
 	my $c = shift;
 	my $path = $c->req->path;
 	
-	$c->SUPER::prepare_action(@_);
+	$c->next::method;
 	
 	if ( $path =~ m{^/?(.*\.)v[0-9.]+\.(css|js|gif|png|jpg)$}i ) {
 		$c->res->redirect("/$1$2");
 	}
-}
+};
 
 1;
 
