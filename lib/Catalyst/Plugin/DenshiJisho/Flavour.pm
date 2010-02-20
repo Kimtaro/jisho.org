@@ -1,14 +1,19 @@
 package Catalyst::Plugin::DenshiJisho::Flavour;
 
-use Moose::Role;
+use warnings;
+use strict;
 use HTTP::MobileAgent;
 
 use base qw/Class::Accessor::Fast/;
 
+our $VERSION = '0.1';
+
 __PACKAGE__->mk_accessors('flavour');
 
-after 'prepare_parameters' => sub {
+sub prepare_parameters {
   my $c = shift;
+
+	$c->next::method;
 
   # Get flavour from URL param
   if ( $c->req->param('flavour') ) {
@@ -36,6 +41,6 @@ after 'prepare_parameters' => sub {
 	else {
 		$c->flavour('www');
 	}
-};
+}
 
 1;

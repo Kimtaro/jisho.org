@@ -6,16 +6,16 @@ use Encode;
 our $VERSION = '0.1';
 
 sub finalize {
-    my $c = shift;
+  my $c = shift;
 	my $charset;
 	my $meta_charset;
 
     unless ( $c->response->body ) {
-        return $c->NEXT::finalize;
+      return $c->next::method;
     }
 
     unless ( $c->response->content_type =~ m|^text/html| ) {
-        return $c->NEXT::finalize;
+      return $c->next::method;
     }
 
 	if ( $c->flavour eq 'j_mobile' ) {
@@ -34,14 +34,14 @@ sub finalize {
 	
 	$c->response->body( encode($charset, $c->response->body) );
 
-    $c->NEXT::finalize;
+  $c->next::method;
 }
 
 sub prepare_parameters {
-    my $c = shift;
+  my $c = shift;
 	my $charset;
 	
-	$c->NEXT::prepare_parameters(@_);
+	$c->next::method;
 	
 	if ( $c->flavour eq 'j_mobile' ) {
 		$charset = 'shift_jis';
