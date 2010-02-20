@@ -70,7 +70,7 @@ sub _find_word_ids {
   
   return $self->search($where,
                        {order_by => q/has_common DESC, FIELD(id, /. join(',', @ids) .q/)/,
-                        select => qw/me.id me.data/});
+                        select => qw/me.id/});
 }
 
 sub _setup_tokens {
