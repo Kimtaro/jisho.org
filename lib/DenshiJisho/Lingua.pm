@@ -125,7 +125,7 @@ sub romaji_to_kana {
         $mora = $ROMAJI_TO_KANA->{$for_conversion};
       }
       elsif ( $for_conversion eq 'tch'
-      || ( $length == 2 && $for_conversion =~ /([kgsztdnbpmyrlw])\1/ )
+      || ( $length == 2 && $for_conversion =~ /([kgsztdnbpmyrlwc])\1/ )
       ) {
         # tch and double-consonants for small tsu 
         $mora = $H_SMALL_TSU;

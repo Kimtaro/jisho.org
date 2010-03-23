@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 use utf8;
-use Test::More tests => 37;
+use Test::More tests => 39;
 
 my $KATAKANA = "ァアィイゥウェエォオカガキギクグケゲコゴサザシジスズセゼソゾタダチヂッツヅテデトドナニヌネノハバパヒビピフブプヘベペホボポマミムメモャヤュユョヨラリルレロヮワヰヱヲンヴヵヶ";
 my $HIRAGANA = "ぁあぃいぅうぇえぉおかがきぎくぐけげこごさざしじすずせぜそぞただちぢっつづてでとどなにぬねのはばぱひびぴふぶぷへべぺほぼぽまみむめもゃやゅゆょよらりるれろゎわゐゑをんゔゕゖ";
@@ -28,6 +28,7 @@ BEGIN { use_ok 'DenshiJisho::Lingua' }
     is( romaji_to_kana('katchatta'),    'かっちゃった' );
     is( romaji_to_kana('kawwaiixi'),    'かっわいいぃ' );
     is( romaji_to_kana('ottosei'),      'おっとせい' );
+    is( romaji_to_kana('acchi'),        'あっち' );
 
     # Katakana
     is( romaji_to_kana('KANADESU'),     'カナデス' );
@@ -39,6 +40,7 @@ BEGIN { use_ok 'DenshiJisho::Lingua' }
     is( romaji_to_kana('KATCHATTA'),    'カッチャッタ' );
     is( romaji_to_kana('KAWWAIIXI'),    'カッワイイィ' );
     is( romaji_to_kana('OTTOSEI'),      'オットセイ' );
+    is( romaji_to_kana('ACCHI'),        'アッチ' );
     is( romaji_to_kana('KATAKANA desu'),'カタカナ です' );
 
     # Non-Japanese
